@@ -1,6 +1,7 @@
 -- Get all route types for the browse RouteTypes page
 SELECT idRouteType, routeType
 FROM RouteTypes
+ORDER BY idRouteType
 
 -- Get a single route type's information for RouteTypes update page
 SELECT idRouteType, routeType

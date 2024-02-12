@@ -9,6 +9,7 @@ FROM Attendance
         ON Sessions.idLocation = Locations.idLocation
     JOIN Classes
         ON Sessions.idClass = Classes.idClass
+ORDER BY idAttendance ASC
 
 -- Get all attendance for specific class
 SELECT idAttendance, Members.firstName AS firstName, Members.lastName AS lastName
@@ -35,6 +36,7 @@ FROM Sessions
         ON Sessions.idLocation = Locations.idLocation
     LEFT JOIN Classes
         ON Sessions.idClass = Classes.idClass
+ORDER BY Sessions.idSession ASC
 
 -- Get all attendance for a specific Member
 SELECT idAttendance, Attendance.idSession, Locations.locationName, Classes.className, Sessions.classDate
