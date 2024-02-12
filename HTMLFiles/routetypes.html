@@ -1,0 +1,77 @@
+<html>
+    <head>
+        <title>
+            Apex Climbing Route Types
+        </title>
+        <link href="style.css" rel="stylesheet" type="text/css"/>
+        <script language="JavaScript">
+            function showform(action) {
+                if (action == 'update'){
+                } else if (action == 'insert'){
+                    document.getElementById('browse').style.display = 'none';
+                    document.getElementById('insert').style.display = 'block';
+                    document.getElementById('update').style.display = 'none';
+                    document.getElementById('delete').style.display = 'none';
+			    } else { //by default display browse
+				    document.getElementById('browse').style.display = 'block';
+				    document.getElementById('insert').style.display = 'none'; 
+				    document.getElementById('update').style.display = 'none';
+				    document.getElementById('delete').style.display = 'none';
+			}
+            }
+            function newRouteType() { showform('insert'); }
+            function browse() { showform ('browse'); }
+        </script>
+    </head>
+</html>
+
+<body onload="browse()">
+    <h1>RouteTypes</h1>
+    <a href="index.html">Home</a> |
+    <a href="members.html">Members</a> | 
+    <a href="locations.html"> Locations</a> | 
+    <a href="classes.html">Classes</a> | 
+    <a href="sessions.html">Sessions</a> | 
+    <a href="attendance.html">Attendance</a> |
+    <a href="routes.html">Routes</a> | 
+    <a href="routesetters.html">RouteSetters</a> | 
+    <a href="routetypes.html">RouteTypes</a>
+
+    <div id="browse">
+        <p><strong>Browse Route Types</strong></p>
+        <table border="1" cellpadding="5">
+            <tr>
+                <th>ID</th>
+                <th>Route Type</th>
+            </tr>
+            <tr>
+                <td align="center">1</td>
+                <td align="center">Slab</td>
+            </tr>
+            <tr>
+                <td align="center">2</td>
+                <td align="center">Overhang</td>
+            </tr>
+            <tr>
+                <td align="center">3</td>
+                <td align="center">Vertical</td>
+            </tr>
+        </table>
+        <br>
+        <form method="POST" id="addRouteType">
+            <input class="btn" type="button" value="Add Route Type" onClick="newRouteType()">
+        </form> 
+    </div>
+
+    <div id="insert">
+        <form method="POST" id="addRouteType">
+            <p><strong>Add Route Type</strong></p>
+            <fieldset class="fields">
+                <label> Route Type: </label> <input type="text" name="routeType"><br>
+            </fieldset>
+            <br>
+            <input class="btn" type="submit" id="addRouteType" value="Add Route Type">
+            <input class="btn" type="button" value="Cancel" onClick="browse()">
+        </form> 
+    </div>
+</body>

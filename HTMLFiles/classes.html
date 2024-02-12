@@ -1,0 +1,149 @@
+<html>
+    <head>
+        <title>
+            Apex Climbing Classes
+        </title>
+        <link href="style.css" rel="stylesheet" type="text/css"/>
+        <script language="JavaScript">
+            function showform(action) {
+                if (action == 'update'){
+				    document.getElementById('browse').style.display = 'none';
+				    document.getElementById('insert').style.display = 'none';
+				    document.getElementById('update').style.display = 'block';
+				    document.getElementById('delete').style.display = 'none';
+                } else if (action == 'insert'){
+                    document.getElementById('browse').style.display = 'none';
+                    document.getElementById('insert').style.display = 'block';
+                    document.getElementById('update').style.display = 'none';
+                    document.getElementById('delete').style.display = 'none';
+			    }else if (action === 'delete'){
+				    document.getElementById('browse').style.display = 'none';
+				    document.getElementById('insert').style.display = 'none';
+				    document.getElementById('update').style.display = 'none';
+				    document.getElementById('delete').style.display = 'block';
+			    } else { //by default display browse
+				    document.getElementById('browse').style.display = 'block';
+				    document.getElementById('insert').style.display = 'none'; 
+				    document.getElementById('update').style.display = 'none';
+				    document.getElementById('delete').style.display = 'none';
+			}
+            }
+            function newClass() { showform('insert'); }
+            function updateClass(id) { showform('update'); }
+            function deleteClass(id) { showform ('delete'); }
+            function browse() { showform ('browse'); }
+        </script>
+    </head>
+</html>
+
+<body onload="browse()">
+    <h1>Classes</h1>
+    <a href="index.html">Home</a> |
+    <a href="members.html">Members</a> | 
+    <a href="locations.html"> Locations</a> | 
+    <a href="classes.html">Classes</a> | 
+    <a href="sessions.html">Sessions</a> | 
+    <a href="attendance.html">Attendance</a> |
+    <a href="routes.html">Routes</a> | 
+    <a href="routesetters.html">RouteSetters</a> | 
+    <a href="routetypes.html">RouteTypes</a>
+
+    <div id="browse">
+        <p><strong>Browse Classes</strong></p>
+        <table border="1" cellpadding="5">
+            <tr>
+                <th>ID</th>
+                <th>Class Name</th>
+                <th>Size Limit</th>
+                <th>Edit</th>
+                <th>Delete</th>
+            </tr>
+            <tr>
+                <td align="center">1</td>
+                <td align="center">Mobility</td>
+                <td align="center">25</td>
+                <td align="center"><a href="#" onClick="updateClass('this.ID')">Edit</a></td>
+                <td align="center"><a href="#" onclick="deleteClass('this.ID')">Delete</a></td>
+            </tr>
+            <tr>
+                <td align="center">2</td>
+                <td align="center">Recovery yoga</td>
+                <td align="center">20</td>
+                <td align="center"><a href="#" onClick="updateClass('this.ID')">Edit</a></td>
+                <td align="center"><a href="#" onclick="deleteClass('this.ID')">Delete</a></td>
+            </tr>
+            <tr>
+                <td align="center">3</td>
+                <td align="center">Intro to Lead Climbing</td>
+                <td align="center">14</td>
+                <td align="center"><a href="#" onClick="updateClass('this.ID')">Edit</a></td>
+                <td align="center"><a href="#" onclick="deleteClass('this.ID')">Delete</a></td>
+            </tr>
+            <tr>
+                <td align="center">4</td>
+                <td align="center">Wilderness First Aid</td>
+                <td align="center">30</td>
+                <td align="center"><a href="#" onClick="updateClass('this.ID')">Edit</a></td>
+                <td align="center"><a href="#" onclick="deleteClass('this.ID')">Delete</a></td>
+            </tr>
+            <tr>
+                <td align="center">5</td>
+                <td align="center">Core Power</td>
+                <td align="center">25</td>
+                <td align="center"><a href="#" onClick="updateClass('this.ID')">Edit</a></td>
+                <td align="center"><a href="#" onclick="deleteClass('this.ID')">Delete</a></td>
+            </tr>
+        </table>
+        <br>
+        <form method="POST" id="addClass">
+            <input class="btn" type="button" value="Add Class" onClick="newClass()">
+        </form> 
+    </div>
+
+
+    <div id="update">
+        <form method="POST" id="updateClass">
+            <p><strong>Update Class</strong></p>
+            <fieldset class="fields">
+                <input type="hidden" name="ClassID" id="updateClassID" value="1">
+                <label> ID: </label> 1 <br>
+                <label> Class Name: </label> <input type="text" name="className" value="Mobility"><br>
+                <label> Size Limit: </label> <input type="number" name="sizeLimit" value="24">
+            </fieldset>
+            <br>
+            <input class="btn" type="submit" id="confirmUpdate" value="Update Class">
+            <input class="btn" type="button" value="Cancel" onClick="browse()">
+        </form> 
+    </div>
+
+
+    <div id="delete">
+        <form method="POST" id="deleteClass">
+            <p><strong>Delete Class</strong></p>
+            <fieldset class="fields">
+                <p>Delete Permanently?</p>
+                <input type="hidden" name="classID" id="deleteClassID" value="1">
+                    <label><strong>ID:</strong></label> 1 <br>
+                    <label> <strong>Class Name:</strong> </label> Mobility
+                    
+            </fieldset>
+            <br>
+            <input class="btn" type="submit" id="deleteClass" value="Delete Class">
+            <input class="btn" type="button" value="Cancel" onClick="browse()">
+        </form> 
+    </div>
+
+
+    <div id="insert">
+        <form method="POST" id="addClass">
+            <p><strong>Add Class</strong></p>
+            <fieldset class="fields">
+                <label> Class Name: </label> <input type="text" name="className"><br>
+                <label> Size Limit: </label> <input type="number" name="sizeLimit"><br>
+            </fieldset>
+            <br>
+            <input class="btn" type="submit" id="addClass" value="Add Class">
+            <input class="btn" type="button" value="Cancel" onClick="browse()">
+        </form> 
+    </div>
+</body>
