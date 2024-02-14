@@ -1,3 +1,11 @@
+<!-----------CITATION------------>
+<!--The Below code was adapted from the html code file bsg_HTML_UI provided in the Exploration - Web Application Technology.-->
+<!--Date: 2/14/2024-->
+<!--Code adapted from: bsg_HTML_UI provided in the Exploration - Web Application Technology-->
+<!--Author: Dr. Michael Curry-->
+<!--Source URL: https://canvas.oregonstate.edu/courses/1946034/pages/exploration-web-application-technology?module_item_id=23809327-->
+<!-- The below code implements an HTML shell page to demonstrate how CRUD operations will work in the user interface for the RouteSetters Entity-->
+
 <html>
     <head>
         <title>
@@ -7,19 +15,30 @@
         <script language="JavaScript">
             function showform(action) {
                 if (action == 'update'){
+				    document.getElementById('browse').style.display = 'none';
+				    document.getElementById('insert').style.display = 'none';
+				    document.getElementById('update').style.display = 'block';
+				    document.getElementById('delete').style.display = 'none';
                 } else if (action == 'insert'){
                     document.getElementById('browse').style.display = 'none';
                     document.getElementById('insert').style.display = 'block';
                     document.getElementById('update').style.display = 'none';
                     document.getElementById('delete').style.display = 'none';
-			    } else { //by default display browse
+			    } else if (action === 'delete'){
+				    document.getElementById('browse').style.display = 'none';
+				    document.getElementById('insert').style.display = 'none';
+				    document.getElementById('update').style.display = 'none';
+				    document.getElementById('delete').style.display = 'block'; 
+                } else { //by default display browse
 				    document.getElementById('browse').style.display = 'block';
 				    document.getElementById('insert').style.display = 'none'; 
 				    document.getElementById('update').style.display = 'none';
 				    document.getElementById('delete').style.display = 'none';
-			}
+			    }
             }
             function newRouteSetter() { showform('insert'); }
+            function updateRouteSetter(id) { showform('update'); }
+            function deleteRouteSetter(id) { showform ('delete'); }
             function browse() { showform ('browse'); }
         </script>
     </head>
@@ -45,41 +64,85 @@
                 <th>First Name</th>
                 <th>Last Name</th>
                 <th>Certification Level</th>
+                <th>Edit</th>
+                <th>Delete</th>
             </tr>
             <tr>
                 <td align="center">1</td>
                 <td align="center">Polly</td>
                 <td align="center">Pocket</td>
                 <td align="center">2</td>
+                <td align="center"><a href="#" onClick="updateRouteSetter('this.ID')">Edit</a></td>
+                <td align="center"><a href="#" onclick="deleteRouteSetter('this.ID')">Delete</a></td>
             </tr>
             <tr>
                 <td align="center">2</td>
                 <td align="center">Ariel</td>
                 <td align="center">Arete</td>
                 <td align="center">3</td>
+                <td align="center"><a href="#" onClick="updateRouteSetter('this.ID')">Edit</a></td>
+                <td align="center"><a href="#" onclick="deleteRouteSetter('this.ID')">Delete</a></td>
             </tr>
             <tr>
                 <td align="center">3</td>
                 <td align="center">Selene</td>
                 <td align="center">Sloper</td>
                 <td align="center">1</td>
+                <td align="center"><a href="#" onClick="updateRouteSetter('this.ID')">Edit</a></td>
+                <td align="center"><a href="#" onclick="deleteRouteSetter('this.ID')">Delete</a></td>
             </tr>
             <tr>
                 <td align="center">4</td>
                 <td align="center">Charlie</td>
                 <td align="center">Chalk</td>
                 <td align="center">2</td>
+                <td align="center"><a href="#" onClick="updateRouteSetter('this.ID')">Edit</a></td>
+                <td align="center"><a href="#" onclick="deleteRouteSetter('this.ID')">Delete</a></td>
             </tr>
             <tr>
                 <td align="center">5</td>
                 <td align="center">Dylan</td>
                 <td align="center">Dyno</td>
                 <td align="center">3</td>
+                <td align="center"><a href="#" onClick="updateRouteSetter('this.ID')">Edit</a></td>
+                <td align="center"><a href="#" onclick="deleteRouteSetter('this.ID')">Delete</a></td>
             </tr>
         </table>
         <br>
         <form method="POST" id="addRouteSetter">
             <input class="btn" type="button" value="Add RouteSetter" onClick="newRouteSetter()">
+        </form> 
+    </div>
+
+    <div id="update">
+        <form method="POST" id="updateRouteSetter">
+            <p><strong>Update Routesetter</strong></p>
+            <fieldset class="fields">
+                <input type="hidden" name="routeSetterID" id="updateRouteSetterID" value="1"><br>
+                <label> ID: </label> 1 <br>
+                <label> First Name: </label> <input type="text" name="firstName" value = "Polly"><br>
+                <label> Last Name: </label> <input type="text" name="firstName" value = "Pocket"><br>
+                <label> Certification Level: </label> <input type="number" name="certLevel" value = "2"><br>
+            </fieldset>
+            <br>
+            <input class="btn" type="submit" id="confirmUpdate" value="Update RouteSetter">
+            <input class="btn" type="button" value="Cancel" onClick="browse()">
+        </form> 
+    </div>
+
+
+    <div id="delete">
+        <form method="POST" id="deleteRouteSetter">
+            <p><strong>Delete Routesetter</strong></p>
+            <fieldset class="fields">
+                <p>Delete Permanently?</p>
+                <input type="hidden" name="routeID" id="deleteRouteID" value="1">
+                <label><strong>ID:</strong></label> 1 <br>
+                <label> <strong>Name:</strong> </label> Polly Pocket<br>
+            </fieldset>
+            <br>
+            <input class="btn" type="submit" id="deleteRouteSetter" value="Delete Routesetter">
+            <input class="btn" type="button" value="Cancel" onClick="browse()">
         </form> 
     </div>
 
