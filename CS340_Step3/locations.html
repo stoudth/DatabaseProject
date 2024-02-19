@@ -1,0 +1,107 @@
+<!-----------CITATION------------>
+<!--The Below code was adapted from the html code file bsg_HTML_UI provided in the Exploration - Web Application Technology.-->
+<!--Date: 2/14/2024-->
+<!--Code adapted from: bsg_HTML_UI provided in the Exploration - Web Application Technology-->
+<!--Author: Dr. Michael Curry-->
+<!--Source URL: https://canvas.oregonstate.edu/courses/1946034/pages/exploration-web-application-technology?module_item_id=23809327-->
+<!-- The below code implements an HTML shell page to demonstrate how CRUD operations will work in the user interface for the Locations Entity-->
+
+<html>
+    <head>
+        <title>
+            Apex Climbing Locations
+        </title>
+        <link href="style.css" rel="stylesheet" type="text/css"/>
+        <script language="JavaScript">
+            function showform(action) {
+                if (action == 'update'){
+                } if (action == 'insert'){
+                    document.getElementById('browse').style.display = 'none';
+                    document.getElementById('insert').style.display = 'block';
+			    } else { //by default display browse
+				    document.getElementById('browse').style.display = 'block';
+				    document.getElementById('insert').style.display = 'none';
+			    }
+            }
+            function newLocation() { showform('insert'); }
+            function browse() { showform ('browse'); }
+        </script>
+    </head>
+</html>
+
+<body onload="browse()">
+    <h1>Locations</h1>
+    <a href="index.html">Home</a> |
+    <a href="locations.html"> Locations</a> | 
+    <a href="classes.html">Classes</a> | 
+    <a href="sessions.html">Sessions</a> | 
+    <a href="routes.html">Routes</a> | 
+    <a href="routesetters.html">RouteSetters</a> | 
+    <a href="routetypes.html">RouteTypes</a>
+
+    <br><br>
+    <div id="info">
+        <fieldset>
+            <p>Operations available for Locations: SELECT, INSERT</p>
+        </fieldset>
+    </div>
+
+    <div id="browse">
+        <p><strong>Browse Locations - Displays All Locations Currently In The Database</strong></p>
+        <table border="1" cellpadding="5">
+            <tr>
+                <th>ID</th>
+                <th>Location Name</th>
+                <th>Street Address</th>
+                <th>City</th>
+                <th>State</th>
+                <th>Zipcode</th>
+            </tr>
+            <tr>
+                <td align="center">1</td>
+                <td align="center">Northeast</td>
+                <td align="center">198 S Main St.</td>
+                <td align="center">Hoboken</td>
+                <td align="center">NJ</td>
+                <td align="center">07030</td>
+            </tr>
+            <tr>
+                <td align="center">2</td>
+                <td align="center">Southeast</td>
+                <td align="center">4902 Honeysuckle Ave.</td>
+                <td align="center">Atlanta</td>
+                <td align="center">GA</td>
+                <td align="center">30067</td>
+            </tr>
+            <tr>
+                <td align="center">3</td>
+                <td align="center">Midwest</td>
+                <td align="center">472 Lakefront Ln.</td>
+                <td align="center">Cleveland</td>
+                <td align="center">OH</td>
+                <td align="center">44199</td>
+            </tr>
+        </table>
+        <br>
+        <form method="POST" id="insertLocation">
+            <input class="btn" type="button" value="Add Location" onClick="newLocation()">
+        </form> 
+    </div>
+
+
+    <div id="insert">
+        <form method="POST" id="addLocation">
+            <p><strong>Add New Location</strong></p>
+            <fieldset class="fields">
+                <label> Location Name: </label> <input type="text" name="locationName"><br>
+                <label> Street Address: </label> <input type="text" name="streetAddress"><br>
+                <label> City: </label> <input type="text" name="city"><br>
+                <label> State: </label> <input type="text" name="state"><br>
+                <label> Zipcode: </label> <input type="text" name="zipcode"><br>
+            </fieldset>
+            <br>
+            <input class="btn" type="submit" id="addLocation" value="Add Location">
+            <input class="btn" type="button" value="Cancel" onClick="browse()">
+        </form> 
+    </div>
+</body>
