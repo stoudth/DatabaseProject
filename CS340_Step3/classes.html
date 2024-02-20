@@ -56,7 +56,7 @@
         <p><strong>Browse Classes - Displays All Classes Currently In The Database</strong></p>
         <table border="1" cellpadding="5">
             <tr>
-                <th>ID</th>
+                <th>Class ID</th>
                 <th>Class Name</th>
                 <th>Size Limit</th>
                 <th>Delete</th>
@@ -120,7 +120,7 @@
             <p><strong>Add New Class</strong></p>
             <fieldset class="fields">
                 <label> Class Name: </label> <input type="text" name="className"><br>
-                <label> Size Limit: </label> <input type="number" name="sizeLimit"><br>
+                <label> Size Limit: </label> <input type="number" min="1" name="sizeLimit"><br>
                 <br><br>
                 <label>First Session:</label><br>
                 <label> Location: </label> <select name="locationName">

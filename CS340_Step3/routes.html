@@ -57,14 +57,14 @@
         <p><strong>Browse Routes - Displays All Routes Currently In The Database</strong></p>
         <table border="1" cellpadding="5">
             <tr>
-                <th>ID</th>
+                <th>Route ID</th>
                 <th>Route Name</th>
                 <th>Date Set</th>
                 <th>Route Grade</th>
                 <th>Active</th>
                 <th>Location Name</th>
-                <th>Routesetter</th>
-                <th>RouteType</th>
+                <th>Route Setter</th>
+                <th>Route Type</th>
                 <th>Edit</th>
             </tr>
             <tr>
@@ -118,7 +118,7 @@
                 <td align="center">5.10b</td>
                 <td align="center">1</td>
                 <td align="center">Southeast</td>
-                <td align="center">Ariel Arete</td>
+                <td align="center">NULL</td>
                 <td align="center">Slab</td>
                 <td align="center"><a href="#" onClick="updateRoute('this.ID')">Edit</a></td>
             </tr>
@@ -134,7 +134,7 @@
             <p><strong>Update Route</strong></p>
             <fieldset class="fields">
                 <input type="hidden" name="routeID" id="updateRouteID" value="1"><br>
-                <label> ID: </label> 1 <br>
+                <label> Route ID: </label> 1 <br>
                 <label> Route Name: </label> <input type="text" name="routeName" value = "The Little Engine that Could"><br>
                 <label> Date Set: </label> <input type="date" name="dateSet" value = "2024-02-04"><br>
                 <label> Route Grade: </label> <input type="text" name="routeGrade" value = "5.6"><br>
@@ -199,6 +199,12 @@
                     <option value="5">Dylan Dyno</option>
                     </select>
                 <br>
+                <label> Route Type: </label> <select name="routeType">
+                    <option value="1" selected>Slab</option>
+                    <option value="2">Overhang</option>
+                    <option value="3">Vertical</option>
+                    </select>
+                 <br>
             </fieldset>
             <br>
             <input class="btn" type="submit" id="addRoute" value="Add Route">

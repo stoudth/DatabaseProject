@@ -41,15 +41,15 @@
     <br><br>
     <div id="info">
         <fieldset>
-            <p>Operations available for RouteSetters: SELECT, INSERT</p>
+            <p>Operations available for Route Setters: SELECT, INSERT</p>
         </fieldset>
     </div>
 
     <div id="browse">
-        <p><strong>Browse RouteSetters - Displays All RouteSetters Currently In The Database</strong></p>
+        <p><strong>Browse Route Setters - Displays All Route Setters Currently In The Database</strong></p>
         <table border="1" cellpadding="5">
             <tr>
-                <th>ID</th>
+                <th>Route Setter ID</th>
                 <th>First Name</th>
                 <th>Last Name</th>
                 <th>Certification Level</th>
@@ -97,7 +97,7 @@
             <fieldset class="fields">
                 <label> First Name: </label> <input type="text" name="firstName"><br>
                 <label> Last Name: </label> <input type="text" name="lastName"><br>
-                <label> Certification Level: </label> <input type="number" name="certLevel"><br>
+                <label> Certification Level: </label> <input type="number" min="1" max="5" name="certLevel"><br>
             </fieldset>
             <br>
             <input class="btn" type="submit" id="addRouteSetter" value="Add RouteSetter">
