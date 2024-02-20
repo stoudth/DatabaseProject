@@ -2,8 +2,6 @@
 -- Sarah Van Hoose and Hailey Stoudt
 -- Rock Gym
 -- Data Manipulation Queries 
--- Note: We have illustrated all CRUD operations for each table but will choose which 
--- operations to implement when connecting the site based on the Project guidelines.
 -- : character being used to denote the variables that will have data from the backend programming language
 
 
@@ -13,7 +11,7 @@
 -- Get all locations for the browse Locations page
 SELECT idLocation, locationName, streetAddress, city, state, zipcode 
 FROM Locations
-ORDER BY idLocation
+ORDER BY idLocation;
 
 -- Insert new location in Locations (: character denotes variable)
 INSERT INTO Locations(
@@ -24,11 +22,11 @@ INSERT INTO Locations(
     zipcode
 )
 Values(
-    :locationNameInput,
-    :addressInput,
-    :cityInput,
-    :stateInput,
-    :zipInput
+    :location_name_input,
+    :address_input,
+    :city_input,
+    :state_input,
+    :zip_input
 );
 
 
@@ -39,7 +37,7 @@ Values(
 -- Get all classes for the browse Classes page
 SELECT idClass, className, sizeLimit
 FROM Classes
-ORDER BY idClass
+ORDER BY idClass;
 
 -- Insert new class in the Classes (: character denotes variable)
 INSERT INTO Classes(
@@ -47,8 +45,8 @@ INSERT INTO Classes(
     sizeLimit
 )
 VALUES(
-    :classNameInput,
-    :sizeInput
+    :class_name_input,
+    :size_input
 );
 
 -- INSERT New Session in Sessions intersection table when new class is made - form in html asks for location and date of first session (: character denotes variable)
@@ -58,55 +56,49 @@ INSERT INTO Sessions(
     classDate
 )
 VALUES(
-    (
-        (SELECT idClass FROM Classes WHERE className = :classNameInput),
-        (SELECT idLocation FROM Locations WHERE locationName = :locationNameInput),
-        :classDateInput
-    )
-);
+        (SELECT idClass FROM Classes WHERE className = :class_name_input),
+        (SELECT idLocation FROM Locations WHERE locationName = :location_name_input),
+        :class_date_input
+    );
 
 -- Delete a class from the Classes table (: character denotes variable)
 DELETE FROM Classes
-WHERE idClass = :class_id_selected
+WHERE idClass = :class_id_selected;
 
 
 /*Sessions*/
 --CRUD OPERATIONS: SELECT, INSERT, UPDATE (M:N Update)
 
 -- Get all sessions for the browse Sessions page
-SELECT Sessions.idSession, Locations.locationName AS locationName, Classes.className, classDate, IFNULL(COUNT(Attendance.idMember),0)totalAttendance, Classes.sizeLimit
+SELECT Sessions.idSession, Locations.locationName AS locationName, Classes.className, classDate, Classes.sizeLimit
 FROM Sessions
     INNER JOIN Locations
         ON Sessions.idLocation = Locations.idLocation
     LEFT JOIN Classes
         ON Sessions.idClass = Classes.idClass
-    JOIN Attendance
-        ON Attendance.idSession = Sessions.idSession
-GROUP BY Attendance.idSession
-ORDER BY Attendance.idSession
+GROUP BY Sessions.idSession
+ORDER BY Sessions.idSession;
 
 -- Get a single sessions information for Sessions update page 
-SELECT Sessions.idSession, Locations.locationName AS locationName, Classes.className, classDate, IFNULL(COUNT(Attendance.idMember),0)totalAttendance, Classes.sizeLimit
+SELECT Sessions.idSession, Locations.locationName AS locationName, Classes.className, classDate, Classes.sizeLimit
 FROM Sessions
 INNER JOIN Locations
         ON Sessions.idLocation = Locations.idLocation
     LEFT JOIN Classes
         ON Sessions.idClass = Classes.idClass
-    JOIN Attendance
-        ON Attendance.idSession = Sessions.idSession
-WHERE Attendance.idSession = :session_id_selected_to_edit
+WHERE Sessions.idSession = :session_id_selected_to_edit;
 
 -- Generate drop down menu for Locations to associate with Sessions (Update and Create Operations)
 SELECT idLocation, locationName from Locations
 
 --Generate dropdown menu for Classes to associate with Session (Update and Create Operations)
-SELECT idClass, className from Classes
+SELECT idClass, className from Classes;
 
 -- Update a single session's information from Sessions update page (: character denotes variable)
 UPDATE Sessions
-SET idLocation = (SELECT idLocation FROM Locations WHERE locationName = :locationNameSelected), 
-    idClass = (SELECT idClass FROM Classes WHERE className = :classNameSelected).
-    classDate = :dateInput
+SET idLocation = (SELECT idLocation FROM Locations WHERE locationName = :location_nam_selected), 
+    idClass = (SELECT idClass FROM Classes WHERE className = :class_name_selected),
+    classDate = :date_input
 WHERE idSession = :id_from_update
 
 -- Insert new session in Sessions (: character denotes variable)
@@ -116,9 +108,9 @@ INSERT INTO Sessions(
     classDate
 )
 VALUES(
-    (SELECT idLocation FROM Locations WHERE locationName = :locationNameSelected),
-    (SELECT idClass FROM Classes WHERE className = :classNameSelected),
-    :dateInput
+    (SELECT idLocation FROM Locations WHERE locationName = :location_name_selected),
+    (SELECT idClass FROM Classes WHERE className = :class_name_selected),
+    :date_input
 );
 
 
@@ -127,46 +119,46 @@ VALUES(
 --CRUD OPERATIONS: SELECT, INSERT, UPDATE(NULLABLE)
 
 -- Get all routes for the browse Routes page 
-SELECT idRoute, routeName, dateSet, routeGrade, active, Locations.locationName, RouteSetters.firstName, RouteSetters.LastName, RouteTypes.routeType
+SELECT idRoute, routeName, dateSet, routeGrade, active, Locations.locationName, RouteSetters.firstName, RouteSetters.lastName, RouteTypes.routeType
 FROM Routes
     JOIN Locations
         ON Routes.idLocation = Locations.idLocation
-    JOIN RouteSetters
-        ON Routes.idRouteSetter = RouteSetters.idRouteSetter
     JOIN RouteTypes
         ON Routes.idRouteType = RouteTypes.idRouteType
-ORDER BY idRoute
+    LEFT JOIN RouteSetters
+        ON Routes.idRouteSetter = RouteSetters.idRouteSetter
+ORDER BY idRoute;
 
 -- Generate dropdown menu for locations to associate with Routes (Create and Update Operations)
-SELECT idLocation, locationName FROM Locations
+SELECT idLocation, locationName FROM Locations;
 
 -- Generate dropdown menu for routesetters to associate with Routes (Create and Update Operations)
-SELECT idRouteSetter, firstName, lastName FROM RouteSetters
+SELECT idRouteSetter, firstName, lastName FROM RouteSetters;
 
 -- Generate dropdown menu for route types to associate with Routes (Create and Update Operations)
-SELECT idRouteType, routeType FROM RouteTypes
+SELECT idRouteType, routeType FROM RouteTypes;
 
 -- Get a single route for Routes update page (: character denotes variable)
 SELECT idRoute, routeName, dateSet, routeGrade, active, Locations.locationName, RouteSetters.firstName, RouteSetters.LastName, RouteTypes.routeType
 FROM Routes
     JOIN Locations
         ON Routes.idLocation = Locations.idLocation
-    JOIN RouteSetters
-        ON Routes.idRouteSetter = RouteSetters.idRouteSetter
     JOIN RouteTypes
         ON Routes.idRouteType = RouteTypes.idRouteType
-WHERE idRoute = :route_id_selected_to_edit
+    LEFT JOIN RouteSetters
+        ON Routes.idRouteSetter = RouteSetters.idRouteSetter
+WHERE idRoute = :route_id_selected_to_edit;
 
 -- Update a single route's information from Routes update page (: character denotes variable)
 UPDATE Routes 
-SET routeName = :routeNameInput, 
-    dateSet = :dateInput, 
-    routeGrade = :gradeInput, 
-    active = :activeInput,
-    idLocation = :locationIDSelected,
-    idRouteSetter = :routeSetterIDSelected,
-    idRouteType = :routeTypeIDSelected
-WHERE idRoute = :id_from_update
+SET routeName = :route_name_input, 
+    dateSet = :date_input, 
+    routeGrade = :grade_input, 
+    active = :active_input,
+    idLocation = :location_id_selected,
+    idRouteSetter = :route_setter_id_selected,
+    idRouteType = :route_type_id_selected
+WHERE idRoute = :id_from_update;
 
 -- Insert new route in Routes (: character denotes variable)
 INSERT INTO Routes(
@@ -179,13 +171,13 @@ INSERT INTO Routes(
     idRouteType
 )
 VALUES(
-    :routeNameInput,
-    :dateInput,
-    :gradeInput,
-    :activeInput,
-    :idLocationInput,
-    :idRouteSetterInput,
-    :idRouteTypeInput
+    :route_name_input,
+    :date_input,
+    :grade_input,
+    :active_input,
+    :id_location_input,
+    :id_route_setter_input,
+    :id_route_type_input
 );
 
 
@@ -195,7 +187,7 @@ VALUES(
 -- Get all routesetters for the browse RouteSetters page
 SELECT idRouteSetter, firstName, lastName, certLevel
 FROM RouteSetters
-ORDER BY idRouteSetter
+ORDER BY idRouteSetter;
 
 -- Insert new routesetter in RouteSetters (: character denotes variable)
 INSERT INTO RouteSetters(
@@ -204,9 +196,9 @@ INSERT INTO RouteSetters(
     certLevel
 )
 VALUES(
-    :firstNameInput,
-    :lastNameInput,
-    :certLevelInput
+    :first_name_input,
+    :last_name_input,
+    :cert_level_input
 );
 
 
@@ -216,7 +208,7 @@ VALUES(
 -- Get all route types for the browse RouteTypes page
 SELECT idRouteType, routeType
 FROM RouteTypes
-ORDER BY idRouteType
+ORDER BY idRouteType;
 
 -- Insert new route type in Route Types (: character denotes variable)
 INSERT INTO RouteTypes(

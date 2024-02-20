@@ -1,3 +1,8 @@
+-- Group 74
+-- Sarah Van Hoose and Hailey Stoudt
+-- Rock Gym
+-- Data Definition Language
+
 -- Disables Foreign Key Checks and autocommits as recommended in Project Step 2 Draft: Normalized Schema + DDL with Sample Data (Group, on Ed Discussions) instructions
 SET FOREIGN_KEY_CHECKS=0;
 SET AUTOCOMMIT = 0;
@@ -40,7 +45,7 @@ CREATE OR REPLACE TABLE RouteSetters (
     PRIMARY KEY (idRouteSetter)
 );
 
--- Creates Routes table: Includes attributes for route ID, route name, date route was set, grade of route, type of route, routelocation, and routesetter
+-- Creates Routes table: Includes attributes for route ID, route name, date route was set, grade of route, type of route, route location, and routesetter
 CREATE OR REPLACE TABLE Routes (
     idRoute int UNIQUE NOT NULL AUTO_INCREMENT,
     routeName varchar(145) NOT NULL, 
@@ -231,10 +236,10 @@ VALUES
     1,
     1,
     2,
-    2
+    Null
 );
 
--- Inserts sample data into the LocationsHasClasses table
+-- Inserts sample data into the Sessions table
 INSERT INTO Sessions (
     idClass,
     idLocation,
