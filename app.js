@@ -57,6 +57,16 @@ app.get('/classes', function(req, res)
         })                                                      // an object where 'data' is equal to the 'rows' we
     });     
 
+app.get('/sessions', function(req, res)
+    {
+        let query1 = "SELECT Sessions.idSession AS idSession, Locations.locationName AS locationName, Classes.className AS className, classDate, Classes.sizeLimit As sizeLimit FROM Sessions INNER JOIN Locations ON Sessions.idLocation = Locations.idLocation LEFT JOIN Classes ON Sessions.idClass = Classes.idClass GROUP BY Sessions.idSession ORDER BY Sessions.idSession;";  // Define our query
+
+        db.pool.query(query1, function(error, rows, fields) {  // Execute the query
+
+            res.render('sessions', {data:rows});                   // Render the index.hbs file, and also send the renderer
+        })                                                      // an object where 'data' is equal to the 'rows' we
+    });  
+
 /*
 LISTENER
     -Listens for requests coming in for the PORT number that is assigned in the SETUP section above

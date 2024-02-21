@@ -70,7 +70,7 @@ WHERE idClass = :class_id_selected;
 --CRUD OPERATIONS: SELECT, INSERT, UPDATE (M:N Update)
 
 -- Get all sessions for the browse Sessions page
-SELECT Sessions.idSession, Locations.locationName AS locationName, Classes.className, classDate, Classes.sizeLimit
+SELECT Sessions.idSession AS idSession, Locations.locationName AS locationName, Classes.className AS className, classDate, Classes.sizeLimit AS sizeLimit
 FROM Sessions
     INNER JOIN Locations
         ON Sessions.idLocation = Locations.idLocation
@@ -80,7 +80,7 @@ GROUP BY Sessions.idSession
 ORDER BY Sessions.idSession;
 
 -- Get a single sessions information for Sessions update page 
-SELECT Sessions.idSession, Locations.locationName AS locationName, Classes.className, classDate, Classes.sizeLimit
+SELECT Sessions.idSession AS idSession, Locations.locationName AS locationName, Classes.className AS className, classDate, Classes.sizeLimit AS sizeLimit
 FROM Sessions
 INNER JOIN Locations
         ON Sessions.idLocation = Locations.idLocation
@@ -119,7 +119,7 @@ VALUES(
 --CRUD OPERATIONS: SELECT, INSERT, UPDATE(NULLABLE)
 
 -- Get all routes for the browse Routes page 
-SELECT idRoute, routeName, dateSet, routeGrade, active, Locations.locationName, RouteSetters.firstName, RouteSetters.lastName, RouteTypes.routeType
+SELECT idRoute, routeName, dateSet, routeGrade, active, Locations.locationName AS locationName, RouteSetters.firstName AS firstName, RouteSetters.lastName AS lastName, RouteTypes.routeType AS routeTypes
 FROM Routes
     JOIN Locations
         ON Routes.idLocation = Locations.idLocation
@@ -139,7 +139,7 @@ SELECT idRouteSetter, firstName, lastName FROM RouteSetters;
 SELECT idRouteType, routeType FROM RouteTypes;
 
 -- Get a single route for Routes update page (: character denotes variable)
-SELECT idRoute, routeName, dateSet, routeGrade, active, Locations.locationName, RouteSetters.firstName, RouteSetters.LastName, RouteTypes.routeType
+SELECT idRoute, routeName, dateSet, routeGrade, active, Locations.locationName AS locationName, RouteSetters.firstName AS firstName, RouteSetters.lastName AS lastName, RouteTypes.routeType AS routeTypes
 FROM Routes
     JOIN Locations
         ON Routes.idLocation = Locations.idLocation
