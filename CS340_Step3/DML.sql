@@ -9,7 +9,7 @@
 --CRUD OPERATIONS: SELECT, INSERT
 
 -- Get all locations for the browse Locations page
-SELECT idLocation, locationName, streetAddress, city, state, zipcode 
+SELECT idLocation, locationName, streetAddress, city, state, zipcode
 FROM Locations
 ORDER BY idLocation;
 
