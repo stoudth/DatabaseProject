@@ -12,26 +12,8 @@
             Apex Climbing Classes
         </title>
         <link href="style.css" rel="stylesheet" type="text/css"/>
-        <script language="JavaScript">
-            function showform(action) {
-                if (action == 'insert'){
-                    document.getElementById('browse').style.display = 'none';
-                    document.getElementById('insert').style.display = 'block';
-                    document.getElementById('delete').style.display = 'none';
-			    } else if (action === 'delete'){
-				    document.getElementById('browse').style.display = 'none';
-				    document.getElementById('insert').style.display = 'none';
-				    document.getElementById('delete').style.display = 'block';
-			    } else { //by default display browse
-				    document.getElementById('browse').style.display = 'block';
-				    document.getElementById('insert').style.display = 'none'; 
-				    document.getElementById('delete').style.display = 'none';
-			}
-            }
-            function newClass() { showform('insert'); }
-            function deleteClass(id) { showform ('delete'); }
-            function browse() { showform ('browse'); }
-        </script>
+        <script src="./js/classes.js"></script>
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
     </head>
 </html>
 
@@ -54,7 +36,7 @@
 
     <div id="browse">
         <p><strong>Browse Classes - Displays All Classes Currently In The Database</strong></p>
-        <table border="1" cellpadding="5">
+        <table id="class-table" border="1" cellpadding="5">
             {{!--Header section --}}
             <thead>
                 {{!--For just the first row, we print each key of the row object as a header cell so we
@@ -73,56 +55,57 @@
             <tbody>
                 {{!-- For each row, print the id, locationName, streetAddress, city, state, zipcode --}}
                 {{#each data}}
-                <tr>
+                <tr data-value="{{this.idClass}}">
                     <td>{{this.idClass}}</td>
                     <td>{{this.className}}</td>
                     <td>{{this.sizeLimit}}</td>
-                    <td><a href="#" onclick="deleteClass('this.ID')">Delete</a></td>
+                    <td><button onclick="deleteClassAjax({{this.idClass}})">Delete</button></td>
                 </tr>
                 {{/each}}
             </tbody>
         </table>
+
         <br>
             <form method="POST" id="insertclass">
                 <input class="btn" type="button" value="Add Class" onClick="newClass()">
             </form> 
     </div>
 
-       <div id="delete">
-        <form method="POST" id="deleteClass">
+    <div id="delete">
+        <form method="POST" id="delete-class">
             <p><strong>Delete Class</strong></p>
             <fieldset class="fields">
                 <p>Delete Permanently?</p>
                 <input type="hidden" name="classID" id="deleteClassID" value="1">
-                    <label><strong>ID:</strong></label> 1 <br>
-                    <label> <strong>Class Name:</strong> </label> Mobility
-                    
+                    <label><strong>ID:</strong></label> <span id="delete-id"></span><br>
+                    <label> <strong>Class Name:</strong> </label> <span id="delete-name"></span>
             </fieldset>
             <br>
-            <input class="btn" type="submit" id="deleteClass" value="Delete Class">
+            <input class="btn" type="button" value="Delete Class" onClick="permanentClassDelete()">
             <input class="btn" type="button" value="Cancel" onClick="browse()">
         </form> 
     </div>
 
 
     <div id="insert">
-        <form method="POST" id="addClass">
+        <form id="addClass" method="POST" action="/add_class">
             <p><strong>Add New Class</strong></p>
             <fieldset class="fields">
-                <label> Class Name: </label> <input type="text" name="className"><br>
-                <label> Size Limit: </label> <input type="number" min="1" name="sizeLimit"><br>
+                <label> Class Name: </label> <input type="text" name="className" id="className"><br>
+                <label> Size Limit: </label> <input type="number" min="1" name="sizeLimit" id="sizeLimit"><br>
                 <br><br>
                 <label>First Session:</label><br>
-                <label> Location: </label> <select name="locationName">
-                    <option value="1" selected>Northeast</option>
-                    <option value="2">Southeast</option>
-                    <option value="3">Midwest</option>
+                
+                <label> Location: </label> <select name="locationName" id="locationName">
+                    {{#each locations}}
+                    <option value="{{this.idLocation}}">{{this.locationName}}</option>
+                    {{/each}}
                     </select>
                 <br>
-                <label>Date:</label><input type="date" name="classDate"><br>
+                <label>Date:</label><input type="date" name="classDate" id="classDate"><br>
             </fieldset>
             <br>
-            <input class="btn" type="submit" id="addClass" value="Add Class">
+            <input class="btn" type="submit"  id="addClass" value="Add Class">
             <input class="btn" type="button" value="Cancel" onClick="browse()">
         </form> 
     </div>

@@ -12,26 +12,8 @@
             Apex Climbing Sessions
         </title>
         <link href="style.css" rel="stylesheet" type="text/css"/>
-        <script language="JavaScript">
-            function showform(action) {
-                if (action == 'update'){
-				    document.getElementById('browse').style.display = 'none';
-				    document.getElementById('insert').style.display = 'none';
-				    document.getElementById('update').style.display = 'block';
-                } else if (action == 'insert'){
-                    document.getElementById('browse').style.display = 'none';
-                    document.getElementById('insert').style.display = 'block';
-                    document.getElementById('update').style.display = 'none';
-			    } else { //by default display browse
-				    document.getElementById('browse').style.display = 'block';
-				    document.getElementById('insert').style.display = 'none'; 
-				    document.getElementById('update').style.display = 'none';
-			}
-            }
-            function newSession() { showform('insert'); }
-            function updateSession(id) { showform('update'); }
-            function browse() { showform ('browse'); }
-        </script>
+        <script src="./js/sessions.js"></script>
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
     </head>
 </html>
 
@@ -54,7 +36,7 @@
 
     <div id="browse">
         <p><strong>Browse Sessions- Displays All Sessions Currently In The Database</strong></p>
-        <table border="1" cellpadding="5">
+        <table id="session-table" border="1" cellpadding="5">
             {{!--Header section --}}
             <thead>
                 {{!--For just the first row, we print each key of the row object as a header cell so we
@@ -75,13 +57,13 @@
             <tbody>
                 {{!-- For each row, print the id, locationName, streetAddress, city, state, zipcode --}}
                 {{#each data}}
-                <tr>
+                <tr data-value="{{this.idSession}}">
                     <td>{{this.idSession}}</td>
                     <td>{{this.locationName}}</td>
                     <td>{{this.className}}</td>
-                    <td>{{this.classDate}}</td>
+                    <td>{{moment this.classDate "YYYY-MM-DD"}}</td>   {{!-https://stackoverflow.com/questions/32260117/handlebars-date-format-issue-}}
                     <td>{{this.sizeLimit}}</td>
-                    <td><a href="#" onClick="updateSession('this.ID')">Edit</a></td>
+                    <td><button onClick="updateSession({{this.idSession}})">Edit</button></td>
                 </tr>
                 {{/each}}
             </tbody>
@@ -93,29 +75,27 @@
     </div>
 
     <div id="update">
-        <form method="POST" id="updateSession">
+        <form id="updateSession">
             <p><strong>Update Session</strong></p>
             <fieldset class="fields">
-                <input type="hidden" name="sessionID" id="updateSessionID" value="1"><br>
-                <label> Session ID: </label> 1 <br>
-                <label> Location: </label> <select name="locationName">
-                    <option value="1">Northeast</option>
-                    <option value="2">Southeast</option>
-                    <option value="3" selected>Midwest</option>
+                <input type="hidden" name="sessionID" id="updateSession" value="1"><br>
+                <label> Session ID: </label> <span id="updatesessionID"></span><br>
+                <label> Location: </label> <select name="updateLocationName" id="updateLocationName">
+                    {{#each locations}}
+                    <option value="{{this.idLocation}}">{{this.locationName}}</option>
+                    {{/each}}
                     </select>
                  <br>
-                <label> Class: </label> <select name="className">
-                    <option value="1" selected>Mobility</option>
-                    <option value="2">Recovery yoga</option>
-                    <option value="3">Intro to Lead Climbing</option>
-                    <option value="4">Wilderness First Aid</option>
-                    <option value="5">Core Power</option>
+                <label> Class: </label> <select name="updateClassName" id="updateClassName">
+                    {{#each classes}}
+                    <option value="{{this.idClass}}">{{this.className}}</option>
+                    {{/each}}
                 </select>
                 <br>
-                <label> Session Date: </label> <input type="date" name="classDate" value = "2024-02-05"><br>
+                <label> Session Date: </label> <input type="date" name="updateClassDate" id="updateClassDate"><br>
             </fieldset>
             <br>
-            <input class="btn" type="submit" id="confirmUpdate" value="Update Session">
+            <input class="btn" type="button" id="confirmUpdate" value="Update Session" onClick="sendUpdate()">
             <input class="btn" type="button" value="Cancel" onClick="browse()">
         </form> 
     </div>
@@ -145,4 +125,13 @@
             <input class="btn" type="button" value="Cancel" onClick="browse()">
         </form> 
     </div>
+
+    <div id="display">
+        <p id="test1"></p>
+        <p id="test2"></p>
+        <p id="test3"></p>
+        <p id="test4"></p>
+    </div>
 </body>
+
+
