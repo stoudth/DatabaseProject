@@ -21,7 +21,7 @@ CREATE OR REPLACE TABLE Classes (
 -- Creates RouteTypes table: Includes attributes for the RouteType ID, and RouteType
 CREATE OR REPLACE TABLE RouteTypes (
     idRouteType int UNIQUE NOT NULL AUTO_INCREMENT,
-    routeType varchar(145) NOT NULL,
+    routeType varchar(145) UNIQUE NOT NULL,
     PRIMARY KEY (idRouteType)
 );
 

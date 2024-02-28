@@ -96,7 +96,7 @@ app.get('/index', function(req, res)
     
     app.get('/locations', function(req, res)
     {  
-        let query1 = "SELECT idLocation, locationName, streetAddress, city, state, zipcode FROM Locations ORDER BY idLocation;";               // Define our query
+        let query1 = "SELECT idLocation, locationName, streetAddress, city, state, zipcode FROM Locations;";               // Define our query
 
         db.pool.query(query1, function(error, rows, fields){    // Execute the query
 
@@ -146,21 +146,22 @@ app.get('/index', function(req, res)
 app.delete('/delete-location-ajax/', function(req,res,next){
     let data = req.body;
     let locationID = parseInt(data.idLocation)
-    console.log(locationID)
     let deleteLocation = `DELETE FROM Locations WHERE idLocation = ?`; /* We'll let Cascade delete 
-    take care of the Sessions and Routes tables */
-        // Run the 1st query
-    db.pool.query(deleteLocation, [locationID], function(error, rows, fields){
-        if (error) {
+        take care of the Sessions and Routes tables */
+              // Run the 1st query
+        db.pool.query(deleteLocation, [locationID], function(error, rows, fields){
+            if (error) {
       
-        // Log the error to the terminal so we know what went wrong, and send the visitor an HTTP response 400 indicating it was a bad request.
+            // Log the error to the terminal so we know what went wrong, and send the visitor an HTTP response 400 indicating it was a bad request.
             console.log(error);
             res.sendStatus(400);
-        } else {       
-            res.sendStatus(204);  
-        }     
-    })
-});
+            }
+      
+            else {       
+                res.sendStatus(204);  
+            }     
+        })
+    });
     
 app.put('/put-location-ajax', function(req,res,next){
     let data = req.body;
@@ -254,7 +255,7 @@ app.post('/add-location', function(req, res)
 
 app.get('/classes', function(req, res)
     {
-        let get_classes = "SELECT idClass, className, sizeLimit FROM Classes ORDER BY idClass;";
+        let get_classes = "SELECT idClass, className, sizeLimit FROM Classes;";
         let location_dropdown = "SELECT idLocation, locationName from Locations;";
 
         db.pool.query(get_classes, function(error, rows, fields) {
@@ -391,7 +392,7 @@ app.delete('/delete-class-ajax/', function(req, res, next)
 app.get('/sessions', function(req, res)
     {
         //Database queries - Gets session data, location data, and class data
-        let get_sessions = "SELECT Sessions.idSession AS idSession, Locations.locationName AS locationName, Classes.className AS className, DATE_FORMAT(classDate, '%Y-%m-%d') AS classDate, Classes.sizeLimit As sizeLimit FROM Sessions INNER JOIN Locations ON Sessions.idLocation = Locations.idLocation LEFT JOIN Classes ON Sessions.idClass = Classes.idClass GROUP BY Sessions.idSession ORDER BY Sessions.idSession;"; 
+        let get_sessions = "SELECT Sessions.idSession AS idSession, Locations.locationName AS locationName, Classes.className AS className, DATE_FORMAT(classDate, '%Y-%m-%d') AS classDate, Classes.sizeLimit As sizeLimit FROM Sessions INNER JOIN Locations ON Sessions.idLocation = Locations.idLocation LEFT JOIN Classes ON Sessions.idClass = Classes.idClass GROUP BY Sessions.idSession;"; 
         let location_dropdown = "SELECT idLocation, locationName from Locations;";
         let class_dropdown = "SELECT idClass, className from Classes;";
 
@@ -490,7 +491,7 @@ app.put('/update-session', function(req, res) {
 
 app.get('/routes', function(req, res) {
 
-    let get_routes = `SELECT idRoute, routeName, DATE_FORMAT(dateSet, '%Y-%m-%d') AS dateSet, routeGrade, active, Locations.locationName AS locationName, Routes.idRouteSetter AS idRouteSetter, RouteSetters.firstName AS firstName, RouteSetters.lastName AS lastName, RouteTypes.routeType AS routeType FROM Routes JOIN Locations ON Routes.idLocation = Locations.idLocation JOIN RouteTypes ON Routes.idRouteType = RouteTypes.idRouteType LEFT JOIN RouteSetters ON Routes.idRouteSetter = RouteSetters.idRouteSetter ORDER BY idRoute;`; 
+    let get_routes = `SELECT idRoute, routeName, DATE_FORMAT(dateSet, '%Y-%m-%d') AS dateSet, routeGrade, active, Locations.locationName AS locationName, Routes.idRouteSetter AS idRouteSetter, RouteSetters.firstName AS firstName, RouteSetters.lastName AS lastName, RouteTypes.routeType AS routeType FROM Routes JOIN Locations ON Routes.idLocation = Locations.idLocation JOIN RouteTypes ON Routes.idRouteType = RouteTypes.idRouteType LEFT JOIN RouteSetters ON Routes.idRouteSetter = RouteSetters.idRouteSetter;`; 
     let location_dropdown = "SELECT idLocation, locationName from Locations;";
     let routesetter_dropdown = "SELECT idRouteSetter, firstName, lastName FROM RouteSetters;";
     let routetype_dropdown = "SELECT idRouteType, routeType FROM RouteTypes;"
