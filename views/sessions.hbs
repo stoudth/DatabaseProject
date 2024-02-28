@@ -30,9 +30,9 @@
     <a href="locations"> Locations</a> | 
     <a href="classes">Classes</a> | 
     <a href="sessions">Sessions</a> | 
-    <a href="routes.html">Routes</a> | 
-    <a href="routesetters.html">RouteSetters</a> | 
-    <a href="routetypes.html">RouteTypes</a>
+    <a href="routes">Routes</a> | 
+    <a href="routesetters">RouteSetters</a> | 
+    <a href="routetypes">RouteTypes</a>
 
     <br><br>
     <div id="info">
@@ -68,7 +68,7 @@
                     <td>{{this.idSession}}</td>
                     <td>{{this.locationName}}</td>
                     <td>{{this.className}}</td>
-                    <td>{{moment this.classDate "YYYY-MM-DD"}}</td>   {{!-https://stackoverflow.com/questions/32260117/handlebars-date-format-issue-}}
+                    <td>{{this.classDate}}</td>   {{!-https://stackoverflow.com/questions/32260117/handlebars-date-format-issue-}}
                     <td>{{this.sizeLimit}}</td>
                     <td><button onClick="updateSession({{this.idSession}})">Edit</button></td>
                 </tr>

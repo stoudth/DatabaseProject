@@ -26,6 +26,7 @@
     "mysql": "^2.18.1"
   },
   "devDependencies": {
-    "helper-moment": "^0.2.0"
+    "helper-moment": "^0.2.0",
+    "madge": "^6.1.0"
   }
 }

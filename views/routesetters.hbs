@@ -1,0 +1,42 @@
+<body>
+<nav>
+    <h1>RouteSetters</h1>
+    <a href="index">Home</a> |
+    <a href="locations"> Locations</a> | 
+    <a href="classes">Classes</a> | 
+    <a href="sessions">Sessions</a> |
+    <a href="routes">Routes</a> | 
+    <a href="routesetters">RouteSetters</a> | 
+    <a href="routetypes">RouteTypes</a>
+</nav>
+<table id="routesetters-table">
+    {{!-- Header section --}}
+    <thead>
+
+        {{!-- For just the first row, we print each key of the row object as a header cell so we
+        know what each column means when the page renders --}}
+        <tr>
+            {{#each data.[0]}}
+            <th>
+                {{@key}}
+            </th>
+            {{/each}}
+            <th></th>
+        </tr>
+    </thead>
+
+    {{!-- Body section --}}
+    <tbody>
+
+        {{!-- For each row, print the id, fname, lname, homeworld and age, in order --}}
+        {{#each data}}
+        <tr>
+            <td>{{this.idRouteSetter}}</td>
+            <td>{{this.firstName}}</td>
+            <td>{{this.lastName}}</td>
+            <td>{{this.certLevel}}</td>
+        </tr>
+        {{/each}}
+    </tbody>
+</table>
+</body>

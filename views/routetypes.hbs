@@ -1,0 +1,59 @@
+<body>
+<nav>
+     <h1>RouteTypes</h1>
+    <a href="index">Home</a> |
+    <a href="locations"> Locations</a> | 
+    <a href="classes">Classes</a> | 
+    <a href="sessions">Sessions</a> |
+    <a href="routes">Routes</a> | 
+    <a href="routesetters">RouteSetters</a> | 
+    <a href="routetypes">RouteTypes</a>
+</nav>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<table id="routetypes-table">
+    {{!-- Header section --}}
+    <thead>
+
+        {{!-- For just the first row, we print each key of the row object as a header cell so we
+        know what each column means when the page renders --}}
+        <tr>
+            {{#each data.[0]}}
+            <th>
+                {{@key}}
+            </th>
+            {{/each}}
+            <th></th>
+        </tr>
+    </thead>
+
+    {{!-- Body section --}}
+    <tbody>
+
+        {{!-- For each row, print the id, fname, lname, homeworld and age, in order --}}
+        {{#each data}}
+        <tr>
+            <td>{{this.idRouteType}}</td>
+            <td>{{this.routeType}}</td>
+            <td><button onclick="deleteRouteType({{this.idRouteType}})">Delete</button></td>
+        </tr>
+        {{/each}}
+    </tbody>
+</table>
+<script src="./js/delete_routetype.js"></script>
+
+<!-- /views/index.hbs -->
+
+{{!-- Form to add a record to the table  --}}
+<h2>Add a New Route Type</h2>
+<p>Add a new variety of route using the form below.</p>
+<form id="add-routetype-form-ajax">
+
+    <label for="input-routeType">Route Type: </label>
+    <input type="text" name="input-routeType" id="input-routeType">
+
+    <input type="submit">
+</form>
+
+{{!-- Embed our javascript to handle the DOM manipulation and AJAX request --}}
+<script src="./js/add_routetype.js"></script>
+</body>

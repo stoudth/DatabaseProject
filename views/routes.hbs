@@ -1,0 +1,154 @@
+<!---CITATION-->
+<!--The Below code was adapted from the html code file bsg_HTML_UI provided in the Exploration - Web Application Technology.-->
+<!--Date: 2/14/2024-->
+<!--Code adapted from: bsg_HTML_UI provided in the Exploration - Web Application Technology-->
+<!--Author: Dr. Michael Curry-->
+<!--Source URL: https://canvas.oregonstate.edu/courses/1946034/pages/exploration-web-application-technology?module_item_id=23809327-->
+<!-- The below code implements an HTML shell page to demonstrate how CRUD operations will work in the user interface for the Routes Entity-->
+
+<html>
+    <head>
+        <title>
+            Apex Climbing Routes
+        </title>
+        <link href="style.css" rel="stylesheet" type="text/css"/>
+        <script src="./js/routes.js"></script>
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    </head>
+</html>
+
+<body onload="browse()">
+    <h1>Routes</h1>
+    <a href="index">Home</a> |
+    <a href="locations"> Locations</a> | 
+    <a href="classes">Classes</a> | 
+    <a href="sessions">Sessions</a> |
+    <a href="routes">Routes</a> | 
+    <a href="routesetters">RouteSetters</a> | 
+    <a href="routetypes">RouteTypes</a>
+
+    <br><br>
+    <div id="info">
+        <fieldset>
+            <p>Operations available for Routes: SELECT, INSERT, UPDATE (with NULLABLE field)</p>
+        </fieldset>
+    </div>
+
+
+    <div id="browse" >
+        <p><strong>Browse Routes - Displays All Routes Currently In The Database</strong></p>
+        <table id="route-table" border="1" cellpadding="5" >
+            <tr>
+                <th>Route ID</th>
+                <th>Route Name</th>
+                <th>Date Set</th>
+                <th>Route Grade</th>
+                <th>Active</th>
+                <th>Location Name</th>
+                <th>Route Setter ID</th>
+                <th>Route Setter First Name</th>
+                <th>Route Setter Last Name</th>
+                <th>Route Type</th>
+                <th>Edit</th>
+            </tr>
+            {{#each data}}
+             <tr data-value="{{this.idRoute}}">
+                <td>{{this.idRoute}}</td>
+                <td>{{this.routeName}}</td>
+                <td>{{this.dateSet}}</td>
+                <td>{{this.routeGrade}}</td>
+                <td>{{this.active}}</td>
+                <td>{{this.locationName}}</td>
+                <td>{{this.idRouteSetter}}</td>
+                <td>{{this.firstName}}</td>
+                <td>{{this.lastName}}</td>
+                <td>{{this.routeType}}</td>
+                <td><button onClick="updateRoute({{this.idRoute}})">Edit</button></td>
+            </tr>
+            {{/each}}
+        </table>
+        <br>
+        <form method="POST" id="addRoute">
+            <input class="btn" type="button" value="Add Route" onClick="newRoute()">
+        </form> 
+    </div>
+
+    <div id="update">
+        <form id="updateRoutes">
+            <p><strong>Update Route</strong></p>
+            <fieldset class="fields">
+                <input type="hidden" name="routeID" id="updateRoute" value="1"><br>
+                <label> Route ID: </label><span id="updateRouteID"></span><br>
+                <label> Route Name: </label> <input type="text" id="updateRouteName"><br>
+                <label> Date Set: </label> <input type="date" id="updateDateSet"><br>
+                <label> Route Grade: </label> <input type="text" id="updateRouteGrade"><br>
+                <label> Active: </label> <select id="updateActive">
+                    <option value="0">False</option>
+                    <option value="1" selected>True</option>
+                    </select>
+                    <br>
+                <label> Location: </label> <select id="updateLocation">
+                    {{#each locations}}
+                    <option value="{{this.idLocation}}">{{this.locationName}}</option>
+                    {{/each}}
+                    </select>
+                 <br>
+                <label> Routsetter: </label> <select id="updateRouteSetter">
+                    <option value="null">NULL</option>
+                    {{#each routesetters}}
+                    <option value="{{this.idRouteSetter}}">{{this.firstName}} {{this.lastName}}</option>
+                    {{/each}}
+                </select>
+                <br>
+                <label> Route Type: </label> <select id="updateRouteType">
+                    {{#each routetypes}}
+                    <option value="{{this.idRouteType}}">{{this.routeType}}</option>
+                    {{/each}}
+                    </select>
+                 <br>
+            </fieldset>
+            <br>
+            <input class="btn" type="button" id="confirmUpdate" value="Update Route" onclick="sendUpdate()">
+            <input class="btn" type="button" value="Cancel" onClick="browse()">
+        </form> 
+    </div>
+
+    <div id="insert">
+        <form method="POST" id="addRoute" action="/add-route">
+            <p><strong>Add New Route</strong></p>
+            <fieldset class="fields">
+                <label> Route Name: </label> <input type="text" name="routeName" id="routeName"><br>
+                <label> Date Set: </label> <input type="date" name="dateSet" id="dateSet"><br>
+                <label> Route Grade: </label> <input type="text" name="routeGrade" id="routeGrade"><br>
+                <label> Active: </label>
+                    <select name="active" id="active">
+                    <option value="0">False</option>
+                    <option value="1" selected>True</option>
+                    </select>
+                <br>
+                <label> Location: </label> <select name="locationName" id="addLocationName">
+                    {{#each locations}}
+                    <option value="{{this.idLocation}}">{{this.locationName}}</option>
+                    {{/each}}
+                    </select>
+                <br>
+                <label> RouteSetter: </label> <select name="idRouteSetter" id="addRouteSetter">
+                    <option value="null">NULL</option>
+                    {{#each routesetters}}
+                    <option value="{{this.idRouteSetter}}">{{this.firstName}} {{this.lastName}}</option>
+                    {{/each}}
+                    </select>
+                <br>
+                <label> Route Type: </label> <select name="idRouteType" id="addRouteType">
+                    {{#each routetypes}}
+                    <option value="{{this.idRouteType}}">{{this.routeType}}</option>
+                    {{/each}}
+                    </select>
+                 <br>
+            </fieldset>
+            <br>
+            <input class="btn" type="submit" id="addRoute" value="Add Route">
+            <input class="btn" type="button" value="Cancel" onClick="browse()">
+        </form> 
+    </div>
+</body>
