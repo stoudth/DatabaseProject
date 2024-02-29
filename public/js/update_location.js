@@ -1,3 +1,12 @@
+/* -----------UPDATE LOCATION CITATION------------------
+* The below function is adapted from the Node.js Starter App provided in this course
+* Date: 2/23/2023
+* Copied from: GitHub: osu-cs340-ecampus/nodejs-starter-app - Step 8 
+* Source URL: https://github.com/osu-cs340-ecampus/nodejs-starter-app 
+* Description of function: Dynamically adds data to Locations table
+* -----------END CITATION--------------
+*/ 
+
 // Get the objects we need to modify
 let updateLocationForm = document.getElementById('update-location-form-ajax');
 
@@ -31,7 +40,6 @@ updateLocationForm.addEventListener("submit", function (e) {
         if (xhttp.readyState == 4 && xhttp.status == 200) {
 
             // Add the new data to the table
-            // MAYBE KEEP streetAddress
             alert("Row updated successfully");
             updateRow(xhttp.response, locationNameValue);
             updateRow(xhttp.response, streetAddressValue);

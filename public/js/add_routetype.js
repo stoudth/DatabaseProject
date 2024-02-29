@@ -1,3 +1,13 @@
+/* -----------ADD LOCATION CITATION------------------
+* The below function is adapted from the Node.js Web App provided in the Exploration - Web Application Technology 
+* Date: 2/23/2024
+* Copied from: GitHub: osu-cs340-ecampus/nodejs-starter-app - Step 5 and bsg_HTML_UI file provided in the Exploration - Web Application Technology
+* Source URL: https://github.com/osu-cs340-ecampus/nodejs-starter-app and https://canvas.oregonstate.edu/courses/1946034/pages/exploration-web-application-technology?module_item_id=23809327
+* 
+* Description of function: Dynamically adds new data via form entry to RouteTypes table
+* -----------END CITATION--------------
+*/ 
+
 // Get the objects we need to modify
 let addRouteTypeForm = document.getElementById('add-routetype-form-ajax');
 
@@ -47,7 +57,7 @@ addRouteTypeForm.addEventListener("submit", function (e) {
 
 
 // Creates a single row from an Object representing a single record from 
-// bsg_people
+// routeType
 addRowToTable = (data) => {
 
     // Get a reference to the current table on the page and clear it out.
@@ -60,7 +70,7 @@ addRowToTable = (data) => {
     let parsedData = JSON.parse(data);
     let newRow = parsedData[parsedData.length - 1]
 
-    // Create a row and 4 cells
+    // Create a row and 2 cells
     let row = document.createElement("TR");
     let idRouteTypeCell = document.createElement("TD");
     let routeTypeCell = document.createElement("TD");

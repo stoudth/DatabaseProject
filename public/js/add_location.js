@@ -1,3 +1,13 @@
+/* -----------ADD LOCATION CITATION------------------
+* The below function is adapted from the Node.js Web App provided in the Exploration - Web Application Technology 
+* Date: 2/14/2024 and 2/23/2024
+* Copied from: GitHub: osu-cs340-ecampus/nodejs-starter-app - Step 5 and bsg_HTML_UI file provided in the Exploration - Web Application Technology
+* Source URL: https://github.com/osu-cs340-ecampus/nodejs-starter-app and https://canvas.oregonstate.edu/courses/1946034/pages/exploration-web-application-technology?module_item_id=23809327
+* 
+* Description of function: Dynamically adds new data via form to Locations table
+* -----------END CITATION--------------
+*/
+
 // Get the objects we need to modify
 let addLocationForm = document.getElementById('add-location-form-ajax');
 
@@ -81,7 +91,7 @@ addRowToTable = (data) => {
     let parsedData = JSON.parse(data);
     let newRow = parsedData[parsedData.length - 1]
 
-    // Create a row and 4 cells
+    // Create a row and 6 cells
     let row = document.createElement("TR");
     let idLocationCell = document.createElement("TD");
     let locationNameCell = document.createElement("TD");
