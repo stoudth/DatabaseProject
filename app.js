@@ -49,8 +49,7 @@ const { restart } = require('forever');
 app.engine('.hbs', engine({extname: ".hbs"}));  // Create an instance of the handlebars engine to process templates
 app.set('view engine', '.hbs');                 // Tell express to use the handlebars engine whenever it encounters
 
-//Import Handlebars Helper for output date formatting - 'Handlebars date format issue' post on Stack Overflow: Answer from Simeon Babatunde and Tunaki
-//var helpers = require('handlebars-helpers')();   
+
 
 
 
@@ -224,49 +223,6 @@ app.put('/put-location-ajax', function(req,res,next){
                 }
     })});
 
-/* -----------LOCATIONS POST/ADD_LOCATION ROUTE CITATION------------------
-* The below route handler for the Locations page was copied and adpated from Step 5 of the Node.js Start App provided in this course
-* Date: 2/22/2024
-* Copied and Adapted from: GitHub: osu-cs340-ecampus/nodejs-starter-app - Step 5
-* Source URL: https://github.com/osu-cs340-ecampus/nodejs-starter-app
-* 
-* Description of function: Handles Post requests and responses for the locations.hbs page to add a new location to the database- Inserts a new class into the database and rerenders classes page to show update.
-* -----------END CITATION--------------
-*/ 
-
-/*
-app.post('/add-location', function(req, res) 
-    {
-
-        let data = req.body;
-
-        //SQL query to add new location
-        let add_location = `INSERT INTO Locations(locationName, streetAddress, city, state, zipcode) Values ('${data.locationName}', '${data.streetAddress}', '${data.city}', '${data.state}', '${data.zipcode}');`;
-
-        //Handles if state abbreviation or zipcode are incorrect length
-        if (data.state.length !== 2 || data.zipcode.length !== 5) {
-            console.log('The input length for state or zipcode is incorrect. States should use the 2 letter abbreviation and zipcode should have 5 digits.');
-            res.sendStatus(400);
-
-        //Sends insert query to insert new location into database
-        } else {
-            db.pool.query(add_location, function(error, rows, fields){
-                if (error) {
-        
-                    console.log(error)
-                    res.sendStatus(400);
-    
-                } else {
-    
-                    res.redirect('locations');
-                }
-            })
-
-        }
-
-    }
-)
-*/
 
 /*---------------------CLASSES--------------------------*/
 
@@ -284,14 +240,17 @@ app.post('/add-location', function(req, res)
 
 
 app.get('/classes', function(req, res)
-    {
+    {    
+        //Define SQL queries
         let get_classes = "SELECT idClass, className, sizeLimit FROM Classes;";
         let location_dropdown = "SELECT idLocation, locationName from Locations;";
 
+        //Get the class data
         db.pool.query(get_classes, function(error, rows, fields) {
             
             let classes = rows;
 
+            //Get data location data for dropdown and send for rendering
             db.pool.query(location_dropdown, (error, rows, fields) =>{
 
                 let locations = rows;
@@ -579,6 +538,7 @@ app.post('/add-session', function(req, res)
 
 app.get('/routes', function(req, res) {
 
+    //Define Sql queries
     let get_routes = `SELECT idRoute, routeName, DATE_FORMAT(dateSet, '%Y-%m-%d') AS dateSet, routeGrade, active, Locations.locationName AS locationName, Routes.idRouteSetter AS idRouteSetter, RouteSetters.firstName AS firstName, RouteSetters.lastName AS lastName, RouteTypes.routeType AS routeType FROM Routes JOIN Locations ON Routes.idLocation = Locations.idLocation JOIN RouteTypes ON Routes.idRouteType = RouteTypes.idRouteType LEFT JOIN RouteSetters ON Routes.idRouteSetter = RouteSetters.idRouteSetter ORDER BY Routes.idRoute;`; 
     let location_dropdown = "SELECT idLocation, locationName from Locations;";
     let routesetter_dropdown = "SELECT idRouteSetter, firstName, lastName FROM RouteSetters;";
@@ -597,14 +557,17 @@ app.get('/routes', function(req, res) {
             };
         };
 
+        //Get location data for dropdown
         db.pool.query(location_dropdown, function(error, rows, fields){
 
             let locations = rows
 
+            //Get routesetter data for dropdown
             db.pool.query(routesetter_dropdown, function(error, rows, fields){
 
                 let routesetters = rows;
 
+                //Get routetype data for dropdown and send all info to render
                 db.pool.query(routetype_dropdown, function(error, rows, fields){
 
                     let routetypes = rows;
@@ -687,6 +650,8 @@ app.post('/add-route', function(req, res)
 
 
 app.put('/update-route', function(req, res) {
+
+    //format data to be sent to sql database for insertion
     let data = req.body
     let idRoute = parseInt(data.idRoute)
     let dateSet = parseInt((data.dateSet).replace(/-/g,''));
@@ -698,9 +663,11 @@ app.put('/update-route', function(req, res) {
     };
     let idRouteType = parseInt(data.idRouteType)
 
+    //define sql queries
     let update_route = `UPDATE Routes SET routeName = '${data.routeName}', dateSet = ${dateSet}, routeGrade = '${data.routeGrade}', active = ${active}, idLocation = ${idLocation}, idRouteSetter = ${idRouteSetter}, idRouteType = ${idRouteType} WHERE idRoute = ${idRoute};`;
     let get_route_update =`SELECT idRoute, routeName, DATE_FORMAT(dateSet, '%Y-%m-%d') AS dateSet, routeGrade, active, Locations.locationName AS locationName, Routes.idRouteSetter AS idRouteSetter, RouteSetters.firstName AS firstName, RouteSetters.lastName AS lastName, RouteTypes.routeType AS routeType FROM Routes JOIN Locations ON Routes.idLocation = Locations.idLocation JOIN RouteTypes ON Routes.idRouteType = RouteTypes.idRouteType LEFT JOIN RouteSetters ON Routes.idRouteSetter = RouteSetters.idRouteSetter WHERE idRoute = ${idRoute};`
 
+    //update the route info
     db.pool.query(update_route, function(error, rows, fields) {
         if(error) {
 
@@ -708,7 +675,7 @@ app.put('/update-route', function(req, res) {
             res.sendStatus(400);
 
         } else {
-            
+            //get the updated data back and send to render
             db.pool.query(get_route_update, function(error,rows, fields){
                 if(error) {
 
