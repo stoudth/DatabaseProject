@@ -1,3 +1,10 @@
+<!--HANDLEBAR USE CITATION-->
+<!--The handlebar use in the below code to generate the data table is taken from the Node.js Starter App provided in this course-->
+<!--Date: 2/25/2024-->
+<!--Copied from: GitHub: osu-cs340-ecampus/nodejs-starter-app - Step 4 -->
+<!--Source URL: https://github.com/osu-cs340-ecampus/nodejs-starter-app-->
+
+
 <body>
 <nav>
     <h1>RouteSetters</h1>
@@ -9,19 +16,25 @@
     <a href="routesetters">RouteSetters</a> | 
     <a href="routetypes">RouteTypes</a>
 </nav>
-<table id="routesetters-table">
+
+    <br><br>
+    <div id="info">
+    <fieldset>
+        <p>Operations available for RouteSetters: SELECT, INSERT IN PROGRESS</p>
+    </fieldset>
+    </div>
+
+<table id="routesetters-table" border="1" cellpadding="5">>
     {{!-- Header section --}}
     <thead>
 
         {{!-- For just the first row, we print each key of the row object as a header cell so we
         know what each column means when the page renders --}}
         <tr>
-            {{#each data.[0]}}
-            <th>
-                {{@key}}
-            </th>
-            {{/each}}
-            <th></th>
+            <th>Route Setter ID</th>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Cert Level</th>
         </tr>
     </thead>
 
