@@ -37,7 +37,7 @@ var app     = express();
 app.use(express.json())
 app.use(express.urlencoded({extended: true}))
 app.use(express.static('public'))
-PORT        = 30058;                 
+PORT        = 25610 //30058;                 
 
 // Database - Node.js Starter App Step 1
 var db = require('./database/db-connector')
@@ -474,6 +474,64 @@ app.put('/update-session', function(req, res) {
     });
 });
 
+
+/* -----------ROUTES POST/ADD_SESSION SESSION CITATION------------------
+* The below route handler for the Sessions page was copied and adpated from Step 5 of the Node.js Start App provided in this course
+* Date: 2/22/2024
+* Copied and Adapted from: GitHub: osu-cs340-ecampus/nodejs-starter-app - Step 5
+* Source URL: https://github.com/osu-cs340-ecampus/nodejs-starter-app
+* 
+* Description of function: Handles Post requests and responses for the sessions.hbs page to add a new session to the database- Inserts a new session into the database and sends back added data
+* NOTE: The SQL query 'add_session' is of our own creation
+*
+* -Hyphen Removal Citation
+* The below code that removes hypens from the dates was copied from the answer provided by James Hill (on Jun 1, 2011/edited Nov 26, 2012) on the 'Fastest way to remove hyphens from a string' page on StackOverflow
+* Date: 2/22/2024
+* Copied from answer provided by James Hill (on Jun 1, 2011/edited Nov 26, 2012) on the 'Fastest way to remove hyphens from a string' page on StackOverflow
+* Source URL: https://stackoverflow.com/questions/6204867/fastest-way-to-remove-hyphens-from-a-string
+* Authors: James Hill
+* -----------END CITATION--------------
+*/ 
+
+app.post('/add-session', function(req, res)
+    {
+        //Pull out and format data from request 
+        let data = req.body;
+
+        let idLocation = parseInt(data.idLocation)
+        let idClass = parseInt(data.idClass)
+        let classDate = parseInt((data.classDate).replace(/-/g,''));
+
+        // Database Insert Queries
+        let add_session = `INSERT INTO Sessions(idLocation, idClass, classDate) VALUES (${idLocation}, ${idClass}, ${classDate});`
+        let get_new_session = `SELECT Sessions.idSession AS idSession, Locations.locationName AS locationName, Classes.className AS className, DATE_FORMAT(classDate, '%Y-%m-%d') AS classDate, Classes.sizeLimit As sizeLimit FROM Sessions INNER JOIN Locations ON Sessions.idLocation = Locations.idLocation LEFT JOIN Classes ON Sessions.idClass = Classes.idClass WHERE Sessions.idLocation = ${idLocation} AND Sessions.idClass = ${idClass} AND Sessions.classDate = ${classDate}`
+
+        //Add new session and handle errors
+        db.pool.query(add_session, function(error, rows, fields){
+            if (error) {
+    
+                console.log(error);
+                res.sendStatus(400);
+                    
+                    //If no error, reload classes page
+                } else {
+                    
+                    db.pool.query(get_new_session, function(error, rows, feilds){
+                        if (error) {
+
+                            console.log(error);
+                            res.sendStatus(400)
+
+                        } else {
+                            console.log(rows)
+                            res.send(rows)
+                        }
+                        
+                    })
+                };
+            });
+        });
+
 /*---------------------ROUTES--------------------------*/
 
 /* -----------ROUTES GET ROUTE CITATION------------------
@@ -491,7 +549,7 @@ app.put('/update-session', function(req, res) {
 
 app.get('/routes', function(req, res) {
 
-    let get_routes = `SELECT idRoute, routeName, DATE_FORMAT(dateSet, '%Y-%m-%d') AS dateSet, routeGrade, active, Locations.locationName AS locationName, Routes.idRouteSetter AS idRouteSetter, RouteSetters.firstName AS firstName, RouteSetters.lastName AS lastName, RouteTypes.routeType AS routeType FROM Routes JOIN Locations ON Routes.idLocation = Locations.idLocation JOIN RouteTypes ON Routes.idRouteType = RouteTypes.idRouteType LEFT JOIN RouteSetters ON Routes.idRouteSetter = RouteSetters.idRouteSetter;`; 
+    let get_routes = `SELECT idRoute, routeName, DATE_FORMAT(dateSet, '%Y-%m-%d') AS dateSet, routeGrade, active, Locations.locationName AS locationName, Routes.idRouteSetter AS idRouteSetter, RouteSetters.firstName AS firstName, RouteSetters.lastName AS lastName, RouteTypes.routeType AS routeType FROM Routes JOIN Locations ON Routes.idLocation = Locations.idLocation JOIN RouteTypes ON Routes.idRouteType = RouteTypes.idRouteType LEFT JOIN RouteSetters ON Routes.idRouteSetter = RouteSetters.idRouteSetter ORDER BY Routes.idRoute;`; 
     let location_dropdown = "SELECT idLocation, locationName from Locations;";
     let routesetter_dropdown = "SELECT idRouteSetter, firstName, lastName FROM RouteSetters;";
     let routetype_dropdown = "SELECT idRouteType, routeType FROM RouteTypes;"
@@ -579,9 +637,63 @@ app.post('/add-route', function(req, res)
     });
 
 
+/* -----------ROUTES POST/ADD_ROUTE ROUTE CITATION------------------
+* The below route handler for the Routes page was copied and adpated from Step 8 of the Node.js Start App provided in this course
+* Date: 2/22/2024
+* Copied and Adapted from: GitHub: osu-cs340-ecampus/nodejs-starter-app - Step 8
+* Source URL: https://github.com/osu-cs340-ecampus/nodejs-starter-app
+* 
+* Description of function: Handles Put requests and responses for the routes.hbs page to update a route to the database - Make an update to a route in the database and sends the updated info back to be rendered
+* NOTE: The SQL query 'update_route' and 'get_route_update' is of our own creation
+*
+* -Hyphen Removal Citation
+* The below code that removes hypens from the dates was copied from the answer provided by James Hill (on Jun 1, 2011/edited Nov 26, 2012) on the 'Fastest way to remove hyphens from a string' page on StackOverflow
+* Date: 2/22/2024
+* Copied from answer provided by James Hill (on Jun 1, 2011/edited Nov 26, 2012) on the 'Fastest way to remove hyphens from a string' page on StackOverflow
+* Source URL: https://stackoverflow.com/questions/6204867/fastest-way-to-remove-hyphens-from-a-string
+* Authors: James Hill
+* -----------END CITATION--------------
+*/ 
+
+
 app.put('/update-route', function(req, res) {
-    console.log(req.body)
-})
+    let data = req.body
+    let idRoute = parseInt(data.idRoute)
+    let dateSet = parseInt((data.dateSet).replace(/-/g,''));
+    let active = parseInt(data.active)
+    let idLocation = parseInt(data.idLocation)
+    let idRouteSetter = data.idRouteSetter
+    if (idRouteSetter != 'null') {
+        idRouteSetter = parseInt(idRouteSetter)
+    };
+    let idRouteType = parseInt(data.idRouteType)
+
+    let update_route = `UPDATE Routes SET routeName = '${data.routeName}', dateSet = ${dateSet}, routeGrade = '${data.routeGrade}', active = ${active}, idLocation = ${idLocation}, idRouteSetter = ${idRouteSetter}, idRouteType = ${idRouteType} WHERE idRoute = ${idRoute};`;
+    let get_route_update =`SELECT idRoute, routeName, DATE_FORMAT(dateSet, '%Y-%m-%d') AS dateSet, routeGrade, active, Locations.locationName AS locationName, Routes.idRouteSetter AS idRouteSetter, RouteSetters.firstName AS firstName, RouteSetters.lastName AS lastName, RouteTypes.routeType AS routeType FROM Routes JOIN Locations ON Routes.idLocation = Locations.idLocation JOIN RouteTypes ON Routes.idRouteType = RouteTypes.idRouteType LEFT JOIN RouteSetters ON Routes.idRouteSetter = RouteSetters.idRouteSetter WHERE idRoute = ${idRoute};`
+
+    db.pool.query(update_route, function(error, rows, fields) {
+        if(error) {
+
+            console.log(error);
+            res.sendStatus(400);
+
+        } else {
+            
+            db.pool.query(get_route_update, function(error,rows, fields){
+                if(error) {
+
+                    console.log(error);
+                    res.sendStatus(400);
+
+                } else {
+
+                    res.send(rows)
+
+                };
+            });
+        };
+    });
+});
 
 
 
@@ -630,7 +742,7 @@ app.post('/add-routetype-ajax', function(req, res)
                     }
                     // If all went well, send the results of the query back.
                     else
-                    {
+                    {   
                         res.send(rows);
                     }
                 })

@@ -108,16 +108,16 @@
     </div>
 
     <div id="insert">
-        <form method="POST" id="addSession">
+        <form id="addSession">
             <p><strong>Add New Session</strong></p>
             <fieldset class="fields">
-                <label> Location: </label> <select name="locationName">
+                <label> Location: </label> <select id="addLocationName">
                     <option value="1" selected>Northeast</option>
                     <option value="2">Southeast</option>
                     <option value="3">Midwest</option>
                     </select>
                 <br>
-                <label> Class: </label> <select name="className">
+                <label> Class: </label> <select id="addClassName">
                     <option value="1" selected>Mobility</option>
                     <option value="2">Recovery yoga</option>
                     <option value="3">Intro to Lead Climbing</option>
@@ -125,10 +125,10 @@
                     <option value="5">Core Power</option>
                 </select>
                 <br>
-                <label> Session Date: </label> <input type="date" name="classDate"><br>
+                <label> Session Date: </label> <input type="date" id="addClassDate"><br>
             </fieldset>
             <br>
-            <input class="btn" type="submit" id="addSession" value="Add Session">
+            <input class="btn" type="button" id="confirmAddSession" value="Add Session" onclick="addSession()">
             <input class="btn" type="button" value="Cancel" onClick="browse()">
         </form> 
     </div>

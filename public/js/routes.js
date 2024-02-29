@@ -126,7 +126,49 @@ function sendUpdate()
             data: JSON.stringify(data),
             contentType: "application/json; charset=utf-8",
             success: function(result) {
-                //updateRow(session_id, result)
+                updateRow(route_id, result)
             }
         })
     };
+    
+
+/* -----------UPDATEROW CITATION------------------
+* The below function is adapted from the javascript in the html code file bsg_HTML_UI provided in the Exploration - Web Application Technology 
+* and the node.js starter app provided in this course
+* Date: 2/14/2024 and 2/23/2023
+* Copied from: GitHub: osu-cs340-ecampus/nodejs-starter-app - Step 8 and bsg_HTML_UI file provided in the Exploration - Web Application Technology
+* Source URL: https://github.com/osu-cs340-ecampus/nodejs-starter-app and https://canvas.oregonstate.edu/courses/1946034/pages/exploration-web-application-technology?module_item_id=23809327
+* Description of function: Finds the row in the display table and updates the information in that row with the information returned from the route handler
+* -----------END CITATION--------------
+*/ 
+
+function updateRow(id, res)
+{
+    //Display browse section
+    document.getElementById('browse').style.display = 'block';
+    document.getElementById('insert').style.display = 'none'; 
+    document.getElementById('update').style.display = 'none';
+
+
+    let table = document.getElementById("route-table");
+
+
+
+    //Update row in display table with new session info
+    for (let i = 0, row; row = table.rows[i]; i++) {
+    if (table.rows[i].getAttribute("data-value") == id) {
+            let updateRowIndex = table.getElementsByTagName("tr")[i];
+
+            updateRowIndex.getElementsByTagName("td")[1].innerHTML = String(res[0].routeName);
+            updateRowIndex.getElementsByTagName("td")[2].innerHTML = String(res[0].dateSet);
+            updateRowIndex.getElementsByTagName("td")[3].innerHTML = String(res[0].routeGrade);
+            updateRowIndex.getElementsByTagName("td")[4].innerHTML = String(res[0].active);
+            updateRowIndex.getElementsByTagName("td")[5].innerHTML = String(res[0].locationName);
+            updateRowIndex.getElementsByTagName("td")[6].innerHTML = String(res[0].idRouteSetter);
+            updateRowIndex.getElementsByTagName("td")[7].innerHTML = String(res[0].firstName);
+            updateRowIndex.getElementsByTagName("td")[8].innerHTML = String(res[0].lastName);
+            updateRowIndex.getElementsByTagName("td")[9].innerHTML = String(res[0].routeType);
+            break;
+        };
+    };
+};
