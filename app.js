@@ -96,13 +96,23 @@ app.get('/index', function(req, res)
     
     app.get('/locations', function(req, res)
     {  
-        let query1 = "SELECT idLocation, locationName, streetAddress, city, state, zipcode FROM Locations;";               // Define our query
+        let getLocation = "SELECT idLocation, locationName, streetAddress, city, state, zipcode FROM Locations;";               // Define our query
 
-        db.pool.query(query1, function(error, rows, fields){    // Execute the query
+        db.pool.query(getLocation, function(error, rows, fields){    // Execute the query
 
             res.render('locations', {data: rows});                  // Render the index.hbs file, and also send the renderer
         })                                                      // an object where 'data' is equal to the 'rows' we
-    });     
+    }); 
+
+/* -----------LOCATIONS POST CITATION------------------
+* The below route handler for the Locations page was copied and adapted from Step 5 of the Node.js Start App provided in this course
+* Date: 2/25/2024
+* Copied and Adapted from: GitHub: osu-cs340-ecampus/nodejs-starter-app - Step 5
+* Source URL: https://github.com/osu-cs340-ecampus/nodejs-starter-app
+* 
+* Description of function: Handles Post requests and responses for the locations.hbs page - Adds rows containing designated attributes to Locations page with Location data from the SQL Database
+* -----------END CITATION--------------
+*/       
 
     app.post('/add-location-ajax', function(req, res) 
     {
@@ -142,7 +152,17 @@ app.get('/index', function(req, res)
                 }
             })
     });
-    
+
+/* -----------LOCATIONS DELETE CITATION------------------
+* The below route handler for the Locations page was copied and adapted from Step 7 of the Node.js Start App provided in this course
+* Date: 2/25/2024
+* Copied and Adapted from: GitHub: osu-cs340-ecampus/nodejs-starter-app - Step 7
+* Source URL: https://github.com/osu-cs340-ecampus/nodejs-starter-app
+* 
+* Description of function: Handles Delete requests and responses for the locations.hbs page - Deletes specified rows from both Locations page and from the SQL Database
+* -----------END CITATION--------------
+*/       
+
 app.delete('/delete-location-ajax/', function(req,res,next){
     let data = req.body;
     let locationID = parseInt(data.idLocation)
@@ -162,7 +182,17 @@ app.delete('/delete-location-ajax/', function(req,res,next){
             }     
         })
     });
-    
+
+/* -----------LOCATIONS UPDATE CITATION------------------
+* The below route handler for the Locations page was copied and adapted from Step 8 of the Node.js Start App provided in this course
+* Date: 2/25/2024
+* Copied and Adapted from: GitHub: osu-cs340-ecampus/nodejs-starter-app - Step 8
+* Source URL: https://github.com/osu-cs340-ecampus/nodejs-starter-app
+* 
+* Description of function: Handles Update requests and responses for the locations.hbs page - Updates specified rows in Locations table
+* -----------END CITATION--------------
+*/            
+
 app.put('/put-location-ajax', function(req,res,next){
     let data = req.body;
         
@@ -695,11 +725,19 @@ app.put('/update-route', function(req, res) {
     });
 });
 
+/* -----------ROUTE TYPES ------------------ */
 
-
-/*
-   ROUTE TYPES ROUTES
-*/
+/* -----------ROUTE TYPES GET/POST/ADD_ROUTE/DELETE ROUTE CITATION------------------
+* The below route handlers for the Route Types page were copied and adpated from Steps 4, 5, and 7 of the Node.js Start App provided in this course
+* Date: 2/22/2024
+* Copied and Adapted from: GitHub: osu-cs340-ecampus/nodejs-starter-app - Steps 4, 5, and 7
+* Source URL: https://github.com/osu-cs340-ecampus/nodejs-starter-app
+* 
+* Description of function: Handles GET/POST/Delete requests and responses for the routetypes.hbs page to add a new route to the database- 
+* Inserts a new route type into the database and rerenders routes page to show update
+* Deletes route from both table and SQL database.
+* -----------END CITATION--------------
+*/ 
 
 app.get('/routetypes', function(req, res)
     {  
@@ -771,9 +809,15 @@ app.delete('/delete-routetype-ajax/', function(req,res,next){
             })
     });
     
-/*
-   ROUTE SETTERS ROUTES
-*/
+/* -----------ROUTE SETTERS GET ROUTE CITATION------------------
+* The below route handler for the Routes page was copied and adapted from Step 4 of the Node.js Start App provided in this course
+* Date: 2/21/2024
+* Copied and Adapted from: GitHub: osu-cs340-ecampus/nodejs-starter-app - Step 4
+* Source URL: https://github.com/osu-cs340-ecampus/nodejs-starter-app
+*
+*
+* -----------END CITATION--------------
+*/ 
 
 app.get('/routesetters', function(req, res)
     {  
