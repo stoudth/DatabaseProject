@@ -112,17 +112,15 @@
             <p><strong>Add New Session</strong></p>
             <fieldset class="fields">
                 <label> Location: </label> <select id="addLocationName">
-                    <option value="1" selected>Northeast</option>
-                    <option value="2">Southeast</option>
-                    <option value="3">Midwest</option>
+                    {{#each locations}}
+                    <option value="{{this.idLocation}}">{{this.locationName}}</option>
+                    {{/each}}
                     </select>
                 <br>
                 <label> Class: </label> <select id="addClassName">
-                    <option value="1" selected>Mobility</option>
-                    <option value="2">Recovery yoga</option>
-                    <option value="3">Intro to Lead Climbing</option>
-                    <option value="4">Wilderness First Aid</option>
-                    <option value="5">Core Power</option>
+                    {{#each classes}}
+                    <option value="{{this.idClass}}">{{this.className}}</option>
+                    {{/each}}
                 </select>
                 <br>
                 <label> Session Date: </label> <input type="date" id="addClassDate"><br>

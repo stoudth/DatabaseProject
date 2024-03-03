@@ -703,7 +703,7 @@ app.put('/update-route', function(req, res) {
 
 app.get('/routetypes', function(req, res)
     {  
-        let getTypes = "SELECT * FROM RouteTypes;";               // Define our query
+        let getTypes = "SELECT * FROM RouteTypes ORDER BY idRouteType;";               // Define our query
 
         db.pool.query(getTypes, function(error, rows, fields){    // Execute the query
 
@@ -730,7 +730,7 @@ app.post('/add-routetype-ajax', function(req, res)
             else
             {
                 // If there was no error, perform a SELECT * on bsg_people
-                routeShow = `SELECT * FROM RouteTypes;`;
+                routeShow = `SELECT * FROM RouteTypes ORDER BY idRouteType;`;
                 db.pool.query(routeShow, function(error, rows, fields){
     
                     // If there was an error on the second query, send a 400

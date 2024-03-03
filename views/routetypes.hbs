@@ -31,7 +31,7 @@
 
         {{!-- For each row, print the id, fname, lname, homeworld and age, in order --}}
         {{#each data}}
-        <tr>
+        <tr data-value="{{this.idRouteType}}">
             <td>{{this.idRouteType}}</td>
             <td>{{this.routeType}}</td>
             <td><button onclick="deleteRouteType({{this.idRouteType}})">Delete</button></td>
