@@ -1,0 +1,120 @@
+<!---CITATION--->
+<!--The Below code was adapted from the html code file bsg_HTML_UI provided in the Exploration - Web Application Technology.-->
+<!--Date: 2/14/2024-->
+<!--Code adapted from: bsg_HTML_UI provided in the Exploration - Web Application Technology-->
+<!--Author: Dr. Michael Curry-->
+<!--Source URL: https://canvas.oregonstate.edu/courses/1946034/pages/exploration-web-application-technology?module_item_id=23809327-->
+<!-- The below code implements an HTML shell page to demonstrate how CRUD operations will work in the user interface for the Classes Entity-->
+
+<!--HANDLEBAR USE CITATION-->
+<!--The handlebar use in the below code to generate the data table and dropdown menu is taken from the Node.js Starter App provided in this course-->
+<!--Date: 2/21/2023-->
+<!--Copied from: GitHub: osu-cs340-ecampus/nodejs-starter-app - Step 4 and Step 6-->
+<!--Source URL: https://github.com/osu-cs340-ecampus/nodejs-starter-app-->
+
+<html>
+    <head>
+        <title>
+            Apex Climbing Classes
+        </title>
+        <link href="style.css" rel="stylesheet" type="text/css"/>
+        <script src="./js/classes.js"></script>
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    </head>
+</html>
+
+<body onload="browse()">
+<nav class="navbar navbar-expand-lg bg-body-tertiary column-gap-3">
+    <h1>Classes</h1>
+    <a href="/">Home</a> |
+    <a href="locations"> Locations</a> |
+    <a href="classes">Classes</a> |
+    <a href="sessions">Sessions</a> |
+    <a href="routes">Routes</a> |
+    <a href="routesetters">RouteSetters</a> |
+    <a href="routetypes">RouteTypes</a>
+</nav>
+
+    <br><br>
+    <div id="info">
+        <fieldset>
+            <p>Operations available for Classes: SELECT, INSERT, DELETE (this affects the M:N relationship)</p>
+        </fieldset>
+    </div>
+
+    <div id="browse">
+        <p><strong>Browse Classes - Displays All Classes Currently In The Database</strong></p>
+        <table id="class-table" class="table table-bordered">
+            {{!--Header section --}}
+            <thead>
+                {{!--For just the first row, we print each key of the row object as a header cell so we
+                know what each column means when the page renders --}}
+                <tr>
+                    {{!--{{#each data.[0]}}--}}
+                    <th>Class ID</th>
+                    <th>Class Name</th>
+                    <th>Size Limit</th>
+                    <th>Delete</th>
+                    {{!--{{/each}}--}}
+                </tr>
+            </thead>
+
+            {{!-- Body section --}}
+            <tbody class="table-group-divider">
+                {{!-- For each row, print the id, locationName, streetAddress, city, state, zipcode --}}
+                {{#each data}}
+                <tr data-value="{{this.idClass}}">
+                    <td>{{this.idClass}}</td>
+                    <td>{{this.className}}</td>
+                    <td>{{this.sizeLimit}}</td>
+                    <td><button class="btn btn-secondary btn-sm" onclick="deleteClass({{this.idClass}})">Delete</button></td>
+                </tr>
+                {{/each}}
+            </tbody>
+        </table>
+
+        <br>
+            <form method="POST" id="insertclass">
+                <input class="btn btn-secondary" type="button" value="Add Class" onClick="newClass()">
+            </form> 
+    </div>
+
+    <div id="delete">
+        <form method="POST" id="delete-class">
+            <p><strong>Delete Class</strong></p>
+            <fieldset class="fields">
+                <p>Delete Permanently?</p>
+                <input type="hidden" name="classID" id="deleteClassID" value="1">
+                    <label><strong>ID:</strong></label> <span id="delete-id"></span><br>
+                    <label> <strong>Class Name:</strong> </label> <span id="delete-name"></span>
+            </fieldset>
+            <br>
+            <input class="btn btn-primary btn-sm" type="button" value="Delete Class" onClick="permanentClassDelete()">
+            <input class="btn btn-secondary btn-sm" type="button" value="Cancel" onClick="browse()">
+        </form> 
+    </div>
+
+
+    <div id="insert">
+        <form id="addClass" method="POST" action="/add_class">
+            <p><strong>Add New Class</strong></p>
+            <fieldset class="fields">
+                <label> Class Name: </label> <input type="text" name="className" id="className"><br>
+                <label> Size Limit: </label> <input type="number" min="1" name="sizeLimit" id="sizeLimit"><br>
+                <br><br>
+                <label>First Session:</label><br>
+                
+                <label> Location: </label> <select name="locationName" id="locationName">
+                    {{#each locations}}
+                    <option value="{{this.idLocation}}">{{this.locationName}}</option>
+                    {{/each}}
+                    </select>
+                <br>
+                <label>Date:</label><input type="date" name="classDate" id="classDate"><br>
+            </fieldset>
+            <br>
+            <input class="btn btn-primary btn-sm" type="submit"  id="addClass" value="Add Class">
+            <input class="btn btn-secondary btn-sm" type="button" value="Cancel" onClick="browse()">
+        </form> 
+    </div>
+</body>

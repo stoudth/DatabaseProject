@@ -1,0 +1,142 @@
+<!--HANDLEBAR USE CITATION-->
+<!--The handlebar use in the below code to generate the data table, insert, delete and add a dropdown is taken from the Node.js Starter App provided in this course-->
+<!--Date: 2/25/2023-->
+<!--Copied from: GitHub: osu-cs340-ecampus/nodejs-starter-app - Step 4-7 -->
+<!--Source URL: https://github.com/osu-cs340-ecampus/nodejs-starter-app-->
+
+<!--TOGGLE ADD/UPDATE BUTTONS SCRIPT CITATION-->
+<!--The purpose of this script is to allow users to toggle between hiding and showing add/update forms as needed.-->
+<!--Date: 2/25/2023-->
+<!--Adapted from: W3 Schools How TO - Toggle Hide and Show-->
+<!--Source URL: https://www.w3schools.com/howto/howto_js_toggle_hide_show.asp-->
+
+<script>
+    function hideAndShowAdd() {
+        var toggleAdd = document.getElementById("hiddenAdd");
+        if (toggleAdd.style.display === "none") {
+            toggleAdd.style.display = "block";
+        } else {
+            toggleAdd.style.display = "none";
+        }
+    }
+
+    function hideAndShowUpdate() {
+        var toggleUpdate = document.getElementById("hiddenUpdate");
+        if (toggleUpdate.style.display === "none") {
+            toggleUpdate.style.display = "block";
+        } else {
+            toggleUpdate.style.display = "none";
+        }
+    }     
+
+</script> 
+
+<body>
+<nav class="navbar navbar-expand-lg bg-body-tertiary column-gap-3">
+    <h1>Locations</h1>
+    <a href="/">Home</a> |
+    <a href="locations"> Locations</a> | 
+    <a href="classes">Classes</a> | 
+    <a href="sessions">Sessions</a> | 
+    <a href="routes">Routes</a> | 
+    <a href="routesetters">RouteSetters</a> | 
+    <a href="routetypes">RouteTypes</a>
+</nav>
+
+    <br><br>
+    <div id="info">
+        <fieldset class="fs-5">
+            <p>Operations available for Locations: SELECT, INSERT, UPDATE, DELETE</p>
+        </fieldset>
+    </div>
+
+
+{{!-- Create a table --}}
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+<table id="locations-table" class="table table-bordered">
+    {{!-- Header section --}}
+    <thead>
+
+        {{!-- For just the first row, we print each key of the row object as a header cell so we
+        know what each column means when the page renders --}}
+        <tr>
+            <th>Location ID</th>
+            <th>Location Name</th>
+            <th>Street Address</th>
+            <th>City</th>
+            <th>State</th>
+            <th>Zipcode</th>
+            <th>Delete</th>
+        </tr>
+    </thead>
+
+    {{!-- Body section --}}
+    <tbody class="table-group-divider">
+
+        {{!-- For each row, print the id, fname, lname, homeworld and age, in order --}}
+        {{#each data}}
+        <tr data-value="{{this.idLocation}}">
+            <td>{{this.idLocation}}</td>
+            <td>{{this.locationName}}</td>
+            <td>{{this.streetAddress}}</td>
+            <td>{{this.city}}</td>
+            <td>{{this.state}}</td>
+            <td>{{this.zipcode}}</td>
+            <td><button class="btn btn-secondary btn-sm" onclick="deleteLocation({{this.idLocation}})">Delete</button></td>
+        </tr>
+        {{/each}}
+    </tbody>
+</table>
+<script src="./js/delete_location.js"></script>
+
+<br>
+<button class="btn btn-secondary" onclick="hideAndShowAdd()">Add Location</button>
+<button class="btn btn-secondary" onclick="hideAndShowUpdate({{this.idLocation}})">Update Location</button>
+
+{{!-- Form to add a record to the table  --}}
+<div id="hiddenAdd" style="display:none"> 
+<h2>Add a New Location</h2>
+<p>To add a new location, please enter its information below and click 'Submit'!</p>
+<form id="add-location-form-ajax">
+
+    <label for="input-locationName">Location Name: </label>
+    <input type="text" name="input-locationName" id="input-locationName" required>
+    
+    <label for="input-streetAddress">Street Address: </label>
+    <input type="text" name="input-streetAddress" id="input-streetAddress" required>
+
+    <label for="input-city">City: </label>
+    <input type="text" name="input-city" id="input-city" required>
+
+    <label for="input-state">State: </label>
+    <input type="text" name="input-state" id="input-state" required>
+
+    <label for="input-zipcode">Zipcode: </label>
+    <input type="number" name="input-zipcode" id="input-zipcode" required>
+
+    <input class="btn btn-primary btn-sm" type="submit">
+</form>
+</div>
+
+{{!-- Embed our javascript to handle the DOM manipulation and AJAX request --}}
+<script src="./js/add_location.js"></script>
+
+<div id="hiddenUpdate" style="display:none"> 
+<h2>Update Location Form</h2>
+<p>Whoops! Did you make a mistake entering the location's address info? No worries, this form has you covered!</p>
+<form id="update-location-form-ajax">
+    <label for="input-locationName">Location Name: </label>
+    <select name="input-locationName" id="locationSelect">
+        <option value="test">Select a Location</option>
+        {{#each data}}
+        <option value="{{this.idLocation}}">{{this.locationName}}</option>
+        {{/each}}
+    </select>
+    <label for="input-streetAddress-update">Street Address: </label>
+    <input type="text" name="input-streetAddress-update" id="input-streetAddress-update" required>
+    <input class="btn btn-primary btn-sm" type="submit">
+</form>
+
+<script src="./js/update_location.js"></script>
+</body>
