@@ -155,6 +155,7 @@ function addRow(res)
 
         let table = document.getElementById("session-table");
 
+        //define new table elements
         let row = document.createElement("TR");
         let id_cell = document.createElement("TD");
         let location_name = document.createElement("TD");
@@ -163,19 +164,22 @@ function addRow(res)
         let size_limit = document.createElement("TD");
         let edit = document.createElement("TD")
 
+        //add info to cells
         id_cell.innerHTML = res[0].idSession
         location_name.innerHTML = res[0].locationName
         class_name.innerHTML = res[0].className
         class_date.innerHTML = res[0].classDate
         size_limit.innerHTML = res[0].sizeLimit
 
+        //insert edit button
         editButton = document.createElement("button")
         editButton.innerHTML = "Edit"
         edit.append(editButton)
         editButton.onclick = function(){
             updateSession(res[0].sessionID)
         }
-
+        
+        //add cells elements to row
         row.appendChild(id_cell)
         row.appendChild(location_name)
         row.appendChild(class_name)
@@ -183,6 +187,7 @@ function addRow(res)
         row.appendChild(size_limit)
         row.appendChild(edit)
 
+        //add row to table
         table.appendChild(row)
     };
 
@@ -196,17 +201,19 @@ function addRow(res)
 */ 
 
 function addSession() {
-    
+    //get values to add new session
     let location_id = document.getElementById('addLocationName').value
     let class_id = document.getElementById("addClassName").value
     let classDate = document.getElementById('addClassDate').value
-    
+
+    //format to send to routehandler
     let data = {
         idLocation: location_id,
         idClass: class_id,
         classDate: classDate
     }
-
+        
+    //send add request to routehandler
     $.ajax({
         url: '/add-session',
         type: 'POST',

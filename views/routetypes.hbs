@@ -1,3 +1,9 @@
+<!--HANDLEBAR USE CITATION-->
+<!--The handlebar use in the below code to generate the data table, insert, delete and add a dropdown is taken from the Node.js Starter App provided in this course-->
+<!--Date: 2/25/2024-->
+<!--Copied from: GitHub: osu-cs340-ecampus/nodejs-starter-app - Step 4-7 -->
+<!--Source URL: https://github.com/osu-cs340-ecampus/nodejs-starter-app-->
+
 <body>
 <nav>
      <h1>RouteTypes</h1>
@@ -17,12 +23,8 @@
         {{!-- For just the first row, we print each key of the row object as a header cell so we
         know what each column means when the page renders --}}
         <tr>
-            {{#each data.[0]}}
-            <th>
-                {{@key}}
-            </th>
-            {{/each}}
-            <th></th>
+            <th>Route Type ID</th>
+            <th>Route Type</th>
         </tr>
     </thead>
 
