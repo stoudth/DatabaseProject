@@ -1,7 +1,31 @@
+<!--HANDLEBAR USE CITATION-->
+<!--The handlebar use in the below code to generate the data table is taken from the Node.js Starter App provided in this course-->
+<!--Date: 2/25/2024-->
+<!--Copied from: GitHub: osu-cs340-ecampus/nodejs-starter-app - Step 4 -->
+<!--Source URL: https://github.com/osu-cs340-ecampus/nodejs-starter-app-->
+
+<!--TOGGLE ADD BUTTONS SCRIPT CITATION-->
+<!--The purpose of this script is to allow users to toggle between hiding and showing add/update forms as needed.-->
+<!--Date: 2/25/2023-->
+<!--Adapted from: W3 Schools How TO - Toggle Hide and Show-->
+<!--Source URL: https://www.w3schools.com/howto/howto_js_toggle_hide_show.asp-->
+
+<script>
+    function hideAndShowAdd() {
+        var toggleAdd = document.getElementById("hiddenAdd");
+        if (toggleAdd.style.display === "none") {
+            toggleAdd.style.display = "block";
+        } else {
+            toggleAdd.style.display = "none";
+        }
+    }
+</script> 
+
+
 <body>
-<nav>
+<nav class="navbar navbar-expand-lg bg-body-tertiary column-gap-3">
     <h1>RouteSetters</h1>
-    <a href="index">Home</a> |
+    <a href="/">Home</a> |
     <a href="locations"> Locations</a> | 
     <a href="classes">Classes</a> | 
     <a href="sessions">Sessions</a> |
@@ -9,28 +33,34 @@
     <a href="routesetters">RouteSetters</a> | 
     <a href="routetypes">RouteTypes</a>
 </nav>
-<table id="routesetters-table">
+
+    <br><br>
+    <div id="info">
+    <fieldset class="fs-5">
+        <p>Operations available for RouteSetters: SELECT, INSERT</p>
+    </fieldset>
+    </div>
+
+<table id="routesetters-table" class="table table-bordered">
     {{!-- Header section --}}
     <thead>
 
         {{!-- For just the first row, we print each key of the row object as a header cell so we
         know what each column means when the page renders --}}
         <tr>
-            {{#each data.[0]}}
-            <th>
-                {{@key}}
-            </th>
-            {{/each}}
-            <th></th>
+            <th>Route Setter ID</th>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Cert Level</th>
         </tr>
     </thead>
 
     {{!-- Body section --}}
-    <tbody>
+    <tbody class="table-group-divider">
 
         {{!-- For each row, print the id, fname, lname, homeworld and age, in order --}}
         {{#each data}}
-        <tr>
+        <tr data-value="{{this.idRouteSetter}}">
             <td>{{this.idRouteSetter}}</td>
             <td>{{this.firstName}}</td>
             <td>{{this.lastName}}</td>
@@ -39,4 +69,28 @@
         {{/each}}
     </tbody>
 </table>
+
+<br>
+<button class="btn btn-secondary" onclick="hideAndShowAdd()">Add Route Setter</button>
+
+{{!-- Form to add a record to the table  --}}
+<div id="hiddenAdd" style="display:none"> 
+<h2>Add a Route Setter</h2>
+<p>To add a new route setter, please enter their information below and click 'Submit'!</p>
+<form id="add-routesetter-form-ajax">
+    <label for="input-firstName">First Name: </label>
+    <input type="text" name="input-firstName" id="input-firstName">
+    
+    <label for="input-lastName">Last Name: </label>
+    <input type="text" name="input-lastName" id="input-lastName">
+
+    <label for="input-certLevel">Certification Level: </label>
+    <input type="number" name="input-certLevel" id="input-certLevel" min="1" max="5">
+
+    <input class="btn btn-primary btn-sm" type="submit">
+</form>
+</div>
+
+{{!-- Embed our javascript to handle the DOM manipulation and AJAX request --}}
+<script src="./js/add_routesetter.js"></script>
 </body>

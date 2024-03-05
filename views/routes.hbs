@@ -1,10 +1,16 @@
-<!---CITATION-->
+<!---HTML CITATION-->
 <!--The Below code was adapted from the html code file bsg_HTML_UI provided in the Exploration - Web Application Technology.-->
 <!--Date: 2/14/2024-->
 <!--Code adapted from: bsg_HTML_UI provided in the Exploration - Web Application Technology-->
 <!--Author: Dr. Michael Curry-->
 <!--Source URL: https://canvas.oregonstate.edu/courses/1946034/pages/exploration-web-application-technology?module_item_id=23809327-->
 <!-- The below code implements an HTML shell page to demonstrate how CRUD operations will work in the user interface for the Routes Entity-->
+
+<!--HANDLEBAR USE CITATION-->
+<!--The handlebar use in the below code to generate the data table and dropdown menu is taken from the Node.js Starter App provided in this course-->
+<!--Date: 2/21/2023-->
+<!--Copied from: GitHub: osu-cs340-ecampus/nodejs-starter-app - Step 4 and Step 6-->
+<!--Source URL: https://github.com/osu-cs340-ecampus/nodejs-starter-app-->
 
 <html>
     <head>
@@ -18,18 +24,20 @@
 </html>
 
 <body onload="browse()">
+<nav class="navbar navbar-expand-lg bg-body-tertiary column-gap-3">
     <h1>Routes</h1>
-    <a href="index">Home</a> |
+    <a href="/">Home</a> |
     <a href="locations"> Locations</a> | 
     <a href="classes">Classes</a> | 
     <a href="sessions">Sessions</a> |
     <a href="routes">Routes</a> | 
     <a href="routesetters">RouteSetters</a> | 
     <a href="routetypes">RouteTypes</a>
+</nav>
 
     <br><br>
     <div id="info">
-        <fieldset>
+        <fieldset class="fs-5">
             <p>Operations available for Routes: SELECT, INSERT, UPDATE (with NULLABLE field)</p>
         </fieldset>
     </div>
@@ -37,7 +45,8 @@
 
     <div id="browse" >
         <p><strong>Browse Routes - Displays All Routes Currently In The Database</strong></p>
-        <table id="route-table" border="1" cellpadding="5" >
+        <table id="route-table" class="table table-bordered">
+            <thead>
             <tr>
                 <th>Route ID</th>
                 <th>Route Name</th>
@@ -51,6 +60,8 @@
                 <th>Route Type</th>
                 <th>Edit</th>
             </tr>
+            </thead>
+            <tbody class="table-group-divider">
             {{#each data}}
              <tr data-value="{{this.idRoute}}">
                 <td>{{this.idRoute}}</td>
@@ -63,13 +74,14 @@
                 <td>{{this.firstName}}</td>
                 <td>{{this.lastName}}</td>
                 <td>{{this.routeType}}</td>
-                <td><button onClick="updateRoute({{this.idRoute}})">Edit</button></td>
+                <td><button class="btn btn-secondary btn-sm" onClick="updateRoute({{this.idRoute}})">Edit</button></td>
             </tr>
             {{/each}}
+            </tbody>
         </table>
         <br>
         <form method="POST" id="addRoute">
-            <input class="btn" type="button" value="Add Route" onClick="newRoute()">
+            <input class="btn btn-secondary" type="button" value="Add Route" onClick="newRoute()">
         </form> 
     </div>
 
@@ -108,8 +120,8 @@
                  <br>
             </fieldset>
             <br>
-            <input class="btn" type="button" id="confirmUpdate" value="Update Route" onclick="sendUpdate()">
-            <input class="btn" type="button" value="Cancel" onClick="browse()">
+            <input class="btn btn-primary btn-sm" type="button" id="confirmUpdate" value="Update Route" onclick="sendUpdate()">
+            <input class="btn btn-secondary btn-sm" type="button" value="Cancel" onClick="browse()">
         </form> 
     </div>
 
@@ -147,8 +159,8 @@
                  <br>
             </fieldset>
             <br>
-            <input class="btn" type="submit" id="addRoute" value="Add Route">
-            <input class="btn" type="button" value="Cancel" onClick="browse()">
+            <input class="btn btn-primary btn-sm" type="submit" id="addRoute" value="Add Route">
+            <input class="btn btn-secondary btn-sm" type="button" value="Cancel" onClick="browse()">
         </form> 
     </div>
 </body>
