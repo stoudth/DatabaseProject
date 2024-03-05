@@ -43,12 +43,11 @@ function deleteClass(idClass)
 * Description of function: Pulls selected class ID from page and sends in a delete request to the route handler. Then request ID row be removed.
 * -----------END CITATION--------------
 */ 
-function permanentClassDelete() 
+function permanentClassDelete(idClass) 
   {
 
     //Get Class ID to be deleted
-    let idClass = document.getElementById('delete-id').innerHTML
-    console.log(idClass)
+    //let idClass = document.getElementById('delete-id').innerHTML
     let link = '/delete-class-ajax/'
     let data = {
       id: idClass
@@ -108,7 +107,7 @@ function browse() {
 };
 
 function newClass() {
-    document.getElementById('browse').style.display = 'none';
+    //document.getElementById('browse').style.display = 'none';
     document.getElementById('insert').style.display = 'block';
     document.getElementById('delete').style.display = 'none';
 };

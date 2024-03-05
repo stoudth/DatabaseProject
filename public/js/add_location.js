@@ -112,7 +112,6 @@ addRowToTable = (data) => {
 
     deleteCell = document.createElement("button");
     deleteCell.innerHTML = "Delete"
-    deleteCell.classList.add("btn btn-secondary btn-sm")
     deleteCell.onclick = function(){
         deleteLocation(newRow.idLocation);
     };

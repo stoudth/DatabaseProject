@@ -37,7 +37,7 @@
 
 <div class="pageBody p-3">
 
-    <br><br>
+    <br>
     <div id="info">
         <fieldset class="fs-5">
             <p>Operations available for Classes: SELECT, INSERT, DELETE (this affects the M:N relationship)</p>
@@ -69,7 +69,7 @@
                     <td>{{this.idClass}}</td>
                     <td>{{this.className}}</td>
                     <td>{{this.sizeLimit}}</td>
-                    <td><button class="btn btn-secondary btn-sm" onclick="deleteClass({{this.idClass}})">Delete</button></td>
+                    <td><button class="btn btn-secondary btn-sm" onclick="permanentClassDelete({{this.idClass}})">Delete</button></td>
                 </tr>
                 {{/each}}
             </tbody>
@@ -98,24 +98,23 @@
 
 
     <div id="insert">
-        <form id="addClass" method="POST" action="/add_class">
-            <p><strong class="font-weight-bold">Add New Class</strong></p>
-            <fieldset class="fields">
-                <label> Class Name: </label> <input type="text" name="className" id="className"><br>
-                <label> Size Limit: </label> <input type="number" min="1" name="sizeLimit" id="sizeLimit"><br>
+        <form id="addClass" method="POST" action="/add_class"> 
+            <div class="add my-5 p-2 border border-primary">
+                <span><strong class="font-weight-bold fs-5 m-1">Add New Class</strong></span><br>
+                <label class="p-1"> Class Name: </label> <input type="text" name="className" id="className">
+                <label class="p-1"> Size Limit: </label> <input type="number" min="1" name="sizeLimit" id="sizeLimit">
                 <br><br>
-                <p><strong class="font-weight-bold">First Class Session</strong></p>
-                <label> Location: </label> <select name="locationName" id="locationName">
+                <span><strong class="font-weight-bold fs-5 m-1">First Class Session</strong></span><br>
+                <label class="p-1"> Location: </label> <select name="locationName" id="locationName">
                     {{#each locations}}
                     <option value="{{this.idLocation}}">{{this.locationName}}</option>
                     {{/each}}
                     </select>
-                <br>
-                <label>Date:</label><input type="date" name="classDate" id="classDate"><br>
-            </fieldset>
-            <br>
-            <input class="btn btn-primary btn-sm" type="submit"  id="addClass" value="Add Class">
-            <input class="btn btn-secondary btn-sm" type="button" value="Cancel" onClick="browse()">
+                <label class="p-1">Date:</label><input type="date" name="classDate" id="classDate"><br><br>
+                <input class="btn btn-primary btn-sm" type="submit"  id="addClass" value="Submit">
+                <input class="btn btn-secondary btn-sm m-1" type="button" value="Cancel" onClick="browse()">
+            </div>
+            
         </form> 
     </div>
 <div class="pageBody p-3">
