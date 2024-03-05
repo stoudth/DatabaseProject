@@ -111,7 +111,8 @@ addRowToTable = (data) => {
     zipcodeCell.innerText = newRow.zipcode;
 
     deleteCell = document.createElement("button");
-    deleteCell.innerHTML = "Delete";
+    deleteCell.innerHTML = "Delete"
+    deleteCell.classList.add("btn btn-secondary btn-sm")
     deleteCell.onclick = function(){
         deleteLocation(newRow.idLocation);
     };

@@ -13,7 +13,6 @@ let updateLocationForm = document.getElementById('update-location-form-ajax');
 // Modify the objects we need
 updateLocationForm.addEventListener("submit", function (e) {
    
-    // TODO make update visible without reloading! Commenting out for now
     e.preventDefault();
 
     // Get form fields we need to get data from

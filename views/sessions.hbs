@@ -25,25 +25,26 @@
 </html>
 
 <body onload="browse()">
+<nav class="navbar navbar-expand-lg bg-body-tertiary column-gap-3">
     <h1>Sessions</h1>
-    <a href="index">Home</a> |
+    <a href="/">Home</a> |
     <a href="locations"> Locations</a> | 
     <a href="classes">Classes</a> | 
     <a href="sessions">Sessions</a> | 
     <a href="routes">Routes</a> | 
     <a href="routesetters">RouteSetters</a> | 
     <a href="routetypes">RouteTypes</a>
-
+</nav>  
     <br><br>
     <div id="info">
-        <fieldset>
+        <fieldset class="fs-5">
             <p>Operations available for Sessions: SELECT, INSERT, UPDATE (for M:N relationship)</p>
         </fieldset>
     </div>
 
     <div id="browse">
         <p><strong>Browse Sessions- Displays All Sessions Currently In The Database</strong></p>
-        <table id="session-table" border="1" cellpadding="5">
+        <table id="session-table" class="table table-bordered">
             {{!--Header section --}}
             <thead>
                 {{!--For just the first row, we print each key of the row object as a header cell so we
@@ -61,7 +62,7 @@
             </thead>
 
             {{!-- Body section --}}
-            <tbody>
+            <tbody class="table-group-divider">
                 {{!-- For each row, print the id, locationName, streetAddress, city, state, zipcode --}}
                 {{#each data}}
                 <tr data-value="{{this.idSession}}">
@@ -70,14 +71,14 @@
                     <td>{{this.className}}</td>
                     <td>{{this.classDate}}</td>   {{!-https://stackoverflow.com/questions/32260117/handlebars-date-format-issue-}}
                     <td>{{this.sizeLimit}}</td>
-                    <td><button onClick="updateSession({{this.idSession}})">Edit</button></td>
+                    <td><button class="btn btn-secondary btn-sm" onClick="updateSession({{this.idSession}})">Edit</button></td>
                 </tr>
                 {{/each}}
             </tbody>
         </table>
         <br>
         <form method="POST" id="addSession">
-            <input class="btn" type="button" value="Add Session" onClick="newSession()">
+            <input class="btn btn-secondary" type="button" value="Add Session" onClick="newSession()">
         </form> 
     </div>
 
@@ -102,8 +103,8 @@
                 <label> Session Date: </label> <input type="date" name="updateClassDate" id="updateClassDate"><br>
             </fieldset>
             <br>
-            <input class="btn" type="button" id="confirmUpdate" value="Update Session" onClick="sendUpdate()">
-            <input class="btn" type="button" value="Cancel" onClick="browse()">
+            <input class="btn btn-primary btn-sm" type="button" id="confirmUpdate" value="Update Session" onClick="sendUpdate()">
+            <input class="btn btn-secondary btn-sm" type="button" value="Cancel" onClick="browse()">
         </form> 
     </div>
 
@@ -126,17 +127,9 @@
                 <label> Session Date: </label> <input type="date" id="addClassDate"><br>
             </fieldset>
             <br>
-            <input class="btn" type="button" id="confirmAddSession" value="Add Session" onclick="addSession()">
-            <input class="btn" type="button" value="Cancel" onClick="browse()">
+            <input class="btn btn-primary btn-sm" type="button" id="confirmAddSession" value="Add Session" onclick="addSession()">
+            <input class="btn btn-secondary btn-sm" type="button" value="Cancel" onClick="browse()">
         </form> 
     </div>
 
-    <div id="display">
-        <p id="test1"></p>
-        <p id="test2"></p>
-        <p id="test3"></p>
-        <p id="test4"></p>
-    </div>
 </body>
-
-

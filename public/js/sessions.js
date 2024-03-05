@@ -249,5 +249,3 @@ function newSession() {
     document.getElementById('insert').style.display = 'block';
     document.getElementById('update').style.display = 'none';
 };
-
-

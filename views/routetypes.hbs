@@ -4,10 +4,27 @@
 <!--Copied from: GitHub: osu-cs340-ecampus/nodejs-starter-app - Step 4-7 -->
 <!--Source URL: https://github.com/osu-cs340-ecampus/nodejs-starter-app-->
 
+<!--TOGGLE ADD BUTTONS SCRIPT CITATION-->
+<!--The purpose of this script is to allow users to toggle between hiding and showing add/update forms as needed.-->
+<!--Date: 2/25/2023-->
+<!--Adapted from: W3 Schools How TO - Toggle Hide and Show-->
+<!--Source URL: https://www.w3schools.com/howto/howto_js_toggle_hide_show.asp-->
+
+<script>
+    function hideAndShowAdd() {
+        var toggleAdd = document.getElementById("hiddenAdd");
+        if (toggleAdd.style.display === "none") {
+            toggleAdd.style.display = "block";
+        } else {
+            toggleAdd.style.display = "none";
+        }
+    }
+</script> 
+
 <body>
-<nav>
+<nav class="navbar navbar-expand-lg bg-body-tertiary column-gap-3">
      <h1>RouteTypes</h1>
-    <a href="index">Home</a> |
+    <a href="/">Home</a> |
     <a href="locations"> Locations</a> | 
     <a href="classes">Classes</a> | 
     <a href="sessions">Sessions</a> |
@@ -15,8 +32,15 @@
     <a href="routesetters">RouteSetters</a> | 
     <a href="routetypes">RouteTypes</a>
 </nav>
+    <br><br>
+    <div id="info">
+        <fieldset class="fs-5">
+            <p>Operations available for Route Types: SELECT, INSERT, DELETE</p>
+        </fieldset>
+    </div>
+
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-<table id="routetypes-table">
+<table id="routetypes-table" class="table table-bordered">
     {{!-- Header section --}}
     <thead>
 
@@ -25,27 +49,30 @@
         <tr>
             <th>Route Type ID</th>
             <th>Route Type</th>
+            <th>Delete</th>
         </tr>
     </thead>
 
     {{!-- Body section --}}
-    <tbody>
+    <tbody class="table-group-divider">
 
         {{!-- For each row, print the id, fname, lname, homeworld and age, in order --}}
         {{#each data}}
         <tr data-value="{{this.idRouteType}}">
             <td>{{this.idRouteType}}</td>
             <td>{{this.routeType}}</td>
-            <td><button onclick="deleteRouteType({{this.idRouteType}})">Delete</button></td>
+            <td><button class="btn btn-secondary btn-sm" onclick="deleteRouteType({{this.idRouteType}})">Delete</button></td>
         </tr>
         {{/each}}
     </tbody>
 </table>
 <script src="./js/delete_routetype.js"></script>
 
-<!-- /views/index.hbs -->
+<br>
+<button class="btn btn-secondary" onclick="hideAndShowAdd()">Add Route Type</button>
 
 {{!-- Form to add a record to the table  --}}
+<div id="hiddenAdd" style="display:none"> 
 <h2>Add a New Route Type</h2>
 <p>Add a new variety of route using the form below.</p>
 <form id="add-routetype-form-ajax">
@@ -53,8 +80,9 @@
     <label for="input-routeType">Route Type: </label>
     <input type="text" name="input-routeType" id="input-routeType">
 
-    <input type="submit">
+    <input class="btn btn-primary btn-sm" type="submit">
 </form>
+</div>
 
 {{!-- Embed our javascript to handle the DOM manipulation and AJAX request --}}
 <script src="./js/add_routetype.js"></script>
