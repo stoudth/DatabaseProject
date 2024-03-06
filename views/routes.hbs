@@ -24,7 +24,7 @@
 </html>
 
 <body onload="browse()">
-<nav class="navbar navbar-expand-lg bg-body-tertiary column-gap-3">
+<nav class="navbar navbar-expand-lg bg-body-tertiary column-gap-3 p-3">
     <h1>Routes</h1>
     <a href="/">Home</a> |
     <a href="locations"> Locations</a> | 
@@ -35,7 +35,9 @@
     <a href="routetypes">RouteTypes</a>
 </nav>
 
-    <br><br>
+<div class="pageBody p-3">
+
+    <br>
     <div id="info">
         <fieldset class="fs-5">
             <p>Operations available for Routes: SELECT, INSERT, UPDATE (with NULLABLE field)</p>
@@ -163,4 +165,5 @@
             <input class="btn btn-secondary btn-sm" type="button" value="Cancel" onClick="browse()">
         </form> 
     </div>
+</div>
 </body>

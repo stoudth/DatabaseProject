@@ -32,18 +32,21 @@
 </script> 
 
 <body>
-<nav class="navbar navbar-expand-lg bg-body-tertiary column-gap-3">
-    <h1>Locations</h1>
-    <a href="/">Home</a> |
-    <a href="locations"> Locations</a> | 
-    <a href="classes">Classes</a> | 
-    <a href="sessions">Sessions</a> | 
-    <a href="routes">Routes</a> | 
-    <a href="routesetters">RouteSetters</a> | 
-    <a href="routetypes">RouteTypes</a>
-</nav>
+    
+    <nav class="navbar navbar-expand-lg bg-body-tertiary column-gap-3 p-3">
+        <h1>Locations</h1>
+        <a href="/">   Home</a> |
+        <a href="locations"> Locations</a> | 
+        <a href="classes">Classes</a> | 
+        <a href="sessions">Sessions</a> | 
+        <a href="routes">Routes</a> | 
+        <a href="routesetters">RouteSetters</a> | 
+        <a href="routetypes">RouteTypes</a>
+    </nav>
 
-    <br><br>
+<div class="pageBody p-3">
+
+    <br>
     <div id="info">
         <fieldset class="fs-5">
             <p>Operations available for Locations: SELECT, INSERT, UPDATE, DELETE</p>
@@ -55,6 +58,7 @@
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 
 <table id="locations-table" class="table table-hover">
+    <p><strong>Browse Locations - Displays All Locations Currently In The Database</strong></p>
     {{!-- Header section --}}
     <thead>
 
@@ -92,51 +96,54 @@
 
 <br>
 <button class="btn btn-secondary" onclick="hideAndShowAdd()">Add Location</button>
-<button class="btn btn-secondary" onclick="hideAndShowUpdate({{this.idLocation}})">Update Location</button>
+<button class="btn btn-secondary m-1" onclick="hideAndShowUpdate({{this.idLocation}})">Update Location</button>
 
 {{!-- Form to add a record to the table  --}}
-<div id="hiddenAdd" style="display:none"> 
+<div id="hiddenAdd" style="display:none" class="add my-5 p-2 border border-primary"> 
 <h2>Add a New Location</h2>
 <p>To add a new location, please enter its information below and click 'Submit'!</p>
 <form id="add-location-form-ajax">
 
-    <label for="input-locationName">Location Name: </label>
+    <label for="input-locationName" class="p-1">Location Name: </label>
     <input type="text" name="input-locationName" id="input-locationName" required>
     
-    <label for="input-streetAddress">Street Address: </label>
+    <label for="input-streetAddress" class="p-1">Street Address: </label>
     <input type="text" name="input-streetAddress" id="input-streetAddress" required>
 
-    <label for="input-city">City: </label>
+    <label for="input-city" class="p-1">City: </label>
     <input type="text" name="input-city" id="input-city" required>
 
-    <label for="input-state">State: </label>
+    <label for="input-state" class="p-1">State: </label>
     <input type="text" name="input-state" id="input-state" required>
 
-    <label for="input-zipcode">Zipcode: </label>
-    <input type="number" name="input-zipcode" id="input-zipcode" required>
+    <label for="input-zipcode" class="p-1">Zipcode: </label>
+    <input type="text" name="input-zipcode" id="input-zipcode" required>
 
-    <input class="btn btn-primary btn-sm" type="submit">
+    <input class="btn btn-primary btn-sm m-1" type="submit">
 </form>
 </div>
 
 {{!-- Embed our javascript to handle the DOM manipulation and AJAX request --}}
 <script src="./js/add_location.js"></script>
 
-<div id="hiddenUpdate" style="display:none"> 
+<div id="hiddenUpdate" style="display:none" class="add my-5 p-2 border border-primary"> 
 <h2>Update Location Form</h2>
 <p>Whoops! Did you make a mistake entering the location's address info? No worries, this form has you covered!</p>
 <form id="update-location-form-ajax">
-    <label for="input-locationName">Location Name: </label>
+    <label for="input-locationName" class="p-1">Location Name: </label>
     <select name="input-locationName" id="locationSelect">
         <option value="test">Select a Location</option>
         {{#each data}}
         <option value="{{this.idLocation}}">{{this.locationName}}</option>
         {{/each}}
     </select>
-    <label for="input-streetAddress-update">Street Address: </label>
+    <label for="input-streetAddress-update"class="p-1">Street Address: </label>
     <input type="text" name="input-streetAddress-update" id="input-streetAddress-update" required>
-    <input class="btn btn-primary btn-sm" type="submit">
+    <input class="btn btn-primary btn-sm m-1" type="submit">
 </form>
 
 <script src="./js/update_location.js"></script>
+
+</div>
+
 </body>
