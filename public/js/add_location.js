@@ -76,22 +76,31 @@ addLocationForm.addEventListener("submit", function (e) {
 
 })
 
+/* -----------BOOTSTRAP METHOD CITATION------------------
+* The below function is modified from the original function in the Node.js Web App and uses some aspects of the script portion of Bootstrap v5's
+* Append Example page source code
+* Date: 3/4/2024
+* Adapted from: GitHub: osu-cs340-ecampus/nodejs-starter-app - Step 5 and bsg_HTML_UI file provided in the Exploration - Web Application Technology &
+* Bootstrap v5 Examples > Methods > Append 
+* Source URLs: https://github.com/osu-cs340-ecampus/nodejs-starter-app and https://canvas.oregonstate.edu/courses/1946034/pages/exploration-web-application-technology?module_item_id=23809327
+* https://examples.bootstrap-table.com/#methods/append.html#view-source
+*
+* Description of function: Dynamically adds form data to table with appropriate styling
+* -----------END CITATION--------------
+*/
 
 // Creates a single row from an Object representing a single record from 
-// bsg_people
+// Locations
 addRowToTable = (data) => {
 
-    // Get a reference to the current table on the page and clear it out.
-    let currentTable = document.getElementById("locations-table");
-
-    // Get the location where we should insert the new row (end of table)
-    let newRowIndex = currentTable.rows.length;
+    // Use reference to the current Locations table so it can be appended to directly
+    var $currentTable = $('#locations-table');
 
     // Get a reference to the new row from the database query (last object)
     let parsedData = JSON.parse(data);
     let newRow = parsedData[parsedData.length - 1]
 
-    // Create a row and 6 cells
+    // Create a row and 7 cells (including Delete)
     let row = document.createElement("TR");
     let idLocationCell = document.createElement("TD");
     let locationNameCell = document.createElement("TD");
@@ -101,6 +110,9 @@ addRowToTable = (data) => {
     let zipcodeCell = document.createElement("TD");
 
     let deleteCell = document.createElement("TD");
+    // We create a separate button element so that it can be styled to match the 
+    // existing buttons in the table and nested within deleteCell
+    let deleteButton = document.createElement("button");
 
     // Fill the cells with correct data
     idLocationCell.innerText = newRow.idLocation;
@@ -110,11 +122,18 @@ addRowToTable = (data) => {
     stateCell.innerText = newRow.state;
     zipcodeCell.innerText = newRow.zipcode;
 
-    deleteCell = document.createElement("button");
-    deleteCell.innerHTML = "Delete";
-    deleteCell.onclick = function(){
+    // Match the styling of the existing buttons in the table
+    deleteButton.setAttribute("class", "btn btn-secondary btn-sm");
+    
+    // Event listener is attached to the new button itself instead of the 
+    // entire deleteCell
+    deleteButton.innerHTML = "Delete";
+    deleteButton.onclick = function(){
         deleteLocation(newRow.idLocation);
     };
+
+    // Nest the delete button in the deleteCell like it is in the existing table
+    deleteCell.appendChild(deleteButton);
 
     // Add the cells to the row 
     row.appendChild(idLocationCell);
@@ -128,8 +147,8 @@ addRowToTable = (data) => {
     // Add a row attribute so the deleteRow function can find a newly added row
     row.setAttribute('data-value', newRow.idLocation);
     
-    // Add the row to the table
-    currentTable.appendChild(row);
+    // Add the row directly to the table
+    $currentTable.append(row);
 
     // Start of new Step 8 code for adding new data to the dropdown menu for updating people
     

@@ -63,16 +63,25 @@ addRouteSetterForm.addEventListener("submit", function (e) {
 
 })
 
+/* -----------BOOTSTRAP METHOD CITATION------------------
+* The below function is modified from the original function in the Node.js Web App and uses some aspects of the script portion of Bootstrap v5's
+* Append Example page source code
+* Date: 3/4/2024
+* Adapted from: GitHub: osu-cs340-ecampus/nodejs-starter-app - Step 5 and bsg_HTML_UI file provided in the Exploration - Web Application Technology &
+* Bootstrap v5 Examples > Methods > Append 
+* Source URLs: https://github.com/osu-cs340-ecampus/nodejs-starter-app and https://canvas.oregonstate.edu/courses/1946034/pages/exploration-web-application-technology?module_item_id=23809327
+* https://examples.bootstrap-table.com/#methods/append.html#view-source
+*
+* Description of function: Dynamically adds form data to table with appropriate styling
+* -----------END CITATION--------------
+*/
 
 // Creates a single row from an Object representing a single record from 
 // routeType
 addRowToTable = (data) => {
 
-    // Get a reference to the current table on the page and clear it out.
-    let currentTable = document.getElementById("routesetters-table");
-
-    // Get the location where we should insert the new row (end of table)
-    let newRowIndex = currentTable.rows.length;
+    // Use reference to the current RouteSetters table so it can be appended to directly
+    let $currentTable = $('#routesetters-table');
 
     // Get a reference to the new row from the database query (last object)
     let parsedData = JSON.parse(data);
@@ -97,6 +106,7 @@ addRowToTable = (data) => {
     row.appendChild(lastNameCell);
     row.appendChild(certLevelCell);
     
-    // Add the row to the table
-    currentTable.appendChild(row);
+    // Add the row directly to the table
+    $currentTable.append(row);
+
 }
