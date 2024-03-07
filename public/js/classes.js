@@ -108,6 +108,10 @@ function browse() {
 
 function newClass() {
     //document.getElementById('browse').style.display = 'none';
-    document.getElementById('insert').style.display = 'block';
-    document.getElementById('delete').style.display = 'none';
-};
+    if (document.getElementById('insert').style.display === "none") {
+      document.getElementById('insert').style.display = 'block';
+      document.getElementById('update').style.display = 'none';
+      } else {
+          document.getElementById('insert').style.display = 'none';
+      }
+  };

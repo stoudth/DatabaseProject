@@ -16,10 +16,14 @@ function browse() {
 };
 
 function newRoute() {
-    document.getElementById('browse').style.display = 'none';
-    document.getElementById('insert').style.display = 'block';
-    document.getElementById('update').style.display = 'none';
-};
+    //document.getElementById('browse').style.display = 'none';
+    if (document.getElementById('insert').style.display === "none") {
+        document.getElementById('insert').style.display = 'block';
+        document.getElementById('update').style.display = 'none';
+        } else {
+            document.getElementById('insert').style.display = 'none';
+        }
+    };
 
 
 /* -----------UPDATE ROUTE CITATION------------------
@@ -42,7 +46,7 @@ function newRoute() {
 function updateRoute(routeID) 
     {
         //display update section
-        document.getElementById('browse').style.display = 'none';
+        //document.getElementById('browse').style.display = 'none';
         document.getElementById('insert').style.display = 'none';
         document.getElementById('update').style.display = 'block';
 

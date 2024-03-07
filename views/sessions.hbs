@@ -25,7 +25,7 @@
 </html>
 
 <body onload="browse()">
-<nav class="navbar navbar-expand-lg bg-body-tertiary column-gap-3">
+<nav class="navbar navbar-expand-lg bg-body-tertiary column-gap-3 p-3">
     <h1>Sessions</h1>
     <a href="/">Home</a> |
     <a href="locations"> Locations</a> | 
@@ -35,7 +35,9 @@
     <a href="routesetters">RouteSetters</a> | 
     <a href="routetypes">RouteTypes</a>
 </nav>  
-    <br><br>
+
+<div class="pageBody p-3">
+    <br>
     <div id="info">
         <fieldset class="fs-5">
             <p>Operations available for Sessions: SELECT, INSERT, UPDATE (for M:N relationship)</p>
@@ -84,52 +86,52 @@
 
     <div id="update">
         <form id="updateSession">
-            <p><strong>Update Session</strong></p>
-            <fieldset class="fields">
-                <input type="hidden" name="sessionID" id="updateSession" value="1"><br>
-                <label> Session ID: </label> <span id="updatesessionID"></span><br>
-                <label> Location: </label> <select name="updateLocationName" id="updateLocationName">
+            <div class="add my-5 p-2 border border-primary">
+                <h2 class="p-1 my-2">Update Session Form</h2>
+                <p>Whoops! Is there an error in an entry? Use this form to make updates to a specific session.</p>
+                <input type="hidden" name="sessionID" id="updateSession" value="1">
+                <label class="p-1 my-2"> Session ID: </label> <span id="updatesessionID"></span>
+                <label class="p-1 my-2"> Location: </label> <select name="updateLocationName" id="updateLocationName">
                     {{#each locations}}
                     <option value="{{this.idLocation}}">{{this.locationName}}</option>
                     {{/each}}
                     </select>
-                 <br>
-                <label> Class: </label> <select name="updateClassName" id="updateClassName">
+                <label class="p-1 y-2"> Class: </label> <select name="updateClassName" id="updateClassName">
                     {{#each classes}}
                     <option value="{{this.idClass}}">{{this.className}}</option>
                     {{/each}}
                 </select>
-                <br>
-                <label> Session Date: </label> <input type="date" name="updateClassDate" id="updateClassDate"><br>
-            </fieldset>
-            <br>
-            <input class="btn btn-primary btn-sm" type="button" id="confirmUpdate" value="Update Session" onClick="sendUpdate()">
-            <input class="btn btn-secondary btn-sm" type="button" value="Cancel" onClick="browse()">
+                <label class="p-1 my-2"> Session Date: </label> <input type="date" name="updateClassDate" id="updateClassDate"><br>
+                <span class="p-1 my-2">Note: Duplicate Sessions at the same location with the same date are not allowed</span>
+            <br><br>
+            <input class="btn btn-primary btn-sm m-1" type="button" id="confirmUpdate" value="Submit" onClick="sendUpdate()">
+            <input class="btn btn-secondary btn-sm m-1" type="button" value="Cancel" onClick="browse()">
+            </div>
         </form> 
     </div>
 
     <div id="insert">
-        <form id="addSession">
-            <p><strong>Add New Session</strong></p>
-            <fieldset class="fields">
-                <label> Location: </label> <select id="addLocationName">
+        <form id="addSession">  
+            <div class="add my-5 p-2 border border-primary">
+                <h2 class="p-1 my-2">Add a New Session</h2>
+                <p>To add a new session, please enter its information below and click 'Submit'! All fields are required.</p>
+                <label class="p-1 my-2"> Location: </label> <select id="addLocationName">
                     {{#each locations}}
                     <option value="{{this.idLocation}}">{{this.locationName}}</option>
                     {{/each}}
                     </select>
-                <br>
-                <label> Class: </label> <select id="addClassName">
+                <label class="p-1 my-2"> Class: </label> <select id="addClassName">
                     {{#each classes}}
                     <option value="{{this.idClass}}">{{this.className}}</option>
                     {{/each}}
                 </select>
-                <br>
-                <label> Session Date: </label> <input type="date" id="addClassDate"><br>
-            </fieldset>
+                <label class="p-1 my-2"> Session Date: </label> <input type="date" id="addClassDate"><br>
+            
             <br>
-            <input class="btn btn-primary btn-sm" type="button" id="confirmAddSession" value="Add Session" onclick="addSession()">
-            <input class="btn btn-secondary btn-sm" type="button" value="Cancel" onClick="browse()">
+            <input class="btn btn-primary btn-sm m-1" type="button" id="confirmAddSession" value="Submit" onclick="addSession()">
+            <input class="btn btn-secondary btn-sm m-1" type="button" value="Cancel" onClick="browse()">
+            </div>
         </form> 
     </div>
-
+</div>
 </body>
