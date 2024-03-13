@@ -177,15 +177,19 @@ app.delete('/delete-location-ajax/', function(req,res,next){
 
 app.put('/put-location-ajax', function(req,res,next){
    let data = req.body;
+   console.log(data)
        
    let location = parseInt(data.locationName);
    let address = data.streetAddress;
+   let city = data.city;
+   let state = data.state;
+   let zipcode = data.zipcode;
        
-   let queryUpdateAddress = `UPDATE Locations SET Locations.streetAddress = ? WHERE Locations.idLocation = ?`;
-   let selectAddress = `SELECT Locations.streetAddress FROM Locations WHERE Locations.idLocation = ?`;
+   let queryUpdateAddress = `UPDATE Locations SET streetAddress = '${address}', city = '${city}', state = '${state}', zipcode = '${zipcode}' WHERE idLocation = ${location}`;
+   let selectAddress = `SELECT * FROM Locations WHERE Locations.idLocation = ?`;
        
    // Run the 1st query
-   db.pool.query(queryUpdateAddress, [address, location], function(error, rows, fields){
+   db.pool.query(queryUpdateAddress, function(error, rows, fields){
        if (error) {
        
            // Log the error to the terminal so we know what went wrong, and send the visitor an HTTP response 400 indicating it was a bad request.

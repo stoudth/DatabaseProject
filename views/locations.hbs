@@ -36,8 +36,8 @@
 <body>
     
     <nav class="navbar navbar-expand-lg bg-body-tertiary column-gap-3 p-3">
-        <h1>Locations</h1>
-        <a href="/">   Home</a> |
+        <h2>Apex Climbing Gym</h2>
+        <a href="/">Home</a> |
         <a href="locations"> Locations</a> | 
         <a href="classes">Classes</a> | 
         <a href="sessions">Sessions</a> | 
@@ -47,6 +47,9 @@
     </nav>
 
 <div class="pageBody p-3">
+
+    <br>
+    <h1>Locations</h1>
 
     <br>
     <div id="info">
@@ -142,6 +145,16 @@
     </select>
     <label for="input-streetAddress-update" class="p-1 my-2">Street Address: </label>
     <input type="text" name="input-streetAddress-update" id="input-streetAddress-update" required>
+
+    <label for="input-city-update" class="p-1 my-2">City: </label>
+    <input type="text" name="input-city-update" id="input-city-update" required>
+
+    <label for="input-state-update" class="p-1 my-2">State: </label>
+    <input type="text" name="input-state-update" id="input-state-update" required>
+
+    <label for="input-zipcode-update" class="p-1 my-2">Zipcode: </label>
+    <input type="text" name="input-zipcode-update" id="input-zipcode-update" required>
+
     <br><br>
     <input class="btn btn-primary btn-sm m-1" type="submit">
     <input class="btn btn-secondary btn-sm m-1" type="button" value="Cancel" onClick="hideAndShowUpdate()">

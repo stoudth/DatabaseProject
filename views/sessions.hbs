@@ -26,7 +26,7 @@
 
 <body onload="browse()">
 <nav class="navbar navbar-expand-lg bg-body-tertiary column-gap-3 p-3">
-    <h1>Sessions</h1>
+    <h2>Apex Climbing Gym</h2>
     <a href="/">Home</a> |
     <a href="locations"> Locations</a> | 
     <a href="classes">Classes</a> | 
@@ -37,6 +37,10 @@
 </nav>  
 
 <div class="pageBody p-3">
+
+    <br>
+    <h1>Sessions</h1>
+
     <br>
     <div id="info">
         <fieldset class="fs-5">
@@ -126,6 +130,7 @@
                     {{/each}}
                 </select>
                 <label class="p-1 my-2"> Session Date: </label> <input type="date" id="addClassDate"><br>
+                <span class="p-1 my-2">Note: Duplicate sessions not allowed</span>
             
             <br>
             <input class="btn btn-primary btn-sm m-1" type="button" id="confirmAddSession" value="Submit" onclick="addSession()">
@@ -133,5 +138,9 @@
             </div>
         </form> 
     </div>
+</div>
+
+<div>
+    <span id="test1"></span>
 </div>
 </body>
