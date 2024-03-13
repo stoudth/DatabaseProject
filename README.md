@@ -61,3 +61,46 @@ Source URL: https://github.com/osu-cs340-ecampus/nodejs-starter-app
 Authors: George Kochera, Cortona1, Dr. Michael Curry, dmgs11
 Description: Imports and uses handlebar syntax to display data that is sent back from the routehandler that was retrieved from the SQL database. 
 --------------------------------
+
+
+--------JAVASCRIPT CRUD OPERATION FUNCTIONS------------
+The JavaScript code in the public js files was adapted from the bsg_HTML_UI file provided int he Exploration - Web Application Technology and the node.js starter app provided in this course
+Date: 2/14/2024 and 2/23/2023
+Copied from: GitHub: osu-cs340-ecampus/nodejs-starter-app - Steps4-8 and bsg_HTML_UI file provided in the Exploration - Web Application Technology
+Source URL: https://github.com/osu-cs340-ecampus/nodejs-starter-app and https://canvas.oregonstate.edu/courses/1946034/pages/exploration-web-application-technology?module_item_id=23809327
+Authors: George Kochera, Cortona1, Dr. Michael Curry, dmgs11
+Description: The functions in the public js files handle actions in the UI by listening for or handling actions made by the user. They then pull and process the necessary information to send to the routehandlers and update the DOM tree accordingly based on the returned response.
+-----------------------------------------------
+
+----------DROPDOWN MENU IN PUBLIC JS FILES CITATION---------
+The syntax for getting the number of fields in a dropdown was taken from the answer from Chase on the 'JavaScript - get length of list options' page on StackOverflow
+Date: 2/23/2023
+Syntax copied from answer provided by chase on the 'JavaScript - get length of list options' page on StackOverflow
+Source URL: https://stackoverflow.com/questions/13166229/javascript-get-length-of-list-options
+Description of function: Shows the update session page and displays the current session information in the update form fields
+----------------------------------------------
+
+
+--------APPENDING BUTTON IN TABLE CELL CITATION----------------
+The syntax for the 'cell_name'.append(button) code from the public js files was taken from the answer by Emiel Zuurbier on June 28, 2021 StackOverflow post Javascript - button inside a table -> inserting TextContent 
+Date: 2/28/2024
+Syntax copied from: StackOverflow post Javascript - button inside a table -> inserting TextContent 
+Author: Emiel Zuurbier 
+Source URL: https://stackoverflow.com/questions/68168071/javascript-button-inside-a-table-inserting-textcontent
+Description: Appends a button into a table cell instead of making the cell the button.
+----------------------------------------------
+
+--------APPENDING ELEMENTS TO A TABLE WHILE USING BOOTSTRAP-----------
+The syntax in order to update an existing diplay table that utilizes Bootstrap for sytling with a new row of information was taken from the Bootstrap website
+Date: 3/4/2024
+Syntax copied from: Bootstrap v5 website Examples > Methods > Append 
+Source URL: https://examples.bootstrap-table.com/#methods/append.html
+Description: Adds a new row to a table that utilizes Bootstrap for formatting by appending elements.
+-------------------------------
+
+-----------BOOTSTRAP CITATION------------
+Styling throughout database site is sourced from Bootstrap v5.3.3 unless otherwise stated
+Date: 3/4/2024
+Source URL: https://getbootstrap.com/docs/5.3/getting-started/introduction/
+Description: Styles the site to be visually appealing
+-----------------------------------------

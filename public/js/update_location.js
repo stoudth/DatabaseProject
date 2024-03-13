@@ -3,6 +3,7 @@
 * Date: 2/23/2023
 * Copied from: GitHub: osu-cs340-ecampus/nodejs-starter-app - Step 8 
 * Source URL: https://github.com/osu-cs340-ecampus/nodejs-starter-app 
+* Authors: George Kochera, Cortona1, Dr. Michael Curry, dmgs11
 * Description of function: Dynamically adds data to Locations table
 * -----------END CITATION--------------
 */ 
@@ -51,8 +52,8 @@ updateLocationForm.addEventListener("submit", function (e) {
             alert("Row updated successfully");
             updateRow(xhttp.response, locationNameValue);
             updateRow(xhttp.response, streetAddressValue);
-
         }
+
         else if (xhttp.readyState == 4 && xhttp.status != 200) {
             console.log("There was an error with the input.")
         }
@@ -77,10 +78,10 @@ function updateRow(data, locationID){
             // Get the location of the row where we found the matching location ID
             let updateRowIndex = table.getElementsByTagName("tr")[i];
 
-            // Get td of streetAddress value
+            // Get td of the row 
             let td = updateRowIndex.getElementsByTagName("td");
 
-            // Reassign streetAddress to our value we updated to
+            // Reassign values of each td to our values we updated to
             td[2].innerHTML = parsedData[0].streetAddress; 
             td[3].innerHTML = parsedData[0].city;
             td[4].innterHTML = parsedData[0].state;

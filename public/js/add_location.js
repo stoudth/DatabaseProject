@@ -3,6 +3,7 @@
 * Date: 2/14/2024 and 2/23/2024
 * Copied from: GitHub: osu-cs340-ecampus/nodejs-starter-app - Step 5 and bsg_HTML_UI file provided in the Exploration - Web Application Technology
 * Source URL: https://github.com/osu-cs340-ecampus/nodejs-starter-app and https://canvas.oregonstate.edu/courses/1946034/pages/exploration-web-application-technology?module_item_id=23809327
+* Authors: George Kochera, Cortona1, Dr. Michael Curry, dmgs11
 * 
 * Description of function: Dynamically adds new data via form to Locations table
 * -----------END CITATION--------------
@@ -89,8 +90,7 @@ addLocationForm.addEventListener("submit", function (e) {
 * -----------END CITATION--------------
 */
 
-// Creates a single row from an Object representing a single record from 
-// Locations
+// Creates a single row from an Object representing a single record from Locations
 addRowToTable = (data) => {
 
     // Use reference to the current Locations table so it can be appended to directly
