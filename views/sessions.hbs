@@ -20,7 +20,8 @@
             Apex Climbing Sessions
         </title>
         <link href="style.css" rel="stylesheet" type="text/css"/>
-        <script src="./js/sessions.js"></script>
+        <script src="./js/add_session.js"></script>
+        <script src="./js/update_session.js"></script>
         <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
     </head>
 </html>
@@ -112,7 +113,7 @@
                         {{/each}}
                     </select>
                     <label class="p-1 my-2"> Session Date: </label> <input type="date" name="updateClassDate" id="updateClassDate"><br>
-                    <span class="p-1 my-2">Note: Duplicate Sessions at the same location with the same date are not allowed</span>
+                    <span class="p-1 my-2">Note: Duplicate sessions are not allowed</span>
 
                 <br><br>
                 <input class="btn btn-primary btn-sm m-1" type="button" id="confirmUpdate" value="Submit" onClick="sendUpdate()">

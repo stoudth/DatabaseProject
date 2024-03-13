@@ -3,6 +3,7 @@
 * Date: 2/23/2024
 * Copied from: GitHub: osu-cs340-ecampus/nodejs-starter-app - Step 5 and bsg_HTML_UI file provided in the Exploration - Web Application Technology
 * Source URL: https://github.com/osu-cs340-ecampus/nodejs-starter-app and https://canvas.oregonstate.edu/courses/1946034/pages/exploration-web-application-technology?module_item_id=23809327
+* Authors: George Kochera, Cortona1, Dr. Michael Curry, dmgs11
 * 
 * Description of function: Dynamically adds new data via form entry to RouteTypes table
 * -----------END CITATION--------------
@@ -45,8 +46,11 @@ addRouteTypeForm.addEventListener("submit", function (e) {
 
             alert("Form submitted successfully");
         }
+
         else if (xhttp.readyState == 4 && xhttp.status != 200) {
+
             console.log("There was an error with the input.")
+
         }
     }
 
@@ -54,6 +58,7 @@ addRouteTypeForm.addEventListener("submit", function (e) {
     xhttp.send(JSON.stringify(data));
 
 })
+
 
 /* -----------BOOTSTRAP METHOD CITATION------------------
 * The below function is modified from the original function in the Node.js Web App and uses some aspects of the script portion of Bootstrap v5's
@@ -68,8 +73,7 @@ addRouteTypeForm.addEventListener("submit", function (e) {
 * -----------END CITATION--------------
 */
 
-// Creates a single row from an Object representing a single record from 
-// routeType
+// Creates a single row from an Object representing a single record from routeType
 addRowToTable = (data) => {
 
     // Use reference to the current RouteTypes table so it can be appended to directly

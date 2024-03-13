@@ -3,6 +3,7 @@
 * Date: 3/03/2024
 * Copied from: GitHub: osu-cs340-ecampus/nodejs-starter-app - Step 5 and bsg_HTML_UI file provided in the Exploration - Web Application Technology
 * Source URL: https://github.com/osu-cs340-ecampus/nodejs-starter-app and https://canvas.oregonstate.edu/courses/1946034/pages/exploration-web-application-technology?module_item_id=23809327
+* Authors: George Kochera, Cortona1, Dr. Michael Curry, dmgs11
 * 
 * Description of function: Dynamically adds new data via form entry to RouteTypes table
 * -----------END CITATION--------------
@@ -76,8 +77,7 @@ addRouteSetterForm.addEventListener("submit", function (e) {
 * -----------END CITATION--------------
 */
 
-// Creates a single row from an Object representing a single record from 
-// routeType
+// Creates a single row from an Object representing a single record from RouteSetters
 addRowToTable = (data) => {
 
     // Use reference to the current RouteSetters table so it can be appended to directly
