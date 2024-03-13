@@ -19,7 +19,7 @@ function updateSession(sessionID)
     {
 
         //display update section
-        document.getElementById('browse').style.display = 'none';
+        //document.getElementById('browse').style.display = 'none';
         document.getElementById('insert').style.display = 'none';
         document.getElementById('update').style.display = 'block';
 
@@ -145,6 +145,7 @@ function updateRow(id, res)
 *-----------END CITATION--------------
 */ 
 
+
 function addRow(res)
     {
         //Display browse section
@@ -152,9 +153,10 @@ function addRow(res)
         document.getElementById('browse').style.display = 'block';
         document.getElementById('insert').style.display = 'none'; 
         document.getElementById('update').style.display = 'none';
-
-        let table = document.getElementById("session-table");
-
+        
+        let $currentTable = $('#session-table');
+        //document.getElementById('test1').innerHTML = $currentTable
+        
         //define new table elements
         let row = document.createElement("TR");
         let id_cell = document.createElement("TD");
@@ -172,12 +174,17 @@ function addRow(res)
         size_limit.innerHTML = res[0].sizeLimit
 
         //insert edit button
+        
         editButton = document.createElement("button")
+        editButton.setAttribute("class", "btn btn-secondary btn-sm");
+
         editButton.innerHTML = "Edit"
-        edit.append(editButton)
         editButton.onclick = function(){
             updateSession(res[0].sessionID)
         }
+
+        edit.append(editButton)
+        
         
         //add cells elements to row
         row.appendChild(id_cell)
@@ -185,10 +192,13 @@ function addRow(res)
         row.appendChild(class_name)
         row.appendChild(class_date)
         row.appendChild(size_limit)
-        row.appendChild(edit)
+        //row.appendChild(edit)
+
+        //row.setAttribute('data-value', res[0].sessionID);
 
         //add row to table
-        table.appendChild(row)
+        $currentTable.appendChild(row)
+        
     };
 
 /* -----------SENDUPDATE CITATION------------------
@@ -245,7 +255,11 @@ function browse() {
 };
 
 function newSession() {
-    document.getElementById('browse').style.display = 'none';
+    //document.getElementById('browse').style.display = 'none';
+    if (document.getElementById('insert').style.display === "none") {
     document.getElementById('insert').style.display = 'block';
     document.getElementById('update').style.display = 'none';
+    } else {
+        document.getElementById('insert').style.display = 'none';
+    }
 };

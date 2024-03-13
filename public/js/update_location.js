@@ -18,15 +18,24 @@ updateLocationForm.addEventListener("submit", function (e) {
     // Get form fields we need to get data from
     let locationNameInput = document.getElementById("locationSelect");
     let streetAddressInput = document.getElementById("input-streetAddress-update");
+    let cityInput = document.getElementById("input-city-update")
+    let stateInput = document.getElementById("input-state-update")
+    let zipcodeInput = document.getElementById("input-zipcode-update")
 
     // Get the values from the form fields
     let locationNameValue = locationNameInput.value;
     let streetAddressValue = streetAddressInput.value;
+    let cityValue = cityInput.value;
+    let stateValue = stateInput.value;
+    let zipcodeValue = zipcodeInput.value;
     
     // Put our data we want to send in a javascript object
     let data = {
         locationName: locationNameValue,
         streetAddress: streetAddressValue,
+        city: cityValue,
+        state: stateValue,
+        zipcode: zipcodeValue
     }
     
     // Setup our AJAX request
@@ -69,10 +78,13 @@ function updateRow(data, locationID){
             let updateRowIndex = table.getElementsByTagName("tr")[i];
 
             // Get td of streetAddress value
-            let td = updateRowIndex.getElementsByTagName("td")[2];
+            let td = updateRowIndex.getElementsByTagName("td");
 
             // Reassign streetAddress to our value we updated to
-            td.innerHTML = parsedData[0].streetAddress; 
+            td[2].innerHTML = parsedData[0].streetAddress; 
+            td[3].innerHTML = parsedData[0].city;
+            td[4].innterHTML = parsedData[0].state;
+            td[5].innerHTML = parsedData[0].zipcode;
        }
     }
 }

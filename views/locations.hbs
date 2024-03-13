@@ -15,6 +15,7 @@
         var toggleAdd = document.getElementById("hiddenAdd");
         if (toggleAdd.style.display === "none") {
             toggleAdd.style.display = "block";
+            document.getElementById("hiddenUpdate").style.display = "none";
         } else {
             toggleAdd.style.display = "none";
         }
@@ -24,6 +25,7 @@
         var toggleUpdate = document.getElementById("hiddenUpdate");
         if (toggleUpdate.style.display === "none") {
             toggleUpdate.style.display = "block";
+            document.getElementById("hiddenAdd").style.display = "none";
         } else {
             toggleUpdate.style.display = "none";
         }
@@ -34,8 +36,8 @@
 <body>
     
     <nav class="navbar navbar-expand-lg bg-body-tertiary column-gap-3 p-3">
-        <h1>Locations</h1>
-        <a href="/">   Home</a> |
+        <h2>Apex Climbing Gym</h2>
+        <a href="/">Home</a> |
         <a href="locations"> Locations</a> | 
         <a href="classes">Classes</a> | 
         <a href="sessions">Sessions</a> | 
@@ -45,6 +47,9 @@
     </nav>
 
 <div class="pageBody p-3">
+
+    <br>
+    <h1>Locations</h1>
 
     <br>
     <div id="info">
@@ -57,7 +62,7 @@
 {{!-- Create a table --}}
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 
-<table id="locations-table" class="table table-bordered">
+<table id="locations-table" class="table table-hover">
     <p><strong>Browse Locations - Displays All Locations Currently In The Database</strong></p>
     {{!-- Header section --}}
     <thead>
@@ -101,25 +106,26 @@
 {{!-- Form to add a record to the table  --}}
 <div id="hiddenAdd" style="display:none" class="add my-5 p-2 border border-primary"> 
 <h2>Add a New Location</h2>
-<p>To add a new location, please enter its information below and click 'Submit'!</p>
+<p>To add a new location, please enter its information below and click 'Submit'! All fields are required.</p>
 <form id="add-location-form-ajax">
 
-    <label for="input-locationName" class="p-1">Location Name: </label>
+    <label for="input-locationName" class="p-1 my-2">Location Name: </label>
     <input type="text" name="input-locationName" id="input-locationName" required>
     
-    <label for="input-streetAddress" class="p-1">Street Address: </label>
+    <label for="input-streetAddress" class="p-1 my-2">Street Address: </label>
     <input type="text" name="input-streetAddress" id="input-streetAddress" required>
 
-    <label for="input-city" class="p-1">City: </label>
+    <label for="input-city" class="p-1 my-2">City: </label>
     <input type="text" name="input-city" id="input-city" required>
 
-    <label for="input-state" class="p-1">State: </label>
+    <label for="input-state" class="p-1 my-2">State: </label>
     <input type="text" name="input-state" id="input-state" required>
 
-    <label for="input-zipcode" class="p-1">Zipcode: </label>
+    <label for="input-zipcode" class="p-1 my-2">Zipcode: </label>
     <input type="text" name="input-zipcode" id="input-zipcode" required>
-
+    <br><br>
     <input class="btn btn-primary btn-sm m-1" type="submit">
+    <input class="btn btn-secondary btn-sm m-1" type="button" value="Cancel" onClick="hideAndShowAdd()">
 </form>
 </div>
 
@@ -130,16 +136,28 @@
 <h2>Update Location Form</h2>
 <p>Whoops! Did you make a mistake entering the location's address info? No worries, this form has you covered!</p>
 <form id="update-location-form-ajax">
-    <label for="input-locationName" class="p-1">Location Name: </label>
+    <label for="input-locationName" class="p-1 my-2">Location Name: </label>
     <select name="input-locationName" id="locationSelect">
         <option value="test">Select a Location</option>
         {{#each data}}
         <option value="{{this.idLocation}}">{{this.locationName}}</option>
         {{/each}}
     </select>
-    <label for="input-streetAddress-update"class="p-1">Street Address: </label>
+    <label for="input-streetAddress-update" class="p-1 my-2">Street Address: </label>
     <input type="text" name="input-streetAddress-update" id="input-streetAddress-update" required>
+
+    <label for="input-city-update" class="p-1 my-2">City: </label>
+    <input type="text" name="input-city-update" id="input-city-update" required>
+
+    <label for="input-state-update" class="p-1 my-2">State: </label>
+    <input type="text" name="input-state-update" id="input-state-update" required>
+
+    <label for="input-zipcode-update" class="p-1 my-2">Zipcode: </label>
+    <input type="text" name="input-zipcode-update" id="input-zipcode-update" required>
+
+    <br><br>
     <input class="btn btn-primary btn-sm m-1" type="submit">
+    <input class="btn btn-secondary btn-sm m-1" type="button" value="Cancel" onClick="hideAndShowUpdate()">
 </form>
 
 <script src="./js/update_location.js"></script>

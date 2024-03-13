@@ -17,7 +17,6 @@
         <title>
             Apex Climbing Classes
         </title>
-        <link href="./css/style.css" rel="stylesheet" type="text/css"/>
         <script src="./js/classes.js"></script>
         <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
     </head>
@@ -25,7 +24,7 @@
 
 <body onload="browse()">
 <nav class="navbar navbar-expand-lg bg-body-tertiary column-gap-3 p-3">
-    <h1>Classes</h1>
+    <h2>Apex Climbing Gym</h2>
     <a href="/">Home</a> |
     <a href="locations"> Locations</a> |
     <a href="classes">Classes</a> |
@@ -38,6 +37,9 @@
 <div class="pageBody p-3">
 
     <br>
+    <h1>Classes</h1>
+
+    <br>
     <div id="info">
         <fieldset class="fs-5">
             <p>Operations available for Classes: SELECT, INSERT, DELETE (this affects the M:N relationship)</p>
@@ -46,7 +48,7 @@
 
     <div id="browse">
         <p><strong>Browse Classes - Displays All Classes Currently In The Database</strong></p>
-        <table id="class-table" class="table table-bordered">
+        <table id="class-table" class="table table-hover">
             {{!--Header section --}}
             <thead>
                 {{!--For just the first row, we print each key of the row object as a header cell so we
@@ -100,18 +102,20 @@
     <div id="insert">
         <form id="addClass" method="POST" action="/add_class"> 
             <div class="add my-5 p-2 border border-primary">
-                <span><strong class="font-weight-bold fs-5 m-1">Add New Class</strong></span><br>
-                <label class="p-1"> Class Name: </label> <input type="text" name="className" id="className">
-                <label class="p-1"> Size Limit: </label> <input type="number" min="1" name="sizeLimit" id="sizeLimit">
-                <br><br>
+                <h2 class="p-1 my-2">Add a New Class</h2>
+                <p>To add a new class, please enter its information below and click 'Submit'! All fields are required.</p>
+                <label class="p-1 my-2"> Class Name: </label> <input type="text" name="className" id="className">
+                <label class="p-1 my-2"> Size Limit: </label> <input type="number" min="1" name="sizeLimit" id="sizeLimit"><br>
+                <span class="p-1 my-2">Note: Duplicate class names not allowed</span>
+                <br><br><br>
                 <span><strong class="font-weight-bold fs-5 m-1">First Class Session</strong></span><br>
-                <label class="p-1"> Location: </label> <select name="locationName" id="locationName">
+                <label class="p-1 my-2"> Location: </label> <select name="locationName" id="locationName">
                     {{#each locations}}
                     <option value="{{this.idLocation}}">{{this.locationName}}</option>
                     {{/each}}
                     </select>
-                <label class="p-1">Date:</label><input type="date" name="classDate" id="classDate"><br><br>
-                <input class="btn btn-primary btn-sm" type="submit"  id="addClass" value="Submit">
+                <label class="p-1 my-2">Date:</label><input type="date" name="classDate" id="classDate"><br><br>
+                <input class="btn btn-primary btn-sm m-1" type="submit"  id="addClass" value="Submit">
                 <input class="btn btn-secondary btn-sm m-1" type="button" value="Cancel" onClick="browse()">
             </div>
             

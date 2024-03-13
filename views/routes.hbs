@@ -25,7 +25,7 @@
 
 <body onload="browse()">
 <nav class="navbar navbar-expand-lg bg-body-tertiary column-gap-3 p-3">
-    <h1>Routes</h1>
+    <h2>Apex Climbing Gym</h2>
     <a href="/">Home</a> |
     <a href="locations"> Locations</a> | 
     <a href="classes">Classes</a> | 
@@ -38,6 +38,9 @@
 <div class="pageBody p-3">
 
     <br>
+    <h1>Routes</h1>
+
+    <br>
     <div id="info">
         <fieldset class="fs-5">
             <p>Operations available for Routes: SELECT, INSERT, UPDATE (with NULLABLE field)</p>
@@ -47,7 +50,7 @@
 
     <div id="browse" >
         <p><strong>Browse Routes - Displays All Routes Currently In The Database</strong></p>
-        <table id="route-table" class="table table-bordered">
+        <table id="route-table" class="table table-hover">
             <thead>
             <tr>
                 <th>Route ID</th>
@@ -89,80 +92,74 @@
 
     <div id="update">
         <form id="updateRoutes">
-            <p><strong>Update Route</strong></p>
-            <fieldset class="fields">
-                <input type="hidden" name="routeID" id="updateRoute" value="1"><br>
-                <label> Route ID: </label><span id="updateRouteID"></span><br>
-                <label> Route Name: </label> <input type="text" id="updateRouteName"><br>
-                <label> Date Set: </label> <input type="date" id="updateDateSet"><br>
-                <label> Route Grade: </label> <input type="text" id="updateRouteGrade"><br>
-                <label> Active: </label> <select id="updateActive">
+            <div class="add my-5 p-2 border border-primary">
+            <h2>Update Route Form</h2>
+            <p>Whoops! Is there an error in an entry? Use this form to make updates to a specific route.</p>
+                <input type="hidden" name="routeID" id="updateRoute" value="1">
+                <label class="p-1 my-2"> Route ID: </label><span id="updateRouteID"></span>
+                <label class="p-1 my-2"> Route Name: </label> <input type="text" id="updateRouteName">
+                <label class="p-1 my-2"> Date Set: </label> <input type="date" id="updateDateSet">
+                <label class="p-1 my-2"> Route Grade: </label> <input type="text" id="updateRouteGrade"><br>
+                <label class="p-1 my-2"> Active: </label> <select id="updateActive">
                     <option value="0">False</option>
                     <option value="1" selected>True</option>
                     </select>
-                    <br>
-                <label> Location: </label> <select id="updateLocation">
+                <label class="p-1 my-2"> Location: </label> <select id="updateLocation">
                     {{#each locations}}
                     <option value="{{this.idLocation}}">{{this.locationName}}</option>
                     {{/each}}
                     </select>
-                 <br>
-                <label> Routsetter: </label> <select id="updateRouteSetter">
+                <label class="p-1 my-2"> Routsetter: </label> <select id="updateRouteSetter">
                     <option value="null">NULL</option>
                     {{#each routesetters}}
                     <option value="{{this.idRouteSetter}}">{{this.firstName}} {{this.lastName}}</option>
                     {{/each}}
                 </select>
-                <br>
-                <label> Route Type: </label> <select id="updateRouteType">
+                <label class="p-1 my-2"> Route Type: </label> <select id="updateRouteType">
                     {{#each routetypes}}
                     <option value="{{this.idRouteType}}">{{this.routeType}}</option>
                     {{/each}}
                     </select>
-                 <br>
-            </fieldset>
-            <br>
-            <input class="btn btn-primary btn-sm" type="button" id="confirmUpdate" value="Update Route" onclick="sendUpdate()">
-            <input class="btn btn-secondary btn-sm" type="button" value="Cancel" onClick="browse()">
+            <br><br>
+            <input class="btn btn-primary btn-sm m-1" type="button" id="confirmUpdate" value="Submit" onclick="sendUpdate()">
+            <input class="btn btn-secondary btn-sm m-1" type="button" value="Cancel" onClick="browse()">
+            </div>
         </form> 
     </div>
 
     <div id="insert">
         <form method="POST" id="addRoute" action="/add-route">
-            <p><strong>Add New Route</strong></p>
-            <fieldset class="fields">
-                <label> Route Name: </label> <input type="text" name="routeName" id="routeName"><br>
-                <label> Date Set: </label> <input type="date" name="dateSet" id="dateSet"><br>
-                <label> Route Grade: </label> <input type="text" name="routeGrade" id="routeGrade"><br>
-                <label> Active: </label>
+            <div class="add my-5 p-2 border border-primary">
+                <h2 class="p-1">Add a New Route</h2>
+                <p>To add a new route, please enter its information below and click 'Submit'! All fields are required but you may select NULL for Route Setter.</p>
+                <label class="p-1 my-2"> Route Name: </label> <input type="text" name="routeName" id="routeName">
+                <label class="p-1 my-2"> Date Set: </label> <input type="date" name="dateSet" id="dateSet">
+                <label class="p-1 my-2"> Route Grade: </label> <input type="text" name="routeGrade" id="routeGrade"><br>
+                <label class="p-1 my-2"> Active: </label>
                     <select name="active" id="active">
                     <option value="0">False</option>
                     <option value="1" selected>True</option>
                     </select>
-                <br>
-                <label> Location: </label> <select name="locationName" id="addLocationName">
+                <label class="p-1 my-2"> Location: </label> <select name="locationName" id="addLocationName">
                     {{#each locations}}
                     <option value="{{this.idLocation}}">{{this.locationName}}</option>
                     {{/each}}
                     </select>
-                <br>
-                <label> RouteSetter: </label> <select name="idRouteSetter" id="addRouteSetter">
+                <label class="p-1 my-2"> Route Setter: </label> <select name="idRouteSetter" id="addRouteSetter">
                     <option value="null">NULL</option>
                     {{#each routesetters}}
                     <option value="{{this.idRouteSetter}}">{{this.firstName}} {{this.lastName}}</option>
                     {{/each}}
                     </select>
-                <br>
-                <label> Route Type: </label> <select name="idRouteType" id="addRouteType">
+                <label class="p-1 my-2"> Route Type: </label> <select name="idRouteType" id="addRouteType">
                     {{#each routetypes}}
                     <option value="{{this.idRouteType}}">{{this.routeType}}</option>
                     {{/each}}
-                    </select>
-                 <br>
-            </fieldset>
-            <br>
-            <input class="btn btn-primary btn-sm" type="submit" id="addRoute" value="Add Route">
-            <input class="btn btn-secondary btn-sm" type="button" value="Cancel" onClick="browse()">
+                    </select>  
+            <br><br>
+            <input class="btn btn-primary btn-sm m-1" type="submit" id="addRoute" value="Submit">
+            <input class="btn btn-secondary btn-sm m-1" type="button" value="Cancel" onClick="browse()">
+            </div>
         </form> 
     </div>
 </div>
