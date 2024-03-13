@@ -1,5 +1,6 @@
 <!-- index.hbs -->
 
+{{!-- Header Section --}}
 <html>
     <head>
         <title>
@@ -8,30 +9,34 @@
     </head>
 </html>
 
-
+{{!-- Page Body --}}
 <body>
-<nav class="navbar navbar-expand-lg bg-body-tertiary column-gap-3 p-3">
-    <h2>Apex Climbing Gym</h2>
-    <a href="/">Home</a> |
-    <a href="locations"> Locations</a> | 
-    <a href="classes">Classes</a> | 
-    <a href="sessions">Sessions</a> | 
-    <a href="routes">Routes</a> | 
-    <a href="routesetters">RouteSetters</a> | 
-    <a href="routetypes">RouteTypes</a>
-</nav>
-<div class="pageBody p-3">
-    <br>
-    <fieldset class="fs-6">
-        <p>Apex Climbing is a commercial climbing gym with 3 Locations. They have 5 RouteSetters (employees who plan and set the climbing routes for the gym) and host a variety of Classes. 
-            Classes can range from yoga to learning to lead climb to calisthenics. They are looking for a database in order to keep track of the Classes they are offering and which Locations they are at. 
-            Apex aims to use this data to ensure they are scheduling Classes effectively at each Location. 
-            Apex provides a range of different types of climbing Routes for all skill levels in a variety of different Route Types, and they would also like to keep track of which Routes are currently up at each Location and which RouteSetter has set them. 
-            Occasionally, they have guest RouteSetters who come in to set their Routes. They typically have around 100 different Routes per Location at any given time. The information tracked in the database will be used to help plan the new Routes set for the upcoming week. 
-        </p>    
-        <p>
-            Their database-driven website will record the class sessions in an intersection table, Sessions, of offered Classes at specific Locations. Finally, the database will keep track of the Routes at Locations set by RouteSetters and their different RouteTypes.
-        </p>
-    </fieldset>
-</div>
+
+    {{!-- Nav Bar --}}
+    <nav class="navbar navbar-expand-lg bg-body-tertiary column-gap-3 p-3">
+        <h2>Apex Climbing Gym</h2>
+        <a href="/">Home</a> |
+        <a href="locations"> Locations</a> | 
+        <a href="classes">Classes</a> | 
+        <a href="sessions">Sessions</a> | 
+        <a href="routes">Routes</a> | 
+        <a href="routesetters">RouteSetters</a> | 
+        <a href="routetypes">RouteTypes</a>
+    </nav>
+
+    {{!-- Project Description--}}
+    <div class="pageBody p-3">
+        <br>
+        <fieldset class="fs-6">
+            <p>Apex Climbing is a commercial climbing gym with 3 Locations. They have 5 RouteSetters (employees who plan and set the climbing routes for the gym) and host a variety of Classes. 
+                Classes can range from yoga to learning to lead climb to calisthenics. They are looking for a database in order to keep track of the Classes they are offering and which Locations they are at. 
+                Apex aims to use this data to ensure they are scheduling Classes effectively at each Location. 
+                Apex provides a range of different types of climbing Routes for all skill levels in a variety of different Route Types, and they would also like to keep track of which Routes are currently up at each Location and which RouteSetter has set them. 
+                Occasionally, they have guest RouteSetters who come in to set their Routes. They typically have around 100 different Routes per Location at any given time. The information tracked in the database will be used to help plan the new Routes set for the upcoming week. 
+            </p>    
+            <p>
+                Their database-driven website will record the class sessions in an intersection table, Sessions, of offered Classes at specific Locations. Finally, the database will keep track of the Routes at Locations set by RouteSetters and their different RouteTypes.
+            </p>
+        </fieldset>
+    </div>
 </body>
