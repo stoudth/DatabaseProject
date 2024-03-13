@@ -3,6 +3,7 @@
 <!--Date: 2/25/2024-->
 <!--Copied from: GitHub: osu-cs340-ecampus/nodejs-starter-app - Step 4-7 -->
 <!--Source URL: https://github.com/osu-cs340-ecampus/nodejs-starter-app-->
+<!--Authors: George Kochera, Cortona1, Dr. Michael Curry, dmgs11-->
 
 <!--TOGGLE ADD BUTTONS SCRIPT CITATION-->
 <!--The purpose of this script is to allow users to toggle between hiding and showing add/update forms as needed.-->
@@ -10,6 +11,7 @@
 <!--Adapted from: W3 Schools How TO - Toggle Hide and Show-->
 <!--Source URL: https://www.w3schools.com/howto/howto_js_toggle_hide_show.asp-->
 
+{{!--Toggle Script--}}
 <script>
     function hideAndShowAdd() {
         var toggleAdd = document.getElementById("hiddenAdd");
@@ -21,81 +23,87 @@
     }
 </script> 
 
+{{!--Page Body--}}
 <body>
-<nav class="navbar navbar-expand-lg bg-body-tertiary column-gap-3 p-3">
-    <h2>Apex Climbing Gym</h2>
-    <a href="/">Home</a> |
-    <a href="locations"> Locations</a> | 
-    <a href="classes">Classes</a> | 
-    <a href="sessions">Sessions</a> |
-    <a href="routes">Routes</a> | 
-    <a href="routesetters">RouteSetters</a> | 
-    <a href="routetypes">RouteTypes</a>
-</nav>
+    {{!--Nav Bar--}}
+    <nav class="navbar navbar-expand-lg bg-body-tertiary column-gap-3 p-3">
+        <h2>Apex Climbing Gym</h2>
+        <a href="/">Home</a> |
+        <a href="locations"> Locations</a> | 
+        <a href="classes">Classes</a> | 
+        <a href="sessions">Sessions</a> |
+        <a href="routes">Routes</a> | 
+        <a href="routesetters">RouteSetters</a> | 
+        <a href="routetypes">RouteTypes</a>
+    </nav>
 
-<div class="pageBody p-3">
+    <div class="pageBody p-3">
 
+        <br>
+        <h1>RouteTypes</h1>
+
+        <br>
+        <div id="info">
+            <fieldset class="fs-5">
+                <p>Operations available for Route Types: SELECT, INSERT, DELETE</p>
+            </fieldset>
+        </div>
+
+    {{!--Table to display RouteType data--}}
+    <p><strong>Browse RouteTypes - Displays All RouteTypes Currently In The Database</strong></p>
+
+    {{!-- Embed our javascript to handle AJAX request--}}
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    
+    <table id="routetypes-table" data-toggle="table" class="table table-hover">
+        {{!-- Table Header section --}}
+        <thead>
+
+            <tr>
+                <th>Route Type ID</th>
+                <th>Route Type</th>
+                <th>Delete</th>
+            </tr>
+        </thead>
+
+        {{!-- Table Body section --}}
+        <tbody class="table-group-divider">
+
+            {{!-- For each row, print the id and the routeType name --}}
+            {{#each data}}
+            <tr data-value="{{this.idRouteType}}">
+                <td>{{this.idRouteType}}</td>
+                <td>{{this.routeType}}</td>
+                <td><button class="btn btn-secondary btn-sm" onclick="deleteRouteType({{this.idRouteType}})">Delete</button></td>
+            </tr>
+            {{/each}}
+        </tbody>
+    </table>
+    <script src="./js/delete_routetype.js"></script>
+
+    {{!--Button to show Add Form--}}
     <br>
-    <h1>RouteTypes</h1>
+    <button class="btn btn-secondary" onclick="hideAndShowAdd()">Add Route Type</button>
 
-    <br>
-    <div id="info">
-        <fieldset class="fs-5">
-            <p>Operations available for Route Types: SELECT, INSERT, DELETE</p>
-        </fieldset>
+    {{!-- RouteType Add Form--}}
+    <div id="hiddenAdd" style="display:none"> 
+        <div class="add my-5 p-2 border border-primary">
+
+            <h2>Add a New Route Type</h2>
+            <p>Add a new type of route using the form below. All fields are required.</p>
+
+            <form id="add-routetype-form-ajax">
+                <label for="input-routeType" class="p-1 my-2">Route Type: </label>
+                <input type="text" name="input-routeType" id="input-routeType">
+                <br><br>
+                <input class="btn btn-primary btn-sm m-1" type="submit">
+                <input class="btn btn-secondary btn-sm m-1" type="button" value="Cancel" onClick="hideAndShowAdd()">
+            </form>
+
+        </div>
     </div>
 
-<p><strong>Browse RouteTypes - Displays All RouteTypes Currently In The Database</strong></p>
-
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-<table id="routetypes-table" data-toggle="table" class="table table-hover">
-    {{!-- Header section --}}
-    <thead>
-
-        {{!-- For just the first row, we print each key of the row object as a header cell so we
-        know what each column means when the page renders --}}
-        <tr>
-            <th>Route Type ID</th>
-            <th>Route Type</th>
-            <th>Delete</th>
-        </tr>
-    </thead>
-
-    {{!-- Body section --}}
-    <tbody class="table-group-divider">
-
-        {{!-- For each row, print the id, fname, lname, homeworld and age, in order --}}
-        {{#each data}}
-        <tr data-value="{{this.idRouteType}}">
-            <td>{{this.idRouteType}}</td>
-            <td>{{this.routeType}}</td>
-            <td><button class="btn btn-secondary btn-sm" onclick="deleteRouteType({{this.idRouteType}})">Delete</button></td>
-        </tr>
-        {{/each}}
-    </tbody>
-</table>
-<script src="./js/delete_routetype.js"></script>
-
-<br>
-<button class="btn btn-secondary" onclick="hideAndShowAdd()">Add Route Type</button>
-
-{{!-- Form to add a record to the table  --}}
-<div id="hiddenAdd" style="display:none"> 
-<div class="add my-5 p-2 border border-primary">
-<h2>Add a New Route Type</h2>
-<p>Add a new type of route using the form below. All fields are required.</p>
-<form id="add-routetype-form-ajax">
-
-    <label for="input-routeType" class="p-1 my-2">Route Type: </label>
-    <input type="text" name="input-routeType" id="input-routeType">
-    <br><br>
-    <input class="btn btn-primary btn-sm m-1" type="submit">
-    <input class="btn btn-secondary btn-sm m-1" type="button" value="Cancel" onClick="hideAndShowAdd()">
-</form>
-</div>
-</div>
-
-{{!-- Embed our javascript to handle the DOM manipulation and AJAX request --}}
-<script src="./js/add_routetype.js"></script>
-</div>
+    {{!-- Embed our javascript to handle the DOM manipulation --}}
+    <script src="./js/add_routetype.js"></script>
+    </div>
 </body>

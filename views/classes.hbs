@@ -4,14 +4,17 @@
 <!--Code adapted from: bsg_HTML_UI provided in the Exploration - Web Application Technology-->
 <!--Author: Dr. Michael Curry-->
 <!--Source URL: https://canvas.oregonstate.edu/courses/1946034/pages/exploration-web-application-technology?module_item_id=23809327-->
-<!-- The below code implements an HTML shell page to demonstrate how CRUD operations will work in the user interface for the Classes Entity-->
+<!-- The below code implements the HTML structure for the UI of the Classes page-->
 
 <!--HANDLEBAR USE CITATION-->
 <!--The handlebar use in the below code to generate the data table and dropdown menu is taken from the Node.js Starter App provided in this course-->
 <!--Date: 2/21/2023-->
 <!--Copied from: GitHub: osu-cs340-ecampus/nodejs-starter-app - Step 4 and Step 6-->
 <!--Source URL: https://github.com/osu-cs340-ecampus/nodejs-starter-app-->
+<!--Authors: George Kochera, Cortona1, Dr. Michael Curry, dmgs11-->
 
+
+{{!-- Header and JS Script Section--}}
 <html>
     <head>
         <title>
@@ -22,104 +25,92 @@
     </head>
 </html>
 
+{{!-- Page Body--}}
 <body onload="browse()">
-<nav class="navbar navbar-expand-lg bg-body-tertiary column-gap-3 p-3">
-    <h2>Apex Climbing Gym</h2>
-    <a href="/">Home</a> |
-    <a href="locations"> Locations</a> |
-    <a href="classes">Classes</a> |
-    <a href="sessions">Sessions</a> |
-    <a href="routes">Routes</a> |
-    <a href="routesetters">RouteSetters</a> |
-    <a href="routetypes">RouteTypes</a>
-</nav>
 
-<div class="pageBody p-3">
+    {{!-- Nav Bar --}}
+    <nav class="navbar navbar-expand-lg bg-body-tertiary column-gap-3 p-3">
+        <h2>Apex Climbing Gym</h2>
+        <a href="/">Home</a> |
+        <a href="locations"> Locations</a> |
+        <a href="classes">Classes</a> |
+        <a href="sessions">Sessions</a> |
+        <a href="routes">Routes</a> |
+        <a href="routesetters">RouteSetters</a> |
+        <a href="routetypes">RouteTypes</a>
+    </nav>
 
-    <br>
-    <h1>Classes</h1>
-
-    <br>
-    <div id="info">
-        <fieldset class="fs-5">
-            <p>Operations available for Classes: SELECT, INSERT, DELETE (this affects the M:N relationship)</p>
-        </fieldset>
-    </div>
-
-    <div id="browse">
-        <p><strong>Browse Classes - Displays All Classes Currently In The Database</strong></p>
-        <table id="class-table" class="table table-hover">
-            {{!--Header section --}}
-            <thead>
-                {{!--For just the first row, we print each key of the row object as a header cell so we
-                know what each column means when the page renders --}}
-                <tr>
-                    {{!--{{#each data.[0]}}--}}
-                    <th>Class ID</th>
-                    <th>Class Name</th>
-                    <th>Size Limit</th>
-                    <th>Delete</th>
-                    {{!--{{/each}}--}}
-                </tr>
-            </thead>
-
-            {{!-- Body section --}}
-            <tbody class="table-group-divider">
-                {{!-- For each row, print the id, locationName, streetAddress, city, state, zipcode --}}
-                {{#each data}}
-                <tr data-value="{{this.idClass}}">
-                    <td>{{this.idClass}}</td>
-                    <td>{{this.className}}</td>
-                    <td>{{this.sizeLimit}}</td>
-                    <td><button class="btn btn-secondary btn-sm" onclick="permanentClassDelete({{this.idClass}})">Delete</button></td>
-                </tr>
-                {{/each}}
-            </tbody>
-        </table>
+    <div class="pageBody p-3">
 
         <br>
-            <form method="POST" id="insertclass">
-                <input class="btn btn-secondary" type="button" value="Add Class" onClick="newClass()">
-            </form> 
-    </div>
+        <h1>Classes</h1>
 
-    <div id="delete">
-        <form method="POST" id="delete-class">
-            <p><strong>Delete Class</strong></p>
-            <fieldset class="fields">
-                <p>Delete Permanently?</p>
-                <input type="hidden" name="classID" id="deleteClassID" value="1">
-                    <label><strong>ID:</strong></label> <span id="delete-id"></span><br>
-                    <label> <strong>Class Name:</strong> </label> <span id="delete-name"></span>
+        <br>
+        <div id="info">
+            <fieldset class="fs-5">
+                <p>Operations available for Classes: SELECT, INSERT, DELETE (this affects the M:N relationship)</p>
             </fieldset>
-            <br>
-            <input class="btn btn-primary btn-sm" type="button" value="Delete Class" onClick="permanentClassDelete()">
-            <input class="btn btn-secondary btn-sm" type="button" value="Cancel" onClick="browse()">
-        </form> 
-    </div>
+        </div>
 
+        {{!-- Table to display Classes data --}}
+        <div id="browse">
+            <p><strong>Browse Classes - Displays All Classes Currently In The Database</strong></p>
+            <table id="class-table" class="table table-hover">
+                {{!--Table Header section --}}
+                <thead>
+                    <tr>
+                        <th>Class ID</th>
+                        <th>Class Name</th>
+                        <th>Size Limit</th>
+                        <th>Delete</th>
+                    </tr>
+                </thead>
 
-    <div id="insert">
-        <form id="addClass" method="POST" action="/add_class"> 
-            <div class="add my-5 p-2 border border-primary">
-                <h2 class="p-1 my-2">Add a New Class</h2>
-                <p>To add a new class, please enter its information below and click 'Submit'! All fields are required.</p>
-                <label class="p-1 my-2"> Class Name: </label> <input type="text" name="className" id="className">
-                <label class="p-1 my-2"> Size Limit: </label> <input type="number" min="1" name="sizeLimit" id="sizeLimit"><br>
-                <span class="p-1 my-2">Note: Duplicate class names not allowed</span>
-                <br><br><br>
-                <span><strong class="font-weight-bold fs-5 m-1">First Class Session</strong></span><br>
-                <label class="p-1 my-2"> Location: </label> <select name="locationName" id="locationName">
-                    {{#each locations}}
-                    <option value="{{this.idLocation}}">{{this.locationName}}</option>
+                {{!-- Table Body section --}}
+                <tbody class="table-group-divider">
+                    {{!-- For each row, print the id, className sizeLmit--}}
+                    {{#each data}}
+                    <tr data-value="{{this.idClass}}">
+                        <td>{{this.idClass}}</td>
+                        <td>{{this.className}}</td>
+                        <td>{{this.sizeLimit}}</td>
+                        <td><button class="btn btn-secondary btn-sm" onclick="permanentClassDelete({{this.idClass}})">Delete</button></td>
+                    </tr>
                     {{/each}}
-                    </select>
-                <label class="p-1 my-2">Date:</label><input type="date" name="classDate" id="classDate"><br><br>
-                <input class="btn btn-primary btn-sm m-1" type="submit"  id="addClass" value="Submit">
-                <input class="btn btn-secondary btn-sm m-1" type="button" value="Cancel" onClick="browse()">
-            </div>
-            
-        </form> 
+                </tbody>
+            </table>
+
+            {{!-- Button to display Add Form --}}
+            <br>
+                <form method="POST" id="insertclass">
+                    <input class="btn btn-secondary" type="button" value="Add Class" onClick="newClass()">
+                </form> 
+        </div>
+
+        {{!-- Add From --}}
+        <div id="insert">
+            <form id="addClass" method="POST" action="/add_class"> 
+                <div class="add my-5 p-2 border border-primary">
+
+                    <h2 class="p-1 my-2">Add a New Class</h2>
+                    <p>To add a new class, please enter its information below and click 'Submit'! All fields are required.</p>
+                    
+                    <label class="p-1 my-2"> Class Name: </label> <input type="text" name="className" id="className">
+                    <label class="p-1 my-2"> Size Limit: </label> <input type="number" min="1" name="sizeLimit" id="sizeLimit"><br>
+                    <span class="p-1 my-2">Note: Duplicate class names not allowed</span>
+                    <br><br><br>
+                    <span><strong class="font-weight-bold fs-5 m-1">First Class Session</strong></span><br>
+                    <label class="p-1 my-2"> Location: </label> <select name="locationName" id="locationName">
+                        {{#each locations}}
+                        <option value="{{this.idLocation}}">{{this.locationName}}</option>
+                        {{/each}}
+                        </select>
+                    <label class="p-1 my-2">Date:</label><input type="date" name="classDate" id="classDate"><br><br>
+                    
+                    <input class="btn btn-primary btn-sm m-1" type="submit"  id="addClass" value="Submit">
+                    <input class="btn btn-secondary btn-sm m-1" type="button" value="Cancel" onClick="browse()">
+                </div>
+            </form> 
+        </div>
     </div>
-<div class="pageBody p-3">
 </body>

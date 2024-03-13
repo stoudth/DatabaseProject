@@ -4,15 +4,16 @@
 <!--Code adapted from: bsg_HTML_UI provided in the Exploration - Web Application Technology-->
 <!--Author: Dr. Michael Curry-->
 <!--Source URL: https://canvas.oregonstate.edu/courses/1946034/pages/exploration-web-application-technology?module_item_id=23809327-->
-<!-- The below code implements an HTML shell page to demonstrate how CRUD operations will work in the user interface for the Sessions Entity-->
+<!-- The below code implements the HTML structure for the UI of the Sessions page-->
 
 <!--HANDLEBAR USE CITATION-->
 <!--The handlebar use in the below code to generate the data table and dropdown menu is taken from the Node.js Starter App provided in this course-->
 <!--Date: 2/21/2023-->
 <!--Copied from: GitHub: osu-cs340-ecampus/nodejs-starter-app - Step 4 and Step 6-->
 <!--Source URL: https://github.com/osu-cs340-ecampus/nodejs-starter-app-->
+<!--Authors: George Kochera, Cortona1, Dr. Michael Curry, dmgs11-->
 
-
+{{!--Header Section and js scripts --}}
 <html>
     <head>
         <title>
@@ -24,123 +25,127 @@
     </head>
 </html>
 
+{{!--Nav Bar--}}
 <body onload="browse()">
-<nav class="navbar navbar-expand-lg bg-body-tertiary column-gap-3 p-3">
-    <h2>Apex Climbing Gym</h2>
-    <a href="/">Home</a> |
-    <a href="locations"> Locations</a> | 
-    <a href="classes">Classes</a> | 
-    <a href="sessions">Sessions</a> | 
-    <a href="routes">Routes</a> | 
-    <a href="routesetters">RouteSetters</a> | 
-    <a href="routetypes">RouteTypes</a>
-</nav>  
+    <nav class="navbar navbar-expand-lg bg-body-tertiary column-gap-3 p-3">
+        <h2>Apex Climbing Gym</h2>
+        <a href="/">Home</a> |
+        <a href="locations"> Locations</a> | 
+        <a href="classes">Classes</a> | 
+        <a href="sessions">Sessions</a> | 
+        <a href="routes">Routes</a> | 
+        <a href="routesetters">RouteSetters</a> | 
+        <a href="routetypes">RouteTypes</a>
+    </nav>  
 
-<div class="pageBody p-3">
+    {{!--Main Body of Page--}}
+    <div class="pageBody p-3">
 
-    <br>
-    <h1>Sessions</h1>
-
-    <br>
-    <div id="info">
-        <fieldset class="fs-5">
-            <p>Operations available for Sessions: SELECT, INSERT, UPDATE (for M:N relationship)</p>
-        </fieldset>
-    </div>
-
-    <div id="browse">
-        <p><strong>Browse Sessions- Displays All Sessions Currently In The Database</strong></p>
-        <table id="session-table" class="table table-hover">
-            {{!--Header section --}}
-            <thead>
-                {{!--For just the first row, we print each key of the row object as a header cell so we
-                know what each column means when the page renders --}}
-                <tr>
-                    {{!--{{#each data.[0]}}--}}
-                    <th>Session ID</th>
-                    <th>Location</th>
-                    <th>Class</th>
-                    <th>Session Date</th>
-                    <th>Size Limit</th>
-                    <th>Edit</th>
-                    {{!--{{/each}}--}}
-                </tr>
-            </thead>
-
-            {{!-- Body section --}}
-            <tbody class="table-group-divider">
-                {{!-- For each row, print the id, locationName, streetAddress, city, state, zipcode --}}
-                {{#each data}}
-                <tr data-value="{{this.idSession}}">
-                    <td>{{this.idSession}}</td>
-                    <td>{{this.locationName}}</td>
-                    <td>{{this.className}}</td>
-                    <td>{{this.classDate}}</td>   {{!-https://stackoverflow.com/questions/32260117/handlebars-date-format-issue-}}
-                    <td>{{this.sizeLimit}}</td>
-                    <td><button class="btn btn-secondary btn-sm" onClick="updateSession({{this.idSession}})">Edit</button></td>
-                </tr>
-                {{/each}}
-            </tbody>
-        </table>
         <br>
-        <form method="POST" id="addSession">
-            <input class="btn btn-secondary" type="button" value="Add Session" onClick="newSession()">
-        </form> 
-    </div>
+        <h1>Sessions</h1>
 
-    <div id="update">
-        <form id="updateSession">
-            <div class="add my-5 p-2 border border-primary">
-                <h2 class="p-1 my-2">Update Session Form</h2>
-                <p>Whoops! Is there an error in an entry? Use this form to make updates to a specific session.</p>
-                <input type="hidden" name="sessionID" id="updateSession" value="1">
-                <label class="p-1 my-2"> Session ID: </label> <span id="updatesessionID"></span>
-                <label class="p-1 my-2"> Location: </label> <select name="updateLocationName" id="updateLocationName">
-                    {{#each locations}}
-                    <option value="{{this.idLocation}}">{{this.locationName}}</option>
-                    {{/each}}
-                    </select>
-                <label class="p-1 y-2"> Class: </label> <select name="updateClassName" id="updateClassName">
-                    {{#each classes}}
-                    <option value="{{this.idClass}}">{{this.className}}</option>
-                    {{/each}}
-                </select>
-                <label class="p-1 my-2"> Session Date: </label> <input type="date" name="updateClassDate" id="updateClassDate"><br>
-                <span class="p-1 my-2">Note: Duplicate Sessions at the same location with the same date are not allowed</span>
-            <br><br>
-            <input class="btn btn-primary btn-sm m-1" type="button" id="confirmUpdate" value="Submit" onClick="sendUpdate()">
-            <input class="btn btn-secondary btn-sm m-1" type="button" value="Cancel" onClick="browse()">
-            </div>
-        </form> 
-    </div>
+        <br>
+        <div id="info">
+            <fieldset class="fs-5">
+                <p>Operations available for Sessions: SELECT, INSERT, UPDATE (for M:N relationship)</p>
+            </fieldset>
+        </div>
 
-    <div id="insert">
-        <form id="addSession">  
-            <div class="add my-5 p-2 border border-primary">
-                <h2 class="p-1 my-2">Add a New Session</h2>
-                <p>To add a new session, please enter its information below and click 'Submit'! All fields are required.</p>
-                <label class="p-1 my-2"> Location: </label> <select id="addLocationName">
-                    {{#each locations}}
-                    <option value="{{this.idLocation}}">{{this.locationName}}</option>
+        {{!--Table to display database data--}}
+        <div id="browse">
+            <p><strong>Browse Sessions- Displays All Sessions Currently In The Database</strong></p>
+            <table id="session-table" class="table table-hover">
+                
+                <thead>
+                    <tr>
+                        <th>Session ID</th>
+                        <th>Location</th>
+                        <th>Class</th>
+                        <th>Session Date</th>
+                        <th>Size Limit</th>
+                        <th>Edit</th>
+                    </tr>
+                </thead>
+
+                {{!--Table body--}}
+                <tbody class="table-group-divider">
+                    {{!-- For each row, print the id, locationName, className, classDate,sizeLimit, and Edit button --}}
+                    {{#each data}}
+                    <tr data-value="{{this.idSession}}">
+                        <td>{{this.idSession}}</td>
+                        <td>{{this.locationName}}</td>
+                        <td>{{this.className}}</td>
+                        <td>{{this.classDate}}</td>  
+                        <td>{{this.sizeLimit}}</td>
+                        <td><button class="btn btn-secondary btn-sm" onClick="updateSession({{this.idSession}})">Edit</button></td>
+                    </tr>
                     {{/each}}
-                    </select>
-                <label class="p-1 my-2"> Class: </label> <select id="addClassName">
-                    {{#each classes}}
-                    <option value="{{this.idClass}}">{{this.className}}</option>
-                    {{/each}}
-                </select>
-                <label class="p-1 my-2"> Session Date: </label> <input type="date" id="addClassDate"><br>
-                <span class="p-1 my-2">Note: Duplicate sessions not allowed</span>
-            
+                </tbody>
+            </table>
+
+            {{!--Button to show add form--}}
             <br>
-            <input class="btn btn-primary btn-sm m-1" type="button" id="confirmAddSession" value="Submit" onclick="addSession()">
-            <input class="btn btn-secondary btn-sm m-1" type="button" value="Cancel" onClick="browse()">
-            </div>
-        </form> 
-    </div>
-</div>
+            <form method="POST" id="addSession">
+                <input class="btn btn-secondary" type="button" value="Add Session" onClick="newSession()">
+            </form> 
 
-<div>
-    <span id="test1"></span>
-</div>
+        </div>
+
+        {{!--Update Form--}}
+        <div id="update">
+            <form id="updateSession">
+                <div class="add my-5 p-2 border border-primary">
+
+                    <h2 class="p-1 my-2">Update Session Form</h2>
+                    <p>Whoops! Is there an error in an entry? Use this form to make updates to a specific session.</p>
+
+                    <input type="hidden" name="sessionID" id="updateSession" value="1">
+                    <label class="p-1 my-2"> Session ID: </label> <span id="updatesessionID"></span>
+                    <label class="p-1 my-2"> Location: </label> <select name="updateLocationName" id="updateLocationName">
+                        {{#each locations}}
+                        <option value="{{this.idLocation}}">{{this.locationName}}</option>
+                        {{/each}}
+                        </select>
+                    <label class="p-1 y-2"> Class: </label> <select name="updateClassName" id="updateClassName">
+                        {{#each classes}}
+                        <option value="{{this.idClass}}">{{this.className}}</option>
+                        {{/each}}
+                    </select>
+                    <label class="p-1 my-2"> Session Date: </label> <input type="date" name="updateClassDate" id="updateClassDate"><br>
+                    <span class="p-1 my-2">Note: Duplicate Sessions at the same location with the same date are not allowed</span>
+
+                <br><br>
+                <input class="btn btn-primary btn-sm m-1" type="button" id="confirmUpdate" value="Submit" onClick="sendUpdate()">
+                <input class="btn btn-secondary btn-sm m-1" type="button" value="Cancel" onClick="browse()">
+                </div>
+            </form> 
+        </div>
+
+        {{!--Add Form--}}
+        <div id="insert">
+            <form id="addSession">  
+                <div class="add my-5 p-2 border border-primary">
+                    
+                    <h2 class="p-1 my-2">Add a New Session</h2>
+                    <p>To add a new session, please enter its information below and click 'Submit'! All fields are required.</p>
+                    <label class="p-1 my-2"> Location: </label> <select id="addLocationName">
+                        {{#each locations}}
+                        <option value="{{this.idLocation}}">{{this.locationName}}</option>
+                        {{/each}}
+                        </select>
+                    <label class="p-1 my-2"> Class: </label> <select id="addClassName">
+                        {{#each classes}}
+                        <option value="{{this.idClass}}">{{this.className}}</option>
+                        {{/each}}
+                    </select>
+                    <label class="p-1 my-2"> Session Date: </label> <input type="date" id="addClassDate"><br>
+                    <span class="p-1 my-2">Note: Duplicate sessions not allowed</span>
+                
+                <br>
+                <input class="btn btn-primary btn-sm m-1" type="button" id="confirmAddSession" value="Submit" onclick="addSession()">
+                <input class="btn btn-secondary btn-sm m-1" type="button" value="Cancel" onClick="browse()">
+                </div>
+            </form> 
+        </div>
+    </div>
 </body>
