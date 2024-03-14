@@ -63,7 +63,7 @@ app.get('/', function(req, res){
 /* -----------LOCATIONS GET ROUTE CITATION------------------
 * The below route handler for the Locations page was copied and adpated from Step 4 of the Node.js Start App provided in this course
 * Date: 2/21/2024
-* Copied and Adapted from: GitHub: osu-cs340-ecampus/nodejs-starter-app - Step 4
+* Adapted from: GitHub: osu-cs340-ecampus/nodejs-starter-app - Step 4
 * Source URL: https://github.com/osu-cs340-ecampus/nodejs-starter-app
 * Authors: George Kochera, Cortona1, Dr. Michael Curry, dmgs11
 * 
@@ -86,9 +86,9 @@ app.get('/locations', function(req, res) {
 
 
 /* -----------LOCATIONS POST CITATION------------------
-* The below route handler for the Locations page was copied and adapted from Step 5 of the Node.js Start App provided in this course
+* The below route handler for the Locations page was adapted from Step 5 of the Node.js Start App provided in this course
 * Date: 2/25/2024
-* Copied and Adapted from: GitHub: osu-cs340-ecampus/nodejs-starter-app - Step 5
+* Adapted from: GitHub: osu-cs340-ecampus/nodejs-starter-app - Step 5
 * Source URL: https://github.com/osu-cs340-ecampus/nodejs-starter-app
 * Authors: George Kochera, Cortona1, Dr. Michael Curry, dmgs11
 * 
@@ -138,9 +138,9 @@ app.post('/add-location-ajax', function(req, res) {
 
 
 /* -----------LOCATIONS DELETE CITATION------------------
-* The below route handler for the Locations page was copied and adapted from Step 7 of the Node.js Start App provided in this course
+* The below route handler for the Locations page was adapted from Step 7 of the Node.js Start App provided in this course
 * Date: 2/25/2024
-* Copied and Adapted from: GitHub: osu-cs340-ecampus/nodejs-starter-app - Step 7
+* Adapted from: GitHub: osu-cs340-ecampus/nodejs-starter-app - Step 7
 * Source URL: https://github.com/osu-cs340-ecampus/nodejs-starter-app
 * Authors: George Kochera, Cortona1, Dr. Michael Curry, dmgs11
 * 
@@ -175,9 +175,9 @@ app.delete('/delete-location-ajax/', function(req,res,next){
 
 
 /* -----------LOCATIONS UPDATE CITATION------------------
-* The below route handler for the Locations page was copied and adapted from Step 8 of the Node.js Start App provided in this course
+* The below route handler for the Locations page was adapted from Step 8 of the Node.js Start App provided in this course
 * Date: 2/25/2024
-* Copied and Adapted from: GitHub: osu-cs340-ecampus/nodejs-starter-app - Step 8
+* Adapted from: GitHub: osu-cs340-ecampus/nodejs-starter-app - Step 8
 * Source URL: https://github.com/osu-cs340-ecampus/nodejs-starter-app
 * Authors: George Kochera, Cortona1, Dr. Michael Curry, dmgs11
 * 
@@ -235,9 +235,9 @@ app.put('/put-location-ajax', function(req,res,next){
 
 
 /* -----------CLASSES GET ROUTE CITATION------------------
-* The below route handler for the Classes page was copied and adpated from Step 4 of the Node.js Start App provided in this course
+* The below route handler for the Classes page was adpated from Step 4 of the Node.js Start App provided in this course
 * Date: 2/21/2024
-* Copied and Adapted from: GitHub: osu-cs340-ecampus/nodejs-starter-app - Step 4
+* Adapted from: GitHub: osu-cs340-ecampus/nodejs-starter-app - Step 4
 * Source URL: https://github.com/osu-cs340-ecampus/nodejs-starter-app
 * Authors: George Kochera, Cortona1, Dr. Michael Curry, dmgs11
 * 
@@ -272,9 +272,9 @@ app.get('/classes', function(req, res) {
 
 
 /* -----------CLASSES POST/ADD_CLASS ROUTE CITATION------------------
-* The below route handler for the Classes page was copied and adpated from Step 5 of the Node.js Start App provided in this course
+* The below route handler for the Classes page was adpated from Step 5 of the Node.js Start App provided in this course
 * Date: 2/22/2024
-* Copied and Adapted from: GitHub: osu-cs340-ecampus/nodejs-starter-app - Step 5
+* Adapted from: GitHub: osu-cs340-ecampus/nodejs-starter-app - Step 5
 * Source URL: https://github.com/osu-cs340-ecampus/nodejs-starter-app
 * Authors: George Kochera, Cortona1, Dr. Michael Curry, dmgs11
 * 
@@ -338,9 +338,9 @@ app.post('/add_class', function(req, res) {
 
 
 /* -----------CLASSES DELETE ROUTE CITATION------------------
-* The below route handler for the Classes page was copied and adpated from Step 7 of the Node.js Start App provided in this course
+* The below route handler for the Classes page was adpated from Step 7 of the Node.js Start App provided in this course
 * Date: 2/23/2024
-* Copied and Adapted from: GitHub: osu-cs340-ecampus/nodejs-starter-app - Step 7
+* Adapted from: GitHub: osu-cs340-ecampus/nodejs-starter-app - Step 7
 * Source URL: https://github.com/osu-cs340-ecampus/nodejs-starter-app
 * Authors: George Kochera, Cortona1, Dr. Michael Curry, dmgs11
 * 
@@ -380,9 +380,9 @@ app.delete('/delete-class-ajax/', function(req, res, next) {
 
 
 /* -----------SESSIONS GET ROUTE CITATION------------------
-* The below route handler for the Sessions page was copied and adpated from Step 4 of the Node.js Start App provided in this course
+* The below route handler for the Sessions page was adpated from Step 4 of the Node.js Start App provided in this course
 * Date: 2/21/2024
-* Copied and Adapted from: GitHub: osu-cs340-ecampus/nodejs-starter-app - Step 4
+* Adapted from: GitHub: osu-cs340-ecampus/nodejs-starter-app - Step 4
 * Source URL: https://github.com/osu-cs340-ecampus/nodejs-starter-app
 * Authors: George Kochera, Cortona1, Dr. Michael Curry, dmgs11
 * 
@@ -420,9 +420,9 @@ app.get('/sessions', function(req, res) {
 
 
 /* -----------SESSIONS PUT/UPDATE-SESSION ROUTE CITATION------------------
-* The below route handler for the Sessions page was copied and adpated from Step 8 of the Node.js Start App provided in this course
+* The below route handler for the Sessions page was adpated from Step 8 of the Node.js Start App provided in this course
 * Date: 2/23/2024
-* Copied and Adapted from: GitHub: osu-cs340-ecampus/nodejs-starter-app - Step 8
+* Adapted from: GitHub: osu-cs340-ecampus/nodejs-starter-app - Step 8
 * Source URL: https://github.com/osu-cs340-ecampus/nodejs-starter-app
 * Authors: George Kochera, Cortona1, Dr. Michael Curry, dmgs11
 * 
@@ -432,7 +432,7 @@ app.get('/sessions', function(req, res) {
 * -------Hyphen Removal Citation------------
 * The below code that removes hypens from the dates was copied from the answer provided by James Hill (on Jun 1, 2011/edited Nov 26, 2012) on the 'Fastest way to remove hyphens from a string' page on StackOverflow
 * Date: 2/22/2024
-* Copied from answer provided by James Hill (on Jun 1, 2011/edited Nov 26, 2012) on the 'Fastest way to remove hyphens from a string' page on StackOverflow
+* Syntax Copied from answer provided by James Hill (on Jun 1, 2011/edited Nov 26, 2012) on the 'Fastest way to remove hyphens from a string' page on StackOverflow
 * Source URL: https://stackoverflow.com/questions/6204867/fastest-way-to-remove-hyphens-from-a-string
 * Authors: James Hill
 * -----------END CITATION--------------
@@ -475,9 +475,9 @@ app.put('/update-session', function(req, res) {
 
 
 /* -----------ROUTES POST/ADD_SESSION SESSION CITATION------------------
-* The below route handler for the Sessions page was copied and adpated from Step 5 of the Node.js Start App provided in this course
+* The below route handler for the Sessions page was adpated from Step 5 of the Node.js Start App provided in this course
 * Date: 2/22/2024
-* Copied and Adapted from: GitHub: osu-cs340-ecampus/nodejs-starter-app - Step 5
+* Adapted from: GitHub: osu-cs340-ecampus/nodejs-starter-app - Step 5
 * Source URL: https://github.com/osu-cs340-ecampus/nodejs-starter-app
 * Authors: George Kochera, Cortona1, Dr. Michael Curry, dmgs11
 * 
@@ -487,7 +487,7 @@ app.put('/update-session', function(req, res) {
 * -Hyphen Removal Citation
 * The below code that removes hypens from the dates was copied from the answer provided by James Hill (on Jun 1, 2011/edited Nov 26, 2012) on the 'Fastest way to remove hyphens from a string' page on StackOverflow
 * Date: 2/22/2024
-* Copied from answer provided by James Hill (on Jun 1, 2011/edited Nov 26, 2012) on the 'Fastest way to remove hyphens from a string' page on StackOverflow
+* Syntax Copied from answer provided by James Hill (on Jun 1, 2011/edited Nov 26, 2012) on the 'Fastest way to remove hyphens from a string' page on StackOverflow
 * Source URL: https://stackoverflow.com/questions/6204867/fastest-way-to-remove-hyphens-from-a-string
 * Authors: James Hill
 * -----------END CITATION--------------
@@ -497,15 +497,13 @@ app.post('/add-session', function(req, res) {
 
     //Pull out and format data from request 
     let data = req.body;
-
-    let idLocation = parseInt(data.idLocation)
-    let idClass = parseInt(data.idClass)
+    let idLocation = parseInt(data.locationName)
+    let idClass = parseInt(data.className)
     let classDate = parseInt((data.classDate).replace(/-/g,''));
 
     // Database Insert Queries
     let add_session = `INSERT INTO Sessions(idLocation, idClass, classDate) VALUES (${idLocation}, ${idClass}, ${classDate});`
-    let get_new_session = `SELECT Sessions.idSession AS idSession, Locations.locationName AS locationName, Classes.className AS className, DATE_FORMAT(classDate, '%Y-%m-%d') AS classDate, Classes.sizeLimit As sizeLimit FROM Sessions INNER JOIN Locations ON Sessions.idLocation = Locations.idLocation LEFT JOIN Classes ON Sessions.idClass = Classes.idClass WHERE Sessions.idLocation = ${idLocation} AND Sessions.idClass = ${idClass} AND Sessions.classDate = ${classDate}`
-
+    
     //Add new session and handle errors
     db.pool.query(add_session, function(error, rows, fields){
         if (error) {
@@ -513,33 +511,22 @@ app.post('/add-session', function(req, res) {
             console.log(error);
             res.sendStatus(400);
                    
-        //If no error, reload classes page
+        //If no error, reload sessions page
         } else {
-                   
-            db.pool.query(get_new_session, function(error, rows, feilds){
-                if (error) {
-
-                    console.log(error);
-                    res.sendStatus(400)
-
-                } else {
-
-                    res.send(rows)
-
-                }         
-            })
+            res.redirect('sessions')
         };
     });
 });
+
 
 
 /*---------------------ROUTES--------------------------*/
 
 
 /* -----------ROUTES GET ROUTE CITATION------------------
-* The below route handler for the Routes page was copied and adpated from Step 4 of the Node.js Start App provided in this course
+* The below route handler for the Routes page was adpated from Step 4 of the Node.js Start App provided in this course
 * Date: 2/21/2024
-* Copied and Adapted from: GitHub: osu-cs340-ecampus/nodejs-starter-app - Step 4
+* Adapted from: GitHub: osu-cs340-ecampus/nodejs-starter-app - Step 4
 * Source URL: https://github.com/osu-cs340-ecampus/nodejs-starter-app
 * Authors: George Kochera, Cortona1, Dr. Michael Curry, dmgs11
 * 
@@ -595,9 +582,9 @@ app.get('/routes', function(req, res) {
 
 
 /* -----------ROUTES POST/ADD_ROUTE ROUTE CITATION------------------
-* The below route handler for the Routes page was copied and adpated from Step 5 of the Node.js Start App provided in this course
+* The below route handler for the Routes page was adpated from Step 5 of the Node.js Start App provided in this course
 * Date: 2/22/2024
-* Copied and Adapted from: GitHub: osu-cs340-ecampus/nodejs-starter-app - Step 5
+* Adapted from: GitHub: osu-cs340-ecampus/nodejs-starter-app - Step 5
 * Source URL: https://github.com/osu-cs340-ecampus/nodejs-starter-app
 * Authors: George Kochera, Cortona1, Dr. Michael Curry, dmgs11
 * 
@@ -607,7 +594,7 @@ app.get('/routes', function(req, res) {
 * -------Hyphen Removal Citation---------
 * The below code that removes hypens from the dates was copied from the answer provided by James Hill (on Jun 1, 2011/edited Nov 26, 2012) on the 'Fastest way to remove hyphens from a string' page on StackOverflow
 * Date: 2/22/2024
-* Copied from answer provided by James Hill (on Jun 1, 2011/edited Nov 26, 2012) on the 'Fastest way to remove hyphens from a string' page on StackOverflow
+* Syntax Copied from answer provided by James Hill (on Jun 1, 2011/edited Nov 26, 2012) on the 'Fastest way to remove hyphens from a string' page on StackOverflow
 * Source URL: https://stackoverflow.com/questions/6204867/fastest-way-to-remove-hyphens-from-a-string
 * Authors: James Hill
 * -----------END CITATION--------------
@@ -648,9 +635,9 @@ app.post('/add-route', function(req, res) {
 
 
 /* -----------ROUTES POST/ADD_ROUTE ROUTE CITATION------------------
-* The below route handler for the Routes page was copied and adpated from Step 8 of the Node.js Start App provided in this course
+* The below route handler for the Routes page was adpated from Step 8 of the Node.js Start App provided in this course
 * Date: 2/22/2024
-* Copied and Adapted from: GitHub: osu-cs340-ecampus/nodejs-starter-app - Step 8
+* Adapted from: GitHub: osu-cs340-ecampus/nodejs-starter-app - Step 8
 * Source URL: https://github.com/osu-cs340-ecampus/nodejs-starter-app
 * Authors: George Kochera, Cortona1, Dr. Michael Curry, dmgs11
 * 
@@ -660,7 +647,7 @@ app.post('/add-route', function(req, res) {
 * -Hyphen Removal Citation
 * The below code that removes hypens from the dates was copied from the answer provided by James Hill (on Jun 1, 2011/edited Nov 26, 2012) on the 'Fastest way to remove hyphens from a string' page on StackOverflow
 * Date: 2/22/2024
-* Copied from answer provided by James Hill (on Jun 1, 2011/edited Nov 26, 2012) on the 'Fastest way to remove hyphens from a string' page on StackOverflow
+* Syntax Copied from answer provided by James Hill (on Jun 1, 2011/edited Nov 26, 2012) on the 'Fastest way to remove hyphens from a string' page on StackOverflow
 * Source URL: https://stackoverflow.com/questions/6204867/fastest-way-to-remove-hyphens-from-a-string
 * Authors: James Hill
 * -----------END CITATION--------------
@@ -669,45 +656,49 @@ app.post('/add-route', function(req, res) {
 
 app.put('/update-route', function(req, res) {
 
-   //format data to be sent to sql database for insertion
-   let data = req.body
-   let idRoute = parseInt(data.idRoute)
-   let dateSet = parseInt((data.dateSet).replace(/-/g,''));
-   let active = parseInt(data.active)
-   let idLocation = parseInt(data.idLocation)
-   let idRouteSetter = data.idRouteSetter
-   if (idRouteSetter != 'null') {
-       idRouteSetter = parseInt(idRouteSetter)
-   };
-   let idRouteType = parseInt(data.idRouteType)
+    //format data to be sent to sql database for insertion
+    let data = req.body
+    let idRoute = parseInt(data.idRoute)
+    let dateSet = parseInt((data.dateSet).replace(/-/g,''));
+    let active = parseInt(data.active)
+    let idLocation = parseInt(data.idLocation)
+    let idRouteSetter = data.idRouteSetter
+    if (idRouteSetter != 'null') {
+        idRouteSetter = parseInt(idRouteSetter)
+    };
+    let idRouteType = parseInt(data.idRouteType)
 
-   //define sql queries
-   let update_route = `UPDATE Routes SET routeName = '${data.routeName}', dateSet = ${dateSet}, routeGrade = '${data.routeGrade}', active = ${active}, idLocation = ${idLocation}, idRouteSetter = ${idRouteSetter}, idRouteType = ${idRouteType} WHERE idRoute = ${idRoute};`;
-   let get_route_update =`SELECT idRoute, routeName, DATE_FORMAT(dateSet, '%Y-%m-%d') AS dateSet, routeGrade, active, Locations.locationName AS locationName, Routes.idRouteSetter AS idRouteSetter, RouteSetters.firstName AS firstName, RouteSetters.lastName AS lastName, RouteTypes.routeType AS routeType FROM Routes JOIN Locations ON Routes.idLocation = Locations.idLocation JOIN RouteTypes ON Routes.idRouteType = RouteTypes.idRouteType LEFT JOIN RouteSetters ON Routes.idRouteSetter = RouteSetters.idRouteSetter WHERE idRoute = ${idRoute};`
+    //define sql queries
+    let update_route = `UPDATE Routes SET routeName = '${data.routeName}', dateSet = ${dateSet}, routeGrade = '${data.routeGrade}', active = ${active}, idLocation = ${idLocation}, idRouteSetter = ${idRouteSetter}, idRouteType = ${idRouteType} WHERE idRoute = ${idRoute};`;
+    let get_route_update =`SELECT idRoute, routeName, DATE_FORMAT(dateSet, '%Y-%m-%d') AS dateSet, routeGrade, active, Locations.locationName AS locationName, Routes.idRouteSetter AS idRouteSetter, RouteSetters.firstName AS firstName, RouteSetters.lastName AS lastName, RouteTypes.routeType AS routeType FROM Routes JOIN Locations ON Routes.idLocation = Locations.idLocation JOIN RouteTypes ON Routes.idRouteType = RouteTypes.idRouteType LEFT JOIN RouteSetters ON Routes.idRouteSetter = RouteSetters.idRouteSetter WHERE idRoute = ${idRoute};`
+        
+    //update the route info
+    db.pool.query(update_route, function(error, rows, fields) {
+        if(error) {
 
-   //update the route info
-   db.pool.query(update_route, function(error, rows, fields) {
-       if(error) {
+            console.log(error);
+            res.sendStatus(400);
 
-           console.log(error);
-           res.sendStatus(400);
+        } else {
+            //get the updated data back and send to render
+            db.pool.query(get_route_update, function(error, rows, fields){
+                if(error) {
 
-       } else {
-           //get the updated data back and send to render
-           db.pool.query(get_route_update, function(error,rows, fields){
-               if(error) {
+                    console.log(error);
+                    res.sendStatus(400);
 
-                   console.log(error);
-                   res.sendStatus(400);
-
-               } else {
-
-                   res.send(rows)
-
-               };
-           });
-       };
-   });
+                } else {
+                    if (rows[0].firstName == null) {
+                        rows[0].firstName = 'NULL'
+                        rows[0].lastName = 'NULL'
+                        rows[0].idRouteSetter = 'NULL'
+                    };
+                    
+                    res.send(rows)
+                };
+            });
+        };
+    });
 });
 
 
@@ -716,9 +707,9 @@ app.put('/update-route', function(req, res) {
 
 
 /* -----------ROUTE TYPES GET/POST/ADD_ROUTE/DELETE ROUTE CITATION------------------
-* The below route handlers for the Route Types page were copied and adpated from Steps 4, 5, and 7 of the Node.js Start App provided in this course
+* The below route handlers for the Route Types page were adpated from Steps 4, 5, and 7 of the Node.js Start App provided in this course
 * Date: 2/22/2024
-* Copied and Adapted from: GitHub: osu-cs340-ecampus/nodejs-starter-app - Steps 4, 5, and 7
+* Adapted from: GitHub: osu-cs340-ecampus/nodejs-starter-app - Steps 4, 5, and 7
 * Source URL: https://github.com/osu-cs340-ecampus/nodejs-starter-app
 * Authors: George Kochera, Cortona1, Dr. Michael Curry, dmgs11
 * 
@@ -810,9 +801,9 @@ app.delete('/delete-routetype-ajax/', function(req,res,next) {
 
 
 /* -----------ROUTE SETTERS GET ROUTE CITATION------------------
-* The below route handler for the Routes page was copied and adapted from Step 4 of the Node.js Start App provided in this course
+* The below route handler for the Routes page was adapted from Step 4 of the Node.js Start App provided in this course
 * Date: 2/21/2024
-* Copied and Adapted from: GitHub: osu-cs340-ecampus/nodejs-starter-app - Step 4
+* Adapted from: GitHub: osu-cs340-ecampus/nodejs-starter-app - Step 4
 * Source URL: https://github.com/osu-cs340-ecampus/nodejs-starter-app
 * Authors: George Kochera, Cortona1, Dr. Michael Curry, dmgs11
 * -----------END CITATION--------------
@@ -832,9 +823,9 @@ app.get('/routesetters', function(req, res) {
 });    
    
 /* -----------ROUTE SETTERS ADD_ROUTE ROUTE CITATION------------------
-* The below route handler for the RouteSetters page was copied and adapted from Step 5 of the Node.js Start App provided in this course
+* The below route handler for the RouteSetters page was adapted from Step 5 of the Node.js Start App provided in this course
 * Date: 2/22/2024
-* Copied and Adapted from: GitHub: osu-cs340-ecampus/nodejs-starter-app - Step 5
+* Adapted from: GitHub: osu-cs340-ecampus/nodejs-starter-app - Step 5
 * Source URL: https://github.com/osu-cs340-ecampus/nodejs-starter-app
 * Authors: George Kochera, Cortona1, Dr. Michael Curry, dmgs11
 * 
@@ -886,7 +877,7 @@ app.post('/add-routesetter-ajax', function(req, res) {
 /* -----------LISTENER CITATION------------------
 * The below code is copied from from the Node.js Starter App referenced and linked to in this course. 
 * Date: Originally accessed 1/15/2024
-* Copied and adapted from: GitHub: osu-cs340-ecampus/nodejs-starter-app
+* Copied from: GitHub: osu-cs340-ecampus/nodejs-starter-app
 * Source URL: https://github.com/osu-cs340-ecampus/nodejs-starter-app
 * Authors: George Kochera, Cortona1, Dr. Michael Curry, dmgs11
 * -----------END CITATION--------------

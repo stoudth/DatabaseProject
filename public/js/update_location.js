@@ -1,8 +1,8 @@
 /* -----------UPDATE LOCATION CITATION------------------
 * The below function is adapted from the Node.js Starter App provided in this course
 * Date: 2/23/2023
-* Copied from: GitHub: osu-cs340-ecampus/nodejs-starter-app - Step 8 
-* Source URL: https://github.com/osu-cs340-ecampus/nodejs-starter-app 
+* Adapted from: GitHub: osu-cs340-ecampus/nodejs-starter-app - Step 8 Step 5 and bsg_HTML_UI file provided in the Exploration - Web Application Technology 
+* Source URL: https://github.com/osu-cs340-ecampus/nodejs-starter-app and https://canvas.oregonstate.edu/courses/1946034/pages/exploration-web-application-technology?module_item_id=23809327
 * Authors: George Kochera, Cortona1, Dr. Michael Curry, dmgs11
 * Description of function: Dynamically adds data to Locations table
 * -----------END CITATION--------------
@@ -51,7 +51,6 @@ updateLocationForm.addEventListener("submit", function (e) {
             // Add the new data to the table
             alert("Row updated successfully");
             updateRow(xhttp.response, locationNameValue);
-            updateRow(xhttp.response, streetAddressValue);
         }
 
         else if (xhttp.readyState == 4 && xhttp.status != 200) {
@@ -88,4 +87,6 @@ function updateRow(data, locationID){
             td[5].innerHTML = parsedData[0].zipcode;
        }
     }
+
+    document.getElementById("hiddenUpdate").style.display = "none"
 }

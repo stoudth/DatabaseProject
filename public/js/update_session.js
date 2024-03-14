@@ -2,7 +2,7 @@
 * The below function is adapted from the javascript in the html code file bsg_HTML_UI provided in the Exploration - Web Application Technology 
 * and the node.js starter app provided in this course
 * Date: 2/14/2024 and 2/23/2023
-* Copied from: GitHub: osu-cs340-ecampus/nodejs-starter-app - Step 7 (see the for loop that checks the display table) and bsg_HTML_UI file provided in the Exploration - Web Application Technology
+* Adapted from: GitHub: osu-cs340-ecampus/nodejs-starter-app - Step 7 (see the for loop that checks the display table) and bsg_HTML_UI file provided in the Exploration - Web Application Technology
 * Source URL: https://github.com/osu-cs340-ecampus/nodejs-starter-app and https://canvas.oregonstate.edu/courses/1946034/pages/exploration-web-application-technology?module_item_id=23809327
 * Authors: George Kochera, Cortona1, Dr. Michael Curry, dmgs11
 * Description: Pulls corresponding data from table row associated with the sessionID that is passed to the function and manipulates the DOM tree to pre-fill the Update Form. 
@@ -60,7 +60,7 @@ function updateSession(sessionID) {
 /* -----------SENDUPDATE CITATION------------------
 * The below function is adapted from the node.js starter app provided in this course
 * Date: 2/23/2023
-* Copied from: GitHub: osu-cs340-ecampus/nodejs-starter-app - Step 7 and Step 8 (adapated jquery delete code for an update request)
+* Adapted from: GitHub: osu-cs340-ecampus/nodejs-starter-app - Step 7 and Step 8 (adapated jquery delete code for an update request)
 * Source URL: https://github.com/osu-cs340-ecampus/nodejs-starter-app 
 * Authors: George Kochera, Cortona1, Dr. Michael Curry, dmgs11
 * Description of function: Sends a jquery request with the updated data to the put routehandler for sessions. It then calls a function to update that row in the dom tree.
@@ -99,7 +99,7 @@ function sendUpdate() {
 * The below function is adapted from the javascript in the html code file bsg_HTML_UI provided in the Exploration - Web Application Technology 
 * and the node.js starter app provided in this course
 * Date: 2/14/2024 and 2/23/2023
-* Copied from: GitHub: osu-cs340-ecampus/nodejs-starter-app - Step 8 and bsg_HTML_UI file provided in the Exploration - Web Application Technology
+* Adapted from: GitHub: osu-cs340-ecampus/nodejs-starter-app - Step 8 and bsg_HTML_UI file provided in the Exploration - Web Application Technology
 * Source URL: https://github.com/osu-cs340-ecampus/nodejs-starter-app and https://canvas.oregonstate.edu/courses/1946034/pages/exploration-web-application-technology?module_item_id=23809327
 * Authors: George Kochera, Cortona1, Dr. Michael Curry, dmgs11
 * Description of function: Finds the row in the display table and updates the information in that row with the information returned from the route handler
@@ -129,4 +129,32 @@ function updateRow(id, res) {
             break;
         };
     };
+};
+
+/* -----------BROWSE and NEWCLASS CITATION------------------
+* The below functions are copied and adapted from the javascript in the html code file bsg_HTML_UI provided in the Exploration - Web Application Technology 
+* Date: 2/14/2024
+* Copied from: bsg_HTML_UI file provided in the Exploration - Web Application Technology
+* Author: Dr. Michael Currry
+* Source URL: https://canvas.oregonstate.edu/courses/1946034/pages/exploration-web-application-technology?module_item_id=23809327
+* 
+* Description of function: Displays the applicable sections in the dom tree when called
+* -----------END CITATION--------------
+*/ 
+
+function browse() {
+    document.getElementById('browse').style.display = 'block';
+    document.getElementById('insert').style.display = 'none';
+    document.getElementById('update').style.display = 'none';
+};
+
+
+function newSession() {
+    //document.getElementById('browse').style.display = 'none';
+    if (document.getElementById('insert').style.display === "none") {
+        document.getElementById('insert').style.display = 'block';
+        document.getElementById('update').style.display = 'none';
+    } else {
+        document.getElementById('insert').style.display = 'none';
+    }
 };
