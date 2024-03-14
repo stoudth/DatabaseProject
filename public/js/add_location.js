@@ -20,7 +20,6 @@ addLocationForm.addEventListener("submit", function (e) {
     e.preventDefault();
 
     // Get form fields we need to get data from
-    //let idLocationInput = document.getElementById("input-idLocation");
     let locationNameInput = document.getElementById("input-locationName");
     let streetAddressInput = document.getElementById("input-streetAddress");
     let cityInput = document.getElementById("input-city");
@@ -28,7 +27,6 @@ addLocationForm.addEventListener("submit", function (e) {
     let zipcodeInput = document.getElementById("input-zipcode");
 
     // Get the values from the form fields
-    //let idLocationValue = idLocationInput.value;
     let locationNameValue = locationNameInput.value;
     let streetAddressValue = streetAddressInput.value;
     let cityValue = cityInput.value;
@@ -37,7 +35,6 @@ addLocationForm.addEventListener("submit", function (e) {
 
     // Put our data we want to send in a javascript object
     let data = {
-        //idLocation: idLocationValue,
         locationName: locationNameValue,
         streetAddress: streetAddressValue,
         city: cityValue,
@@ -58,7 +55,6 @@ addLocationForm.addEventListener("submit", function (e) {
             addRowToTable(xhttp.response);
 
             // Clear the input fields for another transaction
-            //idLocationInput.value = '';
             locationNameInput.value = '';
             streetAddressInput.value = '';
             cityInput.value = '';
