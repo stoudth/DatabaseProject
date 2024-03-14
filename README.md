@@ -27,7 +27,7 @@ The setup and Listener code in app.js is copied from the Node.js Starter App ref
 #### CRUD OPERATION ROUTEHANDLERS
 The routehandlers in the app.js are adapted from the the Node.js Starter App referenced and linked to in this course. Specifically taken from Steps 4 through 8. <br />
 **First Date Viewed:** 2/21/2024 <br />
-**Copied from:** GitHub: osu-cs340-ecampus/nodejs-starter-app (Step 4-8) <br />
+**Adapted from:** GitHub: osu-cs340-ecampus/nodejs-starter-app (Step 4-8) <br />
 **Source URL:** https://github.com/osu-cs340-ecampus/nodejs-starter-app <br />
 **Authors:** George Kochera, Cortona1, Dr. Michael Curry, dmgs11 <br />
 **Description:** These routehandlers handle the Create, Read, Update, and Delete requests that are made from the site. They parse any data necessary and send the requests to the SQL database. It then handles any return information that needs to be sent back. Note: SQL queries are of our own creation.
@@ -45,19 +45,19 @@ Hyphen removal code is used within app.js and the public js files. This code was
 -----------------------------------
 
 #### HTML CITATION
-The HTML code in the hbs files in the views folder was adapted from the html code file bsg_HTML_UI provided in the Exploration - Web Application Technology. <br />
+The HTML code in the hbs files in the views folder and some of the JavaScript language in the js files was adapted from the html code file bsg_HTML_UI provided in the Exploration - Web Application Technology. <br />
 **Date:** 2/14/2024 <br />
-**Code adapted from:** bsg_HTML_UI provided in the Exploration - Web Application Technology <br />
+**Adapted from:** bsg_HTML_UI provided in the Exploration - Web Application Technology <br />
 **Source URL:** https://canvas.oregonstate.edu/courses/1946034/pages/exploration-web-application-technology?module_item_id=23809327 <br />
 **Author:** Dr. Michael Curry <br />
-**Description:** The HTML code in the hbs files implements the structure of the UI for each given page. All pages consist of a navigation bar, a header, a table that displays data for each database table, and a section to insert new data for a given table. Some pages also contain delete and update sections in order to perform those operations. 
+**Description:** The HTML code in the hbs files implements the structure of the UI for each given page. All pages consist of a navigation bar, a header, a table that displays data for each database table, and a section to insert new data for a given table. Some pages also contain delete and update sections in order to perform those operations. The javascript referenced was used to toggle division views. 
 
 ------------------------------
 
 #### HANDLEBAR CITATION
 The handlebar use in the hbs files to generate data tables and dropdown menus is taken from the Node.js Starter App provided in this course. <br />
 **Date:** 2/21/2023 <br />
-**Copied from:** GitHub: osu-cs340-ecampus/nodejs-starter-app - Steps 3, 4 and 6 <br />
+**Adapted from:** GitHub: osu-cs340-ecampus/nodejs-starter-app - Steps 3, 4 and 6 <br />
 **Source URL:** https://github.com/osu-cs340-ecampus/nodejs-starter-app <br />
 **Authors:** George Kochera, Cortona1, Dr. Michael Curry, dmgs11 <br />
 **Description:** Imports and uses handlebar syntax to display data that is sent back from the routehandler that was retrieved from the SQL database. 
@@ -68,7 +68,7 @@ The handlebar use in the hbs files to generate data tables and dropdown menus is
 #### JAVASCRIPT CRUD OPERATION FUNCTIONS
 The JavaScript code in the public js files was adapted from the bsg_HTML_UI file provided int he Exploration - Web Application Technology and the node.js starter app provided in this course <br />
 **Date:** 2/14/2024 and 2/23/2023 <br />
-**Copied from:** GitHub: osu-cs340-ecampus/nodejs-starter-app - Steps4-8 and bsg_HTML_UI file provided in the Exploration - Web Application Technology
+**Adapted from:** GitHub: osu-cs340-ecampus/nodejs-starter-app - Steps4-8 and bsg_HTML_UI file provided in the Exploration - Web Application Technology
 **Source URL:** https://github.com/osu-cs340-ecampus/nodejs-starter-app and https://canvas.oregonstate.edu/courses/1946034/pages/exploration-web-application-technology?module_item_id=23809327 <br />
 **Authors:** George Kochera, Cortona1, Dr. Michael Curry, dmgs11 <br />
 **Description:** The functions in the public js files handle actions in the UI by listening for or handling actions made by the user. They then pull and process the necessary information to send to the routehandlers and update the DOM tree accordingly based on the returned response.
@@ -110,3 +110,12 @@ Styling throughout database site is sourced from Bootstrap v5.3.3 unless otherwi
 **Description:** Styles the site to be visually appealing
 
 -----------------------------------------
+
+#### TOGGLE ADD BUTTONS SCRIPT CITATION
+The purpose of this script in some of the hbs files is to allow users to toggle between hiding and showing add/update forms as needed. <br />
+**Date:** 2/25/2023 <br />
+**Adapted from:** W3 Schools How TO - Toggle Hide and Show <br />
+**Source URL:** https://www.w3schools.com/howto/howto_js_toggle_hide_show.asp <br />
+**Description:** Toggles visible elements on page.
+
+---------------------------------------

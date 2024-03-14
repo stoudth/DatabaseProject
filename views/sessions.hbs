@@ -13,20 +13,10 @@
 <!--Source URL: https://github.com/osu-cs340-ecampus/nodejs-starter-app-->
 <!--Authors: George Kochera, Cortona1, Dr. Michael Curry, dmgs11-->
 
-{{!--Header Section and js scripts --}}
-<html>
-    <head>
-        <title>
-            Apex Climbing Sessions
-        </title>
-        <link href="style.css" rel="stylesheet" type="text/css"/>
-        <script src="./js/add_session.js"></script>
-        <script src="./js/update_session.js"></script>
-        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-    </head>
-</html>
-
 {{!--Nav Bar--}}
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script src="./js/update_session.js"></script>
+
 <body onload="browse()">
     <nav class="navbar navbar-expand-lg bg-body-tertiary column-gap-3 p-3">
         <h2>Apex Climbing Gym</h2>
@@ -48,14 +38,14 @@
         <br>
         <div id="info">
             <fieldset class="fs-5">
-                <p>Operations available for Sessions: SELECT, INSERT, UPDATE (for M:N relationship)</p>
+                <p>Operations available for Sessions: SELECT, INSERT, UPDATE (affects M:N relationship)</p>
             </fieldset>
         </div>
 
         {{!--Table to display database data--}}
         <div id="browse">
             <p><strong>Browse Sessions- Displays All Sessions Currently In The Database</strong></p>
-            <table id="session-table" class="table table-hover">
+            <table id="session-table" data-toggle="table" class="table table-hover">
                 
                 <thead>
                     <tr>
@@ -82,6 +72,7 @@
                     </tr>
                     {{/each}}
                 </tbody>
+                <script src="./js/update_session.js"></script>
             </table>
 
             {{!--Button to show add form--}}
@@ -89,7 +80,7 @@
             <form method="POST" id="addSession">
                 <input class="btn btn-secondary" type="button" value="Add Session" onClick="newSession()">
             </form> 
-
+            
         </div>
 
         {{!--Update Form--}}
@@ -115,38 +106,43 @@
                     <label class="p-1 my-2"> Session Date: </label> <input type="date" name="updateClassDate" id="updateClassDate"><br>
                     <span class="p-1 my-2">Note: Duplicate sessions are not allowed</span>
 
-                <br><br>
-                <input class="btn btn-primary btn-sm m-1" type="button" id="confirmUpdate" value="Submit" onClick="sendUpdate()">
-                <input class="btn btn-secondary btn-sm m-1" type="button" value="Cancel" onClick="browse()">
+                    <br><br>
+                    <input class="btn btn-primary btn-sm m-1" type="button" id="confirmUpdate" value="Submit" onClick="sendUpdate()">
+                    <input class="btn btn-secondary btn-sm m-1" type="button" value="Cancel" onClick="browse()">
                 </div>
             </form> 
         </div>
 
+
         {{!--Add Form--}}
         <div id="insert">
-            <form id="addSession">  
+            <form id="addSession" method="POST" action="/add-session">  
                 <div class="add my-5 p-2 border border-primary">
                     
                     <h2 class="p-1 my-2">Add a New Session</h2>
                     <p>To add a new session, please enter its information below and click 'Submit'! All fields are required.</p>
-                    <label class="p-1 my-2"> Location: </label> <select id="addLocationName">
+                    <label class="p-1 my-2"> Location: </label> <select id="addLocationName" name="locationName">
                         {{#each locations}}
                         <option value="{{this.idLocation}}">{{this.locationName}}</option>
                         {{/each}}
                         </select>
-                    <label class="p-1 my-2"> Class: </label> <select id="addClassName">
+                    <label class="p-1 my-2"> Class: </label> <select id="addClassName" name="className">
                         {{#each classes}}
                         <option value="{{this.idClass}}">{{this.className}}</option>
                         {{/each}}
                     </select>
-                    <label class="p-1 my-2"> Session Date: </label> <input type="date" id="addClassDate"><br>
+                    <label class="p-1 my-2"> Session Date: </label> <input type="date" id="addClassDate" name="classDate"><br>
                     <span class="p-1 my-2">Note: Duplicate sessions not allowed</span>
                 
-                <br>
-                <input class="btn btn-primary btn-sm m-1" type="submit" id="confirmAddSession" value="Submit" onclick="addSession()">
+                <br><br>
+                <input class="btn btn-primary btn-sm m-1" type="submit" id="confirmAddSession" value="Submit">
                 <input class="btn btn-secondary btn-sm m-1" type="button" value="Cancel" onClick="browse()">
                 </div>
             </form> 
         </div>
+    </div>
+
+    <div>
+        <span id="test1"></span>
     </div>
 </body>
