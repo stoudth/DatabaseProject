@@ -55,12 +55,12 @@ The HTML code in the hbs files in the views folder and some of the JavaScript la
 ------------------------------
 
 #### HANDLEBAR CITATION
-The handlebar use in the hbs files to generate data tables and dropdown menus is taken from the Node.js Starter App provided in this course. <br />
+The handlebar use in the hbs files to generate data tables and dropdown menus is adapted from the Node.js Starter App provided in this course. <br />
 **Date:** 2/21/2023 <br />
 **Adapted from:** GitHub: osu-cs340-ecampus/nodejs-starter-app - Steps 3, 4 and 6 <br />
 **Source URL:** https://github.com/osu-cs340-ecampus/nodejs-starter-app <br />
 **Authors:** George Kochera, Cortona1, Dr. Michael Curry, dmgs11 <br />
-**Description:** Imports and uses handlebar syntax to display data that is sent back from the routehandler that was retrieved from the SQL database. 
+**Description:** Uses handlebar syntax to display data that is sent back from the routehandler that was retrieved from the SQL database. 
 
 --------------------------------
 
@@ -95,7 +95,7 @@ The syntax for the 'cell_name'.append(button) code from the public js files was 
 ----------------------------------------------
 
 #### APPENDING ELEMENTS TO A TABLE WHILE USING BOOTSTRAP
-The syntax in order to update an existing diplay table that utilizes Bootstrap for sytling with a new row of information was taken from the Bootstrap website <br />
+The syntax in order to update an existing diplay table that utilizes Bootstrap for styling with a new row of information was taken from the Bootstrap website <br />
 **Date:** 3/4/2024 <br />
 **Syntax copied from:** Bootstrap v5 website Examples > Methods > Append <br />
 **Source URL:** https://examples.bootstrap-table.com/#methods/append.html <br />
@@ -112,10 +112,10 @@ Styling throughout database site is sourced from Bootstrap v5.3.3 unless otherwi
 -----------------------------------------
 
 #### TOGGLE ADD BUTTONS SCRIPT CITATION
-The purpose of this script in some of the hbs files is to allow users to toggle between hiding and showing add/update forms as needed. <br />
+The toggle buttons that are used in some of the HBS files were adapted W3 Schools How To guide.<br />
 **Date:** 2/25/2023 <br />
 **Adapted from:** W3 Schools How TO - Toggle Hide and Show <br />
 **Source URL:** https://www.w3schools.com/howto/howto_js_toggle_hide_show.asp <br />
-**Description:** Toggles visible elements on page.
+**Description:** The purpose of this script in some of the hbs files is to allow users to toggle between hiding and showing add/update forms as needed.
 
 ---------------------------------------
