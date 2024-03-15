@@ -50,6 +50,14 @@ updateLocationForm.addEventListener("submit", function (e) {
 
             // Add the new data to the table
             alert("Row updated successfully");
+
+            //clear fields
+            locationNameInput.value = '';
+            streetAddressInput.value = '';
+            cityInput.value = '';
+            stateInput.value = '';
+            zipcodeInput.value = '';
+
             updateRow(xhttp.response, locationNameValue);
         }
 
@@ -83,7 +91,7 @@ function updateRow(data, locationID){
             // Reassign values of each td to our values we updated to
             td[2].innerHTML = parsedData[0].streetAddress; 
             td[3].innerHTML = parsedData[0].city;
-            td[4].innterHTML = parsedData[0].state;
+            td[4].innerHTML = parsedData[0].state;
             td[5].innerHTML = parsedData[0].zipcode;
        }
     }
