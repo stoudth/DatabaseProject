@@ -121,17 +121,17 @@
                     
                     <h2 class="p-1 my-2">Add a New Session</h2>
                     <p>To add a new session, please enter its information below and click 'Submit'! All fields are required.</p>
-                    <label class="p-1 my-2"> Location: </label> <select id="addLocationName" name="locationName">
+                    <label class="p-1 my-2"> Location: </label> <select id="addLocationName" name="locationName" required>
                         {{#each locations}}
                         <option value="{{this.idLocation}}">{{this.locationName}}</option>
                         {{/each}}
                         </select>
-                    <label class="p-1 my-2"> Class: </label> <select id="addClassName" name="className">
+                    <label class="p-1 my-2"> Class: </label> <select id="addClassName" name="className" required>
                         {{#each classes}}
                         <option value="{{this.idClass}}">{{this.className}}</option>
                         {{/each}}
                     </select>
-                    <label class="p-1 my-2"> Session Date: </label> <input type="date" id="addClassDate" name="classDate"><br>
+                    <label class="p-1 my-2"> Session Date: </label> <input type="date" id="addClassDate" name="classDate" required><br>
                     <span class="p-1 my-2">Note: Duplicate sessions not allowed</span>
                 
                 <br><br>

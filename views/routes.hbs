@@ -149,26 +149,26 @@
                     <h2 class="p-1">Add a New Route</h2>
                     <p>To add a new route, please enter its information below and click 'Submit'! All fields are required but you may select NULL for Route Setter.</p>
                     
-                    <label class="p-1 my-2"> Route Name: </label> <input type="text" name="routeName" id="routeName">
-                    <label class="p-1 my-2"> Date Set: </label> <input type="date" name="dateSet" id="dateSet">
-                    <label class="p-1 my-2"> Route Grade: </label> <input type="text" name="routeGrade" id="routeGrade"><br>
+                    <label class="p-1 my-2"> Route Name: </label> <input type="text" name="routeName" id="routeName" required>
+                    <label class="p-1 my-2"> Date Set: </label> <input type="date" name="dateSet" id="dateSet" required>
+                    <label class="p-1 my-2"> Route Grade: </label> <input type="text" name="routeGrade" id="routeGrade" required><br>
                     <label class="p-1 my-2"> Active: </label>
-                        <select name="active" id="active">
+                        <select name="active" id="active" required>
                         <option value="0">False</option>
                         <option value="1" selected>True</option>
                         </select>
-                    <label class="p-1 my-2"> Location: </label> <select name="locationName" id="addLocationName">
+                    <label class="p-1 my-2"> Location: </label> <select name="locationName" id="addLocationName" required>
                         {{#each locations}}
                         <option value="{{this.idLocation}}">{{this.locationName}}</option>
                         {{/each}}
                         </select>
-                    <label class="p-1 my-2"> Route Setter: </label> <select name="idRouteSetter" id="addRouteSetter">
+                    <label class="p-1 my-2"> Route Setter: </label> <select name="idRouteSetter" id="addRouteSetter" required>
                         <option value="null">NULL</option>
                         {{#each routesetters}}
                         <option value="{{this.idRouteSetter}}">{{this.firstName}} {{this.lastName}}</option>
                         {{/each}}
                         </select>
-                    <label class="p-1 my-2"> Route Type: </label> <select name="idRouteType" id="addRouteType">
+                    <label class="p-1 my-2"> Route Type: </label> <select name="idRouteType" id="addRouteType" required>
                         {{#each routetypes}}
                         <option value="{{this.idRouteType}}">{{this.routeType}}</option>
                         {{/each}}

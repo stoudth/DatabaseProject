@@ -95,17 +95,17 @@
                     <h2 class="p-1 my-2">Add a New Class</h2>
                     <p>To add a new class, please enter its information below and click 'Submit'! All fields are required.</p>
                     
-                    <label class="p-1 my-2"> Class Name: </label> <input type="text" name="className" id="className">
-                    <label class="p-1 my-2"> Size Limit: </label> <input type="number" min="1" name="sizeLimit" id="sizeLimit"><br>
+                    <label class="p-1 my-2"> Class Name: </label> <input type="text" name="className" id="className" required>
+                    <label class="p-1 my-2"> Size Limit: </label> <input type="number" min="1" name="sizeLimit" id="sizeLimit" required><br>
                     <span class="p-1 my-2">Note: Duplicate class names not allowed</span>
                     <br><br><br>
                     <span><strong class="font-weight-bold fs-5 m-1">First Class Session</strong></span><br>
-                    <label class="p-1 my-2"> Location: </label> <select name="locationName" id="locationName">
+                    <label class="p-1 my-2"> Location: </label> <select name="locationName" id="locationName" required>
                         {{#each locations}}
                         <option value="{{this.idLocation}}">{{this.locationName}}</option>
                         {{/each}}
                         </select>
-                    <label class="p-1 my-2">Date:</label><input type="date" name="classDate" id="classDate"><br><br>
+                    <label class="p-1 my-2">Date:</label><input type="date" name="classDate" id="classDate" required><br><br>
                     
                     <input class="btn btn-primary btn-sm m-1" type="submit"  id="addClass" value="Submit">
                     <input class="btn btn-secondary btn-sm m-1" type="button" value="Cancel" onClick="browse()">
